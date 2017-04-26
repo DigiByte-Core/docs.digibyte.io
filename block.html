@@ -1,0 +1,574 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Block | Bitcore</title><meta name="description" content="A simple interface to parse and validate a bitcoin block."><!-- Twitter Card data--><meta name="twitter:card" content="summary"><meta name="twitter:site" content="@BitPay"><meta name="twitter:title" content="Block"><meta name="twitter:description" content="A simple interface to parse and validate a bitcoin block."><meta name="twitter:image" content="https://bitcore.io/images/social/card.jpg"><!-- Open Graph data (Facebook and Reddit)--><meta property="og:title" content="Block"><meta property="og:type" content="article"><meta property="og:url" content="https://bitcore.io/"><meta property="og:image" content="https://bitcore.io/images/social/avatar.jpg"><meta property="og:description" content="A simple interface to parse and validate a bitcoin block."><meta property="og:site_name" content="Bitcore.io"><!-- Add to homescreen for Chrome on Android--><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/images/touch/chrome-touch-icon-192x192.b0c7306c.png"><!-- Add to homescreen for Safari on iOS--><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Bitcore"><link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png"><!-- Tile icon for Win8 (144x144 + tile color)--><meta name="msapplication-TileImage" content="/images/touch/ms-touch-icon-144x144-precomposed.dcbb3eea.png"><meta name="msapplication-TileColor" content="#F9AB3D"><!-- Favicon--><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/styles/main.88c254de.css" data-instant-track><link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,700italic,600italic|Titillium+Web:400,300,700" rel="stylesheet" type="text/css"><script type="text/javascript" data-no-instant>
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.1";
+  if(this.location.host === 'bitcore.io'){ analytics.load('hP7mqqPCPPa5hRatDaulKFxm0kPiB6Es'); }
+  else { analytics.load("dgbXyNcmHR3bJIjumdYoe3GZFrs6sHBd"); }
+  }}();
+</script>
+<script data-no-instant>
+  var $buoop = {vs:{i:9,f:30,o:25,s:5.1},c:2};
+  function $buo_f(){
+   var e = document.createElement("script");
+   e.src = "//browser-update.org/update.js";
+   document.body.appendChild(e);
+  };
+  try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+  catch(e){window.attachEvent("onload", $buo_f)}
+</script>
+<meta name="google-site-verification" content="GOfbzCpKO__Imdru-L0nG1Fo9tTvyH3QVAIWsYO9rCk"></head><body><nav class="navbar navbar-fixed-top dark-nav hidden-sm-down"><a href="/" title="Home" class="logo logo-light margin-top"></a><ul class="nav navbar-nav pull-right"><li class="nav-item"><a href="/start" class="nav-link">Getting Started</a></li><li class="nav-item"><a href="/guides" class="nav-link">Guides</a></li><li class="nav-item"><a href="/api" class="nav-link active">Docs</a></li><li class="nav-item"><a href="/playground" class="nav-link">Playground        </a></li><li class="nav-item"><a href="//forum.bitcore.io/" class="nav-link">Forum</a></li></ul></nav><div class="mobile-menu hidden-md-up navbar-fixed-top"><div id="exCollapsingNavbar" class="collapse"><div class="bg-inverse p-md"><h3 class="m-b-0"> <ul class="p-l-0 no-bullets m-b-0"><li class="nav-item"><a href="/" class="nav-link">Home</a></li><li class="nav-item"><a href="/start" class="nav-link">Getting Started</a></li><li class="nav-item"><a href="/guides" class="nav-link">Guides</a></li><li class="nav-item"><a href="/api" class="nav-link active">Docs</a></li><li class="nav-item"><a href="/playground" class="nav-link">Playground        </a></li><li class="nav-item"><a href="//forum.bitcore.io/" class="nav-link">Forum</a></li></ul></h3></div></div><nav class="navbar dark-nav"><button type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" class="navbar-toggler p-l-0"><div class="logo logo-square-orange menu-text color-white">Menu</div></button></nav></div><div class="fixed-sidebar bg-gray border-right-grey p-l-md"><a href="/api/"><h3 class="menu-header m-t-md">Bitcore</h3><ul class="nav nav-pills nav-stacked"><li class="nav-item"><a href="/api/" class="nav-link">Overview</a></li></ul></a><a href="/api/node"><h3 class="menu-header m-t-md">Node</h3></a><a href="/api/service"><h3 class="menu-header m-t-md">Services</h3></a><h3 class="menu-header m-t-md">Library API</h3><ul class="nav nav-pills nav-stacked"><li class="nav-item"><a href="/api/lib" class="nav-link">Overview</a></li><li class="nav-item"><a href="/api/lib/address" class="nav-link">Address</a></li><li class="nav-item"><a href="/api/lib/block" class="active nav-link">Block</a></li><li class="nav-item"><a href="/api/lib/crypto" class="nav-link">Crypto</a></li><li class="nav-item"><a href="/api/lib/encoding" class="nav-link">Encoding</a></li><li class="nav-item"><a href="/api/lib/hd-keys" class="nav-link">HD Keys</a></li><li class="nav-item"><a href="/api/lib/networks" class="nav-link">Networks</a></li><li class="nav-item"><a href="/api/lib/private-key" class="nav-link">Private Key</a></li><li class="nav-item"><a href="/api/lib/public-key" class="nav-link">Public Key</a></li><li class="nav-item"><a href="/api/lib/script" class="nav-link">Script</a></li><li class="nav-item"><a href="/api/lib/transaction" class="nav-link">Transaction</a></li><li class="nav-item"><a href="/api/lib/unit" class="nav-link">Bitcoin Units</a></li><li class="nav-item"><a href="/api/lib/unspent-output" class="nav-link">Unspent Outputs</a></li><li class="nav-item"><a href="/api/lib/uri" class="nav-link">Bitcoin URIs</a></li></ul><a href="/api/mnemonic"><h3 class="menu-header m-t-md">Library Modules</h3></a><a href="/api/p2p"><h3 class="menu-header m-t-md">Peer-to-Peer</h3></a></div><div class="scroll-content"><div class="api-content"><div class="docs bg-white"><div class="container"><div class="section p-t-lg"><div class="text-right bring-to-front"><a href="https://github.com/bitpay/bitcore-lib/edit/master/docs/block.md">Edit</a></div><h1 id="bitcoin-block">Bitcoin Block</h1>
+<p>A Block instance represents the information of a block in the bitcoin network. Given a hexadecimal string representation of the serialization of a block with its transactions, you can instantiate a Block instance. Methods are provided to calculate and check the merkle root hash (if enough data is provided), but transactions won&#39;t necessarily be valid spends, and this class won&#39;t validate them. A binary representation as a <code>Buffer</code> instance is also valid input for a Block&#39;s constructor.</p>
+<pre><code class="lang-javascript">// instantiate a new block instance
+var block = new Block(hexaEncodedBlock);
+
+// will verify that the corresponding block transactions match the header
+assert(block.validMerkleRoot());
+
+// blocks have several properties
+assert(block.header); // an instance of block header, more info below
+assert(block.transactions); // an array of transactions, more info below
+</code></pre>
+<p>For detailed technical information about a block please visit <a href="https://en.bitcoin.it/wiki/Blocks#Block_structure">Blocks</a> on the Bitcoin Wiki.</p>
+<h2 id="block-header">Block Header</h2>
+<p>Each instance of Block has a BlockHeader <em>(which can be instantiated separately)</em>. The header has validation methods, to verify that the block.</p>
+<pre><code class="lang-javascript">// will verify that the nonce demonstrates enough proof of work
+assert(block.header.validProofOfWork());
+
+// will verify that timestamp is not too far in the future
+assert(block.header.validTimestamp());
+
+// each header has the following properties
+assert(block.header.version);
+assert(block.header.prevHash);
+assert(block.header.merkleRoot);
+assert(block.header.time);
+assert(block.header.bits);
+assert(block.header.nonce);
+</code></pre>
+<p>For more information about the specific properties of a block header please visit the <a href="https://en.bitcoin.it/wiki/Block_hashing_algorithm">Block hashing algorithm</a> page on the Bitcoin Wiki.</p>
+<h2 id="transactions">Transactions</h2>
+<p>The set of transactions in a block is an array of instances of <a href=/api/lib/transaction>Transaction</a> and can be explored by iterating on the block&#39;s <code>transactions</code> member.</p>
+<pre><code class="lang-javascript">for (var i in block.transactions) {
+  var transaction = block.transactions[i];
+}
+</code></pre>
+</div></div></div><div class="lib bg-dark"><div class="container"><div class="section p-t-lg"><div class="text-right bring-to-front"><a href="https://github.com/bitpay/bitcore-lib/blob/master/lib/block/block.js">View Source</a></div><p><a name="Block"></a></p>
+<h2 id="block">Block</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#Block">Block</a><ul>
+<li><a href="#new_Block_new">new Block(arg)</a></li>
+<li><em>instance</em><ul>
+<li><a href="#Block+toObject">.toObject</a> ⇒ <code>Object</code></li>
+<li><a href="#Block+toBuffer">.toBuffer()</a> ⇒ <code>Buffer</code></li>
+<li><a href="#Block+toString">.toString()</a> ⇒ <code>string</code></li>
+<li><a href="#Block+toBufferWriter">.toBufferWriter(bw)</a> ⇒ <code>BufferWriter</code></li>
+<li><a href="#Block+getTransactionHashes">.getTransactionHashes()</a> ⇒ <code>Array</code></li>
+<li><a href="#Block+getMerkleTree">.getMerkleTree()</a> ⇒ <code>Array</code></li>
+<li><a href="#Block+getMerkleRoot">.getMerkleRoot()</a> ⇒ <code>Buffer</code></li>
+<li><a href="#Block+validMerkleRoot">.validMerkleRoot()</a> ⇒ <code>Boolean</code></li>
+<li><a href="#Block+_getHash">._getHash()</a> ⇒ <code>Buffer</code></li>
+<li><a href="#Block+inspect">.inspect()</a> ⇒ <code>string</code></li>
+</ul>
+</li>
+<li><em>static</em><ul>
+<li><a href="#Block.fromObject">.fromObject(obj)</a> ⇒ <code><a href="#Block">Block</a></code></li>
+<li><a href="#Block.fromBufferReader">.fromBufferReader(br)</a> ⇒ <code><a href="#Block">Block</a></code></li>
+<li><a href="#Block.fromBuffer">.fromBuffer(buf)</a> ⇒ <code><a href="#Block">Block</a></code></li>
+<li><a href="#Block.fromString">.fromString(str)</a> ⇒ <code><a href="#Block">Block</a></code></li>
+<li><a href="#Block.fromRawBlock">.fromRawBlock(data)</a> ⇒ <code><a href="#Block">Block</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="new_Block_new"></a></p>
+<h3 id="new-block-arg-">new Block(arg)</h3>
+<p>Instantiate a Block from a Buffer, JSON object, or Object with
+the properties of the Block</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>arg</td>
+<td><code>*</code></td>
+<td>A Buffer, JSON string, or Object</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Block+toObject"></a></p>
+<h3 id="block-toobject-code-object-code-">block.toObject ⇒ <code>Object</code></h3>
+<p><strong>Kind</strong>: instance property of <code><a href="#Block">Block</a></code><br><strong>Returns</strong>: <code>Object</code> - - A plain object with the block properties<br><a name="Block+toBuffer"></a></p>
+<h3 id="block-tobuffer-code-buffer-code-">block.toBuffer() ⇒ <code>Buffer</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#Block">Block</a></code><br><strong>Returns</strong>: <code>Buffer</code> - - A buffer of the block<br><a name="Block+toString"></a></p>
+<h3 id="block-tostring-code-string-code-">block.toString() ⇒ <code>string</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#Block">Block</a></code><br><strong>Returns</strong>: <code>string</code> - - A hex encoded string of the block<br><a name="Block+toBufferWriter"></a></p>
+<h3 id="block-tobufferwriter-bw-code-bufferwriter-code-">block.toBufferWriter(bw) ⇒ <code>BufferWriter</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#Block">Block</a></code><br><strong>Returns</strong>: <code>BufferWriter</code> - - An instance of BufferWriter representation of the Block  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bw</td>
+<td><code>BufferWriter</code></td>
+<td>An existing instance of BufferWriter</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Block+getTransactionHashes"></a></p>
+<h3 id="block-gettransactionhashes-code-array-code-">block.getTransactionHashes() ⇒ <code>Array</code></h3>
+<p>Will iterate through each transaction and return an array of hashes</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Block">Block</a></code><br><strong>Returns</strong>: <code>Array</code> - - An array with transaction hashes<br><a name="Block+getMerkleTree"></a></p>
+<h3 id="block-getmerkletree-code-array-code-">block.getMerkleTree() ⇒ <code>Array</code></h3>
+<p>Will build a merkle tree of all the transactions, ultimately arriving at
+a single point, the merkle root.</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Block">Block</a></code><br><strong>Returns</strong>: <code>Array</code> - - An array with each level of the tree after the other.<br><strong>Link</strong>: <a href="https://en.bitcoin.it/wiki/Protocol_specification#Merkle_Trees">https://en.bitcoin.it/wiki/Protocol_specification#Merkle_Trees</a><br><a name="Block+getMerkleRoot"></a></p>
+<h3 id="block-getmerkleroot-code-buffer-code-">block.getMerkleRoot() ⇒ <code>Buffer</code></h3>
+<p>Calculates the merkleRoot from the transactions.</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Block">Block</a></code><br><strong>Returns</strong>: <code>Buffer</code> - - A buffer of the merkle root hash<br><a name="Block+validMerkleRoot"></a></p>
+<h3 id="block-validmerkleroot-code-boolean-code-">block.validMerkleRoot() ⇒ <code>Boolean</code></h3>
+<p>Verifies that the transactions in the block match the header merkle root</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Block">Block</a></code><br><strong>Returns</strong>: <code>Boolean</code> - - If the merkle roots match<br><a name="Block+_getHash"></a></p>
+<h3 id="block-_gethash-code-buffer-code-">block._getHash() ⇒ <code>Buffer</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#Block">Block</a></code><br><strong>Returns</strong>: <code>Buffer</code> - - The little endian hash buffer of the header<br><a name="Block+inspect"></a></p>
+<h3 id="block-inspect-code-string-code-">block.inspect() ⇒ <code>string</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#Block">Block</a></code><br><strong>Returns</strong>: <code>string</code> - - A string formatted for the console<br><a name="Block.fromObject"></a></p>
+<h3 id="block-fromobject-obj-code-block-block-code-">Block.fromObject(obj) ⇒ <code><a href="#Block">Block</a></code></h3>
+<p><strong>Kind</strong>: static method of <code><a href="#Block">Block</a></code><br><strong>Returns</strong>: <code><a href="#Block">Block</a></code> - - An instance of block  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>obj</td>
+<td><code>Object</code></td>
+<td>A plain JavaScript object</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Block.fromBufferReader"></a></p>
+<h3 id="block-frombufferreader-br-code-block-block-code-">Block.fromBufferReader(br) ⇒ <code><a href="#Block">Block</a></code></h3>
+<p><strong>Kind</strong>: static method of <code><a href="#Block">Block</a></code><br><strong>Returns</strong>: <code><a href="#Block">Block</a></code> - - An instance of block  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>br</td>
+<td><code>BufferReader</code></td>
+<td>A buffer reader of the block</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Block.fromBuffer"></a></p>
+<h3 id="block-frombuffer-buf-code-block-block-code-">Block.fromBuffer(buf) ⇒ <code><a href="#Block">Block</a></code></h3>
+<p><strong>Kind</strong>: static method of <code><a href="#Block">Block</a></code><br><strong>Returns</strong>: <code><a href="#Block">Block</a></code> - - An instance of block  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>buf</td>
+<td><code>Buffer</code></td>
+<td>A buffer of the block</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Block.fromString"></a></p>
+<h3 id="block-fromstring-str-code-block-block-code-">Block.fromString(str) ⇒ <code><a href="#Block">Block</a></code></h3>
+<p><strong>Kind</strong>: static method of <code><a href="#Block">Block</a></code><br><strong>Returns</strong>: <code><a href="#Block">Block</a></code> - - A hex encoded string of the block  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>str</td>
+<td><code>string</code></td>
+<td>str - A hex encoded string of the block</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Block.fromRawBlock"></a></p>
+<h3 id="block-fromrawblock-data-code-block-block-code-">Block.fromRawBlock(data) ⇒ <code><a href="#Block">Block</a></code></h3>
+<p><strong>Kind</strong>: static method of <code><a href="#Block">Block</a></code><br><strong>Returns</strong>: <code><a href="#Block">Block</a></code> - - An instance of block  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td><code>Binary</code></td>
+<td>Raw block binary data or buffer</td>
+</tr>
+</tbody>
+</table>
+</div><div class="section p-t-lg"><div class="text-right bring-to-front"><a href="https://github.com/bitpay/bitcore-lib/blob/master/lib/block/blockheader.js">View Source</a></div><p><a name="BlockHeader"></a></p>
+<h2 id="blockheader">BlockHeader</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#BlockHeader">BlockHeader</a><ul>
+<li><a href="#new_BlockHeader_new">new BlockHeader()</a></li>
+<li><em>instance</em><ul>
+<li><a href="#BlockHeader+toObject">.toObject</a> ⇒ <code>Object</code></li>
+<li><a href="#BlockHeader+toBuffer">.toBuffer()</a> ⇒ <code>Buffer</code></li>
+<li><a href="#BlockHeader+toString">.toString()</a> ⇒ <code>string</code></li>
+<li><a href="#BlockHeader+toBufferWriter">.toBufferWriter(bw)</a> ⇒ <code>BufferWriter</code></li>
+<li><a href="#BlockHeader+getTargetDifficulty">.getTargetDifficulty(bits)</a> ⇒ <code>BN</code></li>
+<li><a href="#BlockHeader+getDifficulty">.getDifficulty()</a> ⇒ <code>Number</code></li>
+<li><a href="#BlockHeader+_getHash">._getHash()</a> ⇒ <code>Buffer</code></li>
+<li><a href="#BlockHeader+validTimestamp">.validTimestamp()</a> ⇒ <code>Boolean</code></li>
+<li><a href="#BlockHeader+validProofOfWork">.validProofOfWork()</a> ⇒ <code>Boolean</code></li>
+<li><a href="#BlockHeader+inspect">.inspect()</a> ⇒ <code>string</code></li>
+</ul>
+</li>
+<li><em>static</em><ul>
+<li><a href="#BlockHeader.fromObject">.fromObject(obj)</a> ⇒ <code><a href="#BlockHeader">BlockHeader</a></code></li>
+<li><a href="#BlockHeader.fromRawBlock">.fromRawBlock(data)</a> ⇒ <code><a href="#BlockHeader">BlockHeader</a></code></li>
+<li><a href="#BlockHeader.fromBuffer">.fromBuffer(buf)</a> ⇒ <code><a href="#BlockHeader">BlockHeader</a></code></li>
+<li><a href="#BlockHeader.fromString">.fromString(str)</a> ⇒ <code><a href="#BlockHeader">BlockHeader</a></code></li>
+<li><a href="#BlockHeader.fromBufferReader">.fromBufferReader(br)</a> ⇒ <code><a href="#BlockHeader">BlockHeader</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="new_BlockHeader_new"></a></p>
+<h3 id="new-blockheader-">new BlockHeader()</h3>
+<p>Instantiate a BlockHeader from a Buffer, JSON object, or Object with
+the properties of the BlockHeader</p>
+<p><strong>Returns</strong>: <code><a href="#BlockHeader">BlockHeader</a></code> - - An instance of block header  </p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>*</code></td>
+<td>A Buffer, JSON string, or Object</td>
+</tr>
+</tbody>
+</table>
+<p><a name="BlockHeader+toObject"></a></p>
+<h3 id="blockheader-toobject-code-object-code-">blockHeader.toObject ⇒ <code>Object</code></h3>
+<p><strong>Kind</strong>: instance property of <code><a href="#BlockHeader">BlockHeader</a></code><br><strong>Returns</strong>: <code>Object</code> - - A plain object of the BlockHeader<br><a name="BlockHeader+toBuffer"></a></p>
+<h3 id="blockheader-tobuffer-code-buffer-code-">blockHeader.toBuffer() ⇒ <code>Buffer</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#BlockHeader">BlockHeader</a></code><br><strong>Returns</strong>: <code>Buffer</code> - - A Buffer of the BlockHeader<br><a name="BlockHeader+toString"></a></p>
+<h3 id="blockheader-tostring-code-string-code-">blockHeader.toString() ⇒ <code>string</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#BlockHeader">BlockHeader</a></code><br><strong>Returns</strong>: <code>string</code> - - A hex encoded string of the BlockHeader<br><a name="BlockHeader+toBufferWriter"></a></p>
+<h3 id="blockheader-tobufferwriter-bw-code-bufferwriter-code-">blockHeader.toBufferWriter(bw) ⇒ <code>BufferWriter</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#BlockHeader">BlockHeader</a></code><br><strong>Returns</strong>: <code>BufferWriter</code> - - An instance of BufferWriter representation of the BlockHeader  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bw</td>
+<td><code>BufferWriter</code></td>
+<td>An existing instance BufferWriter</td>
+</tr>
+</tbody>
+</table>
+<p><a name="BlockHeader+getTargetDifficulty"></a></p>
+<h3 id="blockheader-gettargetdifficulty-bits-code-bn-code-">blockHeader.getTargetDifficulty(bits) ⇒ <code>BN</code></h3>
+<p>Returns the target difficulty for this block</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#BlockHeader">BlockHeader</a></code><br><strong>Returns</strong>: <code>BN</code> - An instance of BN with the decoded difficulty bits  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bits</td>
+<td><code>Number</code></td>
+</tr>
+</tbody>
+</table>
+<p><a name="BlockHeader+getDifficulty"></a></p>
+<h3 id="blockheader-getdifficulty-code-number-code-">blockHeader.getDifficulty() ⇒ <code>Number</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#BlockHeader">BlockHeader</a></code><br><strong>Link</strong>: <a href="https://en.bitcoin.it/wiki/Difficulty">https://en.bitcoin.it/wiki/Difficulty</a><br><a name="BlockHeader+_getHash"></a></p>
+<h3 id="blockheader-_gethash-code-buffer-code-">blockHeader._getHash() ⇒ <code>Buffer</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#BlockHeader">BlockHeader</a></code><br><strong>Returns</strong>: <code>Buffer</code> - - The little endian hash buffer of the header<br><a name="BlockHeader+validTimestamp"></a></p>
+<h3 id="blockheader-validtimestamp-code-boolean-code-">blockHeader.validTimestamp() ⇒ <code>Boolean</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#BlockHeader">BlockHeader</a></code><br><strong>Returns</strong>: <code>Boolean</code> - - If timestamp is not too far in the future<br><a name="BlockHeader+validProofOfWork"></a></p>
+<h3 id="blockheader-validproofofwork-code-boolean-code-">blockHeader.validProofOfWork() ⇒ <code>Boolean</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#BlockHeader">BlockHeader</a></code><br><strong>Returns</strong>: <code>Boolean</code> - - If the proof-of-work hash satisfies the target difficulty<br><a name="BlockHeader+inspect"></a></p>
+<h3 id="blockheader-inspect-code-string-code-">blockHeader.inspect() ⇒ <code>string</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#BlockHeader">BlockHeader</a></code><br><strong>Returns</strong>: <code>string</code> - - A string formatted for the console<br><a name="BlockHeader.fromObject"></a></p>
+<h3 id="blockheader-fromobject-obj-code-blockheader-blockheader-code-">BlockHeader.fromObject(obj) ⇒ <code><a href="#BlockHeader">BlockHeader</a></code></h3>
+<p><strong>Kind</strong>: static method of <code><a href="#BlockHeader">BlockHeader</a></code><br><strong>Returns</strong>: <code><a href="#BlockHeader">BlockHeader</a></code> - - An instance of block header  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>obj</td>
+<td><code>Object</code></td>
+<td>A plain JavaScript object</td>
+</tr>
+</tbody>
+</table>
+<p><a name="BlockHeader.fromRawBlock"></a></p>
+<h3 id="blockheader-fromrawblock-data-code-blockheader-blockheader-code-">BlockHeader.fromRawBlock(data) ⇒ <code><a href="#BlockHeader">BlockHeader</a></code></h3>
+<p><strong>Kind</strong>: static method of <code><a href="#BlockHeader">BlockHeader</a></code><br><strong>Returns</strong>: <code><a href="#BlockHeader">BlockHeader</a></code> - - An instance of block header  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td><code>Binary</code></td>
+<td>Raw block binary data or buffer</td>
+</tr>
+</tbody>
+</table>
+<p><a name="BlockHeader.fromBuffer"></a></p>
+<h3 id="blockheader-frombuffer-buf-code-blockheader-blockheader-code-">BlockHeader.fromBuffer(buf) ⇒ <code><a href="#BlockHeader">BlockHeader</a></code></h3>
+<p><strong>Kind</strong>: static method of <code><a href="#BlockHeader">BlockHeader</a></code><br><strong>Returns</strong>: <code><a href="#BlockHeader">BlockHeader</a></code> - - An instance of block header  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>buf</td>
+<td><code>Buffer</code></td>
+<td>A buffer of the block header</td>
+</tr>
+</tbody>
+</table>
+<p><a name="BlockHeader.fromString"></a></p>
+<h3 id="blockheader-fromstring-str-code-blockheader-blockheader-code-">BlockHeader.fromString(str) ⇒ <code><a href="#BlockHeader">BlockHeader</a></code></h3>
+<p><strong>Kind</strong>: static method of <code><a href="#BlockHeader">BlockHeader</a></code><br><strong>Returns</strong>: <code><a href="#BlockHeader">BlockHeader</a></code> - - An instance of block header  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>str</td>
+<td><code>string</code></td>
+<td>A hex encoded buffer of the block header</td>
+</tr>
+</tbody>
+</table>
+<p><a name="BlockHeader.fromBufferReader"></a></p>
+<h3 id="blockheader-frombufferreader-br-code-blockheader-blockheader-code-">BlockHeader.fromBufferReader(br) ⇒ <code><a href="#BlockHeader">BlockHeader</a></code></h3>
+<p><strong>Kind</strong>: static method of <code><a href="#BlockHeader">BlockHeader</a></code><br><strong>Returns</strong>: <code><a href="#BlockHeader">BlockHeader</a></code> - - An instance of block header  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>br</td>
+<td><code>BufferReader</code></td>
+<td>A BufferReader of the block header</td>
+</tr>
+</tbody>
+</table>
+</div><div class="section p-t-lg"><div class="text-right bring-to-front"><a href="https://github.com/bitpay/bitcore-lib/blob/master/lib/block/merkleblock.js">View Source</a></div><p><a name="MerkleBlock"></a></p>
+<h2 id="merkleblock">MerkleBlock</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#MerkleBlock">MerkleBlock</a><ul>
+<li><a href="#new_MerkleBlock_new">new MerkleBlock(arg)</a></li>
+<li><em>instance</em><ul>
+<li><a href="#MerkleBlock+header">.header</a> : <code>BlockHeader</code></li>
+<li><a href="#MerkleBlock+numTransactions">.numTransactions</a> : <code>Number</code></li>
+<li><a href="#MerkleBlock+hashes">.hashes</a> : <code>Array.&lt;String&gt;</code></li>
+<li><a href="#MerkleBlock+flags">.flags</a> : <code>Array.&lt;Number&gt;</code></li>
+<li><a href="#MerkleBlock+toObject">.toObject</a> ⇒ <code>Object</code></li>
+<li><a href="#MerkleBlock+toBuffer">.toBuffer()</a> ⇒ <code>Buffer</code></li>
+<li><a href="#MerkleBlock+toBufferWriter">.toBufferWriter(bw)</a> ⇒ <code>BufferWriter</code></li>
+<li><a href="#MerkleBlock+validMerkleTree">.validMerkleTree()</a> ⇒ <code>Boolean</code></li>
+</ul>
+</li>
+<li><em>static</em><ul>
+<li><a href="#MerkleBlock.fromBuffer">.fromBuffer(buf)</a> ⇒ <code><a href="#MerkleBlock">MerkleBlock</a></code></li>
+<li><a href="#MerkleBlock.fromBufferReader">.fromBufferReader(br)</a> ⇒ <code><a href="#MerkleBlock">MerkleBlock</a></code></li>
+<li><a href="#MerkleBlock.fromObject">.fromObject(obj)</a> ⇒ <code>Block</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="new_MerkleBlock_new"></a></p>
+<h3 id="new-merkleblock-arg-">new MerkleBlock(arg)</h3>
+<p>Instantiate a MerkleBlock from a Buffer, JSON object, or Object with
+the properties of the Block</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>arg</td>
+<td><code>*</code></td>
+<td>A Buffer, JSON string, or Object representing a MerkleBlock</td>
+</tr>
+</tbody>
+</table>
+<p><a name="MerkleBlock+header"></a></p>
+<h3 id="merkleblock-header-code-blockheader-code-">merkleBlock.header : <code>BlockHeader</code></h3>
+<p><strong>Kind</strong>: instance property of <code><a href="#MerkleBlock">MerkleBlock</a></code><br><a name="MerkleBlock+numTransactions"></a></p>
+<h3 id="merkleblock-numtransactions-code-number-code-">merkleBlock.numTransactions : <code>Number</code></h3>
+<p><strong>Kind</strong>: instance property of <code><a href="#MerkleBlock">MerkleBlock</a></code><br><a name="MerkleBlock+hashes"></a></p>
+<h3 id="merkleblock-hashes-code-array-lt-string-gt-code-">merkleBlock.hashes : <code>Array.&lt;String&gt;</code></h3>
+<p><strong>Kind</strong>: instance property of <code><a href="#MerkleBlock">MerkleBlock</a></code><br><a name="MerkleBlock+flags"></a></p>
+<h3 id="merkleblock-flags-code-array-lt-number-gt-code-">merkleBlock.flags : <code>Array.&lt;Number&gt;</code></h3>
+<p><strong>Kind</strong>: instance property of <code><a href="#MerkleBlock">MerkleBlock</a></code><br><a name="MerkleBlock+toObject"></a></p>
+<h3 id="merkleblock-toobject-code-object-code-">merkleBlock.toObject ⇒ <code>Object</code></h3>
+<p><strong>Kind</strong>: instance property of <code><a href="#MerkleBlock">MerkleBlock</a></code><br><strong>Returns</strong>: <code>Object</code> - - A plain object with the MerkleBlock properties<br><a name="MerkleBlock+toBuffer"></a></p>
+<h3 id="merkleblock-tobuffer-code-buffer-code-">merkleBlock.toBuffer() ⇒ <code>Buffer</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#MerkleBlock">MerkleBlock</a></code><br><strong>Returns</strong>: <code>Buffer</code> - - A buffer of the block<br><a name="MerkleBlock+toBufferWriter"></a></p>
+<h3 id="merkleblock-tobufferwriter-bw-code-bufferwriter-code-">merkleBlock.toBufferWriter(bw) ⇒ <code>BufferWriter</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#MerkleBlock">MerkleBlock</a></code><br><strong>Returns</strong>: <code>BufferWriter</code> - - An instance of BufferWriter representation of the MerkleBlock  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bw</td>
+<td><code>BufferWriter</code></td>
+<td>An existing instance of BufferWriter</td>
+</tr>
+</tbody>
+</table>
+<p><a name="MerkleBlock+validMerkleTree"></a></p>
+<h3 id="merkleblock-validmerkletree-code-boolean-code-">merkleBlock.validMerkleTree() ⇒ <code>Boolean</code></h3>
+<p>Verify that the MerkleBlock is valid</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MerkleBlock">MerkleBlock</a></code><br><strong>Returns</strong>: <code>Boolean</code> - - True/False whether this MerkleBlock is Valid<br><a name="MerkleBlock.fromBuffer"></a></p>
+<h3 id="merkleblock-frombuffer-buf-code-merkleblock-merkleblock-code-">MerkleBlock.fromBuffer(buf) ⇒ <code><a href="#MerkleBlock">MerkleBlock</a></code></h3>
+<p><strong>Kind</strong>: static method of <code><a href="#MerkleBlock">MerkleBlock</a></code><br><strong>Returns</strong>: <code><a href="#MerkleBlock">MerkleBlock</a></code> - - A MerkleBlock object  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>buf</td>
+<td><code>Buffer</code></td>
+<td>MerkleBlock data in a Buffer object</td>
+</tr>
+</tbody>
+</table>
+<p><a name="MerkleBlock.fromBufferReader"></a></p>
+<h3 id="merkleblock-frombufferreader-br-code-merkleblock-merkleblock-code-">MerkleBlock.fromBufferReader(br) ⇒ <code><a href="#MerkleBlock">MerkleBlock</a></code></h3>
+<p><strong>Kind</strong>: static method of <code><a href="#MerkleBlock">MerkleBlock</a></code><br><strong>Returns</strong>: <code><a href="#MerkleBlock">MerkleBlock</a></code> - - A MerkleBlock object  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>br</td>
+<td><code>BufferReader</code></td>
+<td>MerkleBlock data in a BufferReader object</td>
+</tr>
+</tbody>
+</table>
+<p><a name="MerkleBlock.fromObject"></a></p>
+<h3 id="merkleblock-fromobject-obj-code-block-code-">MerkleBlock.fromObject(obj) ⇒ <code>Block</code></h3>
+<p><strong>Kind</strong>: static method of <code><a href="#MerkleBlock">MerkleBlock</a></code><br><strong>Returns</strong>: <code>Block</code> - - An instance of block  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>obj</td>
+<td><code>Object</code></td>
+<td>A plain JavaScript object</td>
+</tr>
+</tbody>
+</table>
+</div></div></div></div></div><a class="exit-off-canvas"></a><script src="/scripts/main.min.bf683792.js" data-no-instant="data-no-instant"></script></body></html>

@@ -1,0 +1,554 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Address | Bitcore</title><meta name="description" content="A simple interface to generate and validate a bitcoin address."><!-- Twitter Card data--><meta name="twitter:card" content="summary"><meta name="twitter:site" content="@BitPay"><meta name="twitter:title" content="Address"><meta name="twitter:description" content="A simple interface to generate and validate a bitcoin address."><meta name="twitter:image" content="https://bitcore.io/images/social/card.jpg"><!-- Open Graph data (Facebook and Reddit)--><meta property="og:title" content="Address"><meta property="og:type" content="article"><meta property="og:url" content="https://bitcore.io/"><meta property="og:image" content="https://bitcore.io/images/social/avatar.jpg"><meta property="og:description" content="A simple interface to generate and validate a bitcoin address."><meta property="og:site_name" content="Bitcore.io"><!-- Add to homescreen for Chrome on Android--><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/images/touch/chrome-touch-icon-192x192.b0c7306c.png"><!-- Add to homescreen for Safari on iOS--><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Bitcore"><link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png"><!-- Tile icon for Win8 (144x144 + tile color)--><meta name="msapplication-TileImage" content="/images/touch/ms-touch-icon-144x144-precomposed.dcbb3eea.png"><meta name="msapplication-TileColor" content="#F9AB3D"><!-- Favicon--><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/styles/main.88c254de.css" data-instant-track><link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,700italic,600italic|Titillium+Web:400,300,700" rel="stylesheet" type="text/css"><script type="text/javascript" data-no-instant>
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.1";
+  if(this.location.host === 'bitcore.io'){ analytics.load('hP7mqqPCPPa5hRatDaulKFxm0kPiB6Es'); }
+  else { analytics.load("dgbXyNcmHR3bJIjumdYoe3GZFrs6sHBd"); }
+  }}();
+</script>
+<script data-no-instant>
+  var $buoop = {vs:{i:9,f:30,o:25,s:5.1},c:2};
+  function $buo_f(){
+   var e = document.createElement("script");
+   e.src = "//browser-update.org/update.js";
+   document.body.appendChild(e);
+  };
+  try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+  catch(e){window.attachEvent("onload", $buo_f)}
+</script>
+<meta name="google-site-verification" content="GOfbzCpKO__Imdru-L0nG1Fo9tTvyH3QVAIWsYO9rCk"></head><body><nav class="navbar navbar-fixed-top dark-nav hidden-sm-down"><a href="/" title="Home" class="logo logo-light margin-top"></a><ul class="nav navbar-nav pull-right"><li class="nav-item"><a href="/start" class="nav-link">Getting Started</a></li><li class="nav-item"><a href="/guides" class="nav-link">Guides</a></li><li class="nav-item"><a href="/api" class="nav-link active">Docs</a></li><li class="nav-item"><a href="/playground" class="nav-link">Playground        </a></li><li class="nav-item"><a href="//forum.bitcore.io/" class="nav-link">Forum</a></li></ul></nav><div class="mobile-menu hidden-md-up navbar-fixed-top"><div id="exCollapsingNavbar" class="collapse"><div class="bg-inverse p-md"><h3 class="m-b-0"> <ul class="p-l-0 no-bullets m-b-0"><li class="nav-item"><a href="/" class="nav-link">Home</a></li><li class="nav-item"><a href="/start" class="nav-link">Getting Started</a></li><li class="nav-item"><a href="/guides" class="nav-link">Guides</a></li><li class="nav-item"><a href="/api" class="nav-link active">Docs</a></li><li class="nav-item"><a href="/playground" class="nav-link">Playground        </a></li><li class="nav-item"><a href="//forum.bitcore.io/" class="nav-link">Forum</a></li></ul></h3></div></div><nav class="navbar dark-nav"><button type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" class="navbar-toggler p-l-0"><div class="logo logo-square-orange menu-text color-white">Menu</div></button></nav></div><div class="fixed-sidebar bg-gray border-right-grey p-l-md"><a href="/api/"><h3 class="menu-header m-t-md">Bitcore</h3><ul class="nav nav-pills nav-stacked"><li class="nav-item"><a href="/api/" class="nav-link">Overview</a></li></ul></a><a href="/api/node"><h3 class="menu-header m-t-md">Node</h3></a><a href="/api/service"><h3 class="menu-header m-t-md">Services</h3></a><h3 class="menu-header m-t-md">Library API</h3><ul class="nav nav-pills nav-stacked"><li class="nav-item"><a href="/api/lib" class="nav-link">Overview</a></li><li class="nav-item"><a href="/api/lib/address" class="active nav-link">Address</a></li><li class="nav-item"><a href="/api/lib/block" class="nav-link">Block</a></li><li class="nav-item"><a href="/api/lib/crypto" class="nav-link">Crypto</a></li><li class="nav-item"><a href="/api/lib/encoding" class="nav-link">Encoding</a></li><li class="nav-item"><a href="/api/lib/hd-keys" class="nav-link">HD Keys</a></li><li class="nav-item"><a href="/api/lib/networks" class="nav-link">Networks</a></li><li class="nav-item"><a href="/api/lib/private-key" class="nav-link">Private Key</a></li><li class="nav-item"><a href="/api/lib/public-key" class="nav-link">Public Key</a></li><li class="nav-item"><a href="/api/lib/script" class="nav-link">Script</a></li><li class="nav-item"><a href="/api/lib/transaction" class="nav-link">Transaction</a></li><li class="nav-item"><a href="/api/lib/unit" class="nav-link">Bitcoin Units</a></li><li class="nav-item"><a href="/api/lib/unspent-output" class="nav-link">Unspent Outputs</a></li><li class="nav-item"><a href="/api/lib/uri" class="nav-link">Bitcoin URIs</a></li></ul><a href="/api/mnemonic"><h3 class="menu-header m-t-md">Library Modules</h3></a><a href="/api/p2p"><h3 class="menu-header m-t-md">Peer-to-Peer</h3></a></div><div class="scroll-content"><div class="api-content"><div class="docs bg-white"><div class="container"><div class="section p-t-lg"><div class="text-right bring-to-front"><a href="https://github.com/bitpay/bitcore-lib/edit/master/docs/address.md">Edit</a></div><h1 id="bitcoin-address">Bitcoin Address</h1>
+<p>Represents a bitcoin address. Addresses are the most popular way to make bitcoin transactions. See <a href="https://en.bitcoin.it/wiki/Address">the official Bitcoin Wiki</a> for technical background information.</p>
+<h2 id="instantiate-an-address">Instantiate an Address</h2>
+<p>To be able to receive bitcoins an address is needed, but in order to spend them a private key is necessary. Please take a look at the <a href=/api/lib/private-key><code>PrivateKey</code></a> docs for more information about exporting and saving a key.  </p>
+<pre><code class="lang-javascript">var privateKey = new PrivateKey();
+var address = privateKey.toAddress();
+</code></pre>
+<p>You can also instantiate an Address from a String, <a href=/api/lib/public-key>PublicKey</a>, or <a href=/api/lib/hd-keys>HDPublicKey</a>, in case you are not the owner of the private key.</p>
+<pre><code class="lang-javascript">// from a string
+var address = Address.fromString(&#39;mwkXG8NnB2snbqWTcpNiK6qqGHm1LebHDc&#39;);
+
+// a default network address from a public key
+var publicKey = PublicKey(privateKey);
+var address = new Address(publicKey);
+// alternative interface
+var address = Address.fromPublicKey(publicKey);
+
+// a testnet address from a public key
+var publicKey = new PublicKey(privateKey);
+var address = new Address(publicKey, Networks.testnet);
+</code></pre>
+<p>A pay-to-script-hash multisignature Address can be instantiated from an array of <a href=/api/lib/public-key>PublicKeys</a>.</p>
+<pre><code class="lang-javascript">// a 2-of-3 address from public keys
+var p2shAddress = new Address([publicKey1, publicKey2, publicKey3], 2);
+</code></pre>
+<h2 id="validating-an-address">Validating an Address</h2>
+<p>The main use that we expect you&#39;ll have for the <code>Address</code> class in Bitcore is validating that an address is a valid one, what type of address it is (you may be interested on knowing if the address is a simple &quot;pay to public key hash&quot; address or a &quot;pay to script hash&quot; address) and what network does the address belong to.</p>
+<p>The code to do these validations looks like this:</p>
+<pre><code class="lang-javascript">// validate an address
+if (Address.isValid(input){
+  ...
+}
+
+// validate that an input field is a valid testnet address
+if (Address.isValid(input, Networks.testnet){
+  ...
+}
+
+// validate that an input field is a valid livenet pubkeyhash
+if (Address.isValid(input, Networks.livenet, Address.PayToPublicKeyHash){
+  ...
+}
+
+// get the specific validation error that can occurred
+var error = Address.getValidationError(input, Networks.testnet);
+  if (error) {
+    // handle the error
+  }
+}
+</code></pre>
+<p>The errors are listed in the generated file in the <a href="https://github.com/bitpay/bitcore/tree/master/lib/errors">errors folder</a>. There&#39;s a structure to errors defined in the <a href="https://github.com/bitpay/bitcore/tree/master/lib/errors/spec.js">spec.js file</a>.</p>
+</div></div></div><div class="lib bg-dark"><div class="container"><div class="section p-t-lg"><div class="text-right bring-to-front"><a href="https://github.com/bitpay/bitcore-lib/blob/master/lib/address.js">View Source</a></div><p><a name="Address"></a></p>
+<h2 id="address">Address</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#Address">Address</a><ul>
+<li><a href="#new_Address_new">new Address(data, network, [type])</a></li>
+<li><em>instance</em><ul>
+<li><a href="#Address+toObject">.toObject</a> ⇒ <code>Object</code></li>
+<li><a href="#Address+_classifyArguments">._classifyArguments(data, network, [type])</a> ⇒ <code>Object</code></li>
+<li><a href="#Address+isPayToPublicKeyHash">.isPayToPublicKeyHash()</a> ⇒</li>
+<li><a href="#Address+isPayToScriptHash">.isPayToScriptHash()</a> ⇒</li>
+<li><a href="#Address+toBuffer">.toBuffer()</a> ⇒ <code>Buffer</code></li>
+<li><a href="#Address+toString">.toString()</a> ⇒ <code>string</code></li>
+<li><a href="#Address+inspect">.inspect()</a> ⇒ <code>string</code></li>
+</ul>
+</li>
+<li><em>static</em><ul>
+<li><a href="#Address.PayToPublicKeyHash">.PayToPublicKeyHash</a></li>
+<li><a href="#Address.PayToScriptHash">.PayToScriptHash</a></li>
+<li><a href="#Address._transformObject">._transformObject(data)</a> ⇒ <code><a href="#Address">Address</a></code></li>
+<li><a href="#Address.createMultisig">.createMultisig(publicKeys, threshold, network)</a> ⇒ <code><a href="#Address">Address</a></code></li>
+<li><a href="#Address.fromPublicKey">.fromPublicKey(data, network)</a> ⇒ <code><a href="#Address">Address</a></code></li>
+<li><a href="#Address.fromPublicKeyHash">.fromPublicKeyHash(hash, network)</a> ⇒ <code><a href="#Address">Address</a></code></li>
+<li><a href="#Address.fromScriptHash">.fromScriptHash(hash, network)</a> ⇒ <code><a href="#Address">Address</a></code></li>
+<li><a href="#Address.payingTo">.payingTo(script, network)</a> ⇒ <code><a href="#Address">Address</a></code></li>
+<li><a href="#Address.fromScript">.fromScript(script, network)</a> ⇒ <code><a href="#Address">Address</a></code></li>
+<li><a href="#Address.fromBuffer">.fromBuffer(buffer, network, [type])</a> ⇒ <code><a href="#Address">Address</a></code></li>
+<li><a href="#Address.fromString">.fromString(str, network, [type])</a> ⇒ <code><a href="#Address">Address</a></code></li>
+<li><a href="#Address.fromObject">.fromObject(json)</a> ⇒ <code><a href="#Address">Address</a></code></li>
+<li><a href="#Address.getValidationError">.getValidationError(data, network, type)</a> ⇒ <code>null</code> &#124; <code>Error</code></li>
+<li><a href="#Address.isValid">.isValid(data, network, type)</a> ⇒ <code>boolean</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="new_Address_new"></a></p>
+<h3 id="new-address-data-network-type-">new Address(data, network, [type])</h3>
+<p>Instantiate an address from an address String or Buffer, a public key or script hash Buffer,
+or an instance of <a href="PublicKey">PublicKey</a> or <a href="Script">Script</a>.</p>
+<p>This is an immutable class, and if the first parameter provided to this constructor is an
+<code>Address</code> instance, the same argument will be returned.</p>
+<p>An address has two key properties: <code>network</code> and <code>type</code>. The type is either
+<code>Address.PayToPublicKeyHash</code> (value is the <code>&#39;pubkeyhash&#39;</code> string)
+or <code>Address.PayToScriptHash</code> (the string <code>&#39;scripthash&#39;</code>). The network is an instance of <a href="Network">Network</a>.
+You can quickly check whether an address is of a given kind by using the methods
+<code>isPayToPublicKeyHash</code> and <code>isPayToScriptHash</code></p>
+<p><strong>Returns</strong>: <code><a href="#Address">Address</a></code> - A new valid and frozen instance of an Address  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td><code>*</code></td>
+<td>The encoded data in various formats</td>
+</tr>
+<tr>
+<td>network</td>
+<td><code>Network</code> &#124; <code>String</code> &#124; <code>number</code></td>
+<td>The network: &#39;livenet&#39; or &#39;testnet&#39;</td>
+</tr>
+<tr>
+<td>[type]</td>
+<td><code>string</code></td>
+<td>The type of address: &#39;script&#39; or &#39;pubkey&#39;</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong>  </p>
+<pre><code class="lang-javascript">// validate that an input field is valid
+var error = Address.getValidationError(input, &#39;testnet&#39;);
+if (!error) {
+  var address = Address(input, &#39;testnet&#39;);
+} else {
+  // invalid network or checksum (typo?)
+  var message = error.messsage;
+}
+
+// get an address from a public key
+var address = Address(publicKey, &#39;testnet&#39;).toString();
+</code></pre>
+<p><a name="Address+toObject"></a></p>
+<h3 id="address-toobject-code-object-code-">address.toObject ⇒ <code>Object</code></h3>
+<p><strong>Kind</strong>: instance property of <code><a href="#Address">Address</a></code><br><strong>Returns</strong>: <code>Object</code> - A plain object with the address information<br><a name="Address+_classifyArguments"></a></p>
+<h3 id="address-_classifyarguments-data-network-type-code-object-code-">address._classifyArguments(data, network, [type]) ⇒ <code>Object</code></h3>
+<p>Internal function used to split different kinds of arguments of the constructor</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Address">Address</a></code><br><strong>Returns</strong>: <code>Object</code> - An &quot;info&quot; object with &quot;type&quot;, &quot;network&quot;, and &quot;hashBuffer&quot;  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td><code>*</code></td>
+<td>The encoded data in various formats</td>
+</tr>
+<tr>
+<td>network</td>
+<td><code>Network</code> &#124; <code>String</code> &#124; <code>number</code></td>
+<td>The network: &#39;livenet&#39; or &#39;testnet&#39;</td>
+</tr>
+<tr>
+<td>[type]</td>
+<td><code>string</code></td>
+<td>The type of address: &#39;script&#39; or &#39;pubkey&#39;</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Address+isPayToPublicKeyHash"></a></p>
+<h3 id="address-ispaytopublickeyhash-">address.isPayToPublicKeyHash() ⇒</h3>
+<p>Returns true if an address is of pay to public key hash type</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Address">Address</a></code><br><strong>Returns</strong>: boolean<br><a name="Address+isPayToScriptHash"></a></p>
+<h3 id="address-ispaytoscripthash-">address.isPayToScriptHash() ⇒</h3>
+<p>Returns true if an address is of pay to script hash type</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Address">Address</a></code><br><strong>Returns</strong>: boolean<br><a name="Address+toBuffer"></a></p>
+<h3 id="address-tobuffer-code-buffer-code-">address.toBuffer() ⇒ <code>Buffer</code></h3>
+<p>Will return a buffer representation of the address</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Address">Address</a></code><br><strong>Returns</strong>: <code>Buffer</code> - Bitcoin address buffer<br><a name="Address+toString"></a></p>
+<h3 id="address-tostring-code-string-code-">address.toString() ⇒ <code>string</code></h3>
+<p>Will return a the string representation of the address</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Address">Address</a></code><br><strong>Returns</strong>: <code>string</code> - Bitcoin address<br><a name="Address+inspect"></a></p>
+<h3 id="address-inspect-code-string-code-">address.inspect() ⇒ <code>string</code></h3>
+<p>Will return a string formatted for the console</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Address">Address</a></code><br><strong>Returns</strong>: <code>string</code> - Bitcoin address<br><a name="Address.PayToPublicKeyHash"></a></p>
+<h3 id="address-paytopublickeyhash">Address.PayToPublicKeyHash</h3>
+<p><strong>Kind</strong>: static property of <code><a href="#Address">Address</a></code><br><a name="Address.PayToScriptHash"></a></p>
+<h3 id="address-paytoscripthash">Address.PayToScriptHash</h3>
+<p><strong>Kind</strong>: static property of <code><a href="#Address">Address</a></code><br><a name="Address._transformObject"></a></p>
+<h3 id="address-_transformobject-data-code-address-address-code-">Address._transformObject(data) ⇒ <code><a href="#Address">Address</a></code></h3>
+<p>Deserializes an address serialized through <code>Address#toObject()</code></p>
+<p><strong>Kind</strong>: static method of <code><a href="#Address">Address</a></code>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td><code>Object</code></td>
+<td></td>
+</tr>
+<tr>
+<td>data.hash</td>
+<td><code>string</code></td>
+<td>the hash that this address encodes</td>
+</tr>
+<tr>
+<td>data.type</td>
+<td><code>string</code></td>
+<td>either &#39;pubkeyhash&#39; or &#39;scripthash&#39;</td>
+</tr>
+<tr>
+<td>[data.network]</td>
+<td><code>Network</code></td>
+<td>the name of the network associated</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Address.createMultisig"></a></p>
+<h3 id="address-createmultisig-publickeys-threshold-network-code-address-address-code-">Address.createMultisig(publicKeys, threshold, network) ⇒ <code><a href="#Address">Address</a></code></h3>
+<p>Creates a P2SH address from a set of public keys and a threshold.</p>
+<p>The addresses will be sorted lexicographically, as that is the trend in bitcoin.
+To create an address from unsorted public keys, use the <a href="Script#buildMultisigOut">Script#buildMultisigOut</a>
+interface.</p>
+<p><strong>Kind</strong>: static method of <code><a href="#Address">Address</a></code>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>publicKeys</td>
+<td><code>Array</code></td>
+<td>a set of public keys to create an address</td>
+</tr>
+<tr>
+<td>threshold</td>
+<td><code>number</code></td>
+<td>the number of signatures needed to release the funds</td>
+</tr>
+<tr>
+<td>network</td>
+<td><code>String</code> &#124; <code>Network</code></td>
+<td>either a Network instance, &#39;livenet&#39;, or &#39;testnet&#39;</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Address.fromPublicKey"></a></p>
+<h3 id="address-frompublickey-data-network-code-address-address-code-">Address.fromPublicKey(data, network) ⇒ <code><a href="#Address">Address</a></code></h3>
+<p>Instantiate an address from a PublicKey instance</p>
+<p><strong>Kind</strong>: static method of <code><a href="#Address">Address</a></code><br><strong>Returns</strong>: <code><a href="#Address">Address</a></code> - A new valid and frozen instance of an Address  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td><code>PublicKey</code></td>
+<td></td>
+</tr>
+<tr>
+<td>network</td>
+<td><code>String</code> &#124; <code>Network</code></td>
+<td>either a Network instance, &#39;livenet&#39;, or &#39;testnet&#39;</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Address.fromPublicKeyHash"></a></p>
+<h3 id="address-frompublickeyhash-hash-network-code-address-address-code-">Address.fromPublicKeyHash(hash, network) ⇒ <code><a href="#Address">Address</a></code></h3>
+<p>Instantiate an address from a ripemd160 public key hash</p>
+<p><strong>Kind</strong>: static method of <code><a href="#Address">Address</a></code><br><strong>Returns</strong>: <code><a href="#Address">Address</a></code> - A new valid and frozen instance of an Address  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hash</td>
+<td><code>Buffer</code></td>
+<td>An instance of buffer of the hash</td>
+</tr>
+<tr>
+<td>network</td>
+<td><code>String</code> &#124; <code>Network</code></td>
+<td>either a Network instance, &#39;livenet&#39;, or &#39;testnet&#39;</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Address.fromScriptHash"></a></p>
+<h3 id="address-fromscripthash-hash-network-code-address-address-code-">Address.fromScriptHash(hash, network) ⇒ <code><a href="#Address">Address</a></code></h3>
+<p>Instantiate an address from a ripemd160 script hash</p>
+<p><strong>Kind</strong>: static method of <code><a href="#Address">Address</a></code><br><strong>Returns</strong>: <code><a href="#Address">Address</a></code> - A new valid and frozen instance of an Address  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hash</td>
+<td><code>Buffer</code></td>
+<td>An instance of buffer of the hash</td>
+</tr>
+<tr>
+<td>network</td>
+<td><code>String</code> &#124; <code>Network</code></td>
+<td>either a Network instance, &#39;livenet&#39;, or &#39;testnet&#39;</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Address.payingTo"></a></p>
+<h3 id="address-payingto-script-network-code-address-address-code-">Address.payingTo(script, network) ⇒ <code><a href="#Address">Address</a></code></h3>
+<p>Builds a p2sh address paying to script. This will hash the script and
+use that to create the address.
+If you want to extract an address associated with a script instead,
+see {{Address#fromScript}}</p>
+<p><strong>Kind</strong>: static method of <code><a href="#Address">Address</a></code><br><strong>Returns</strong>: <code><a href="#Address">Address</a></code> - A new valid and frozen instance of an Address  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>script</td>
+<td><code>Script</code></td>
+<td>An instance of Script</td>
+</tr>
+<tr>
+<td>network</td>
+<td><code>String</code> &#124; <code>Network</code></td>
+<td>either a Network instance, &#39;livenet&#39;, or &#39;testnet&#39;</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Address.fromScript"></a></p>
+<h3 id="address-fromscript-script-network-code-address-address-code-">Address.fromScript(script, network) ⇒ <code><a href="#Address">Address</a></code></h3>
+<p>Extract address from a Script. The script must be of one
+of the following types: p2pkh input, p2pkh output, p2sh input
+or p2sh output.
+This will analyze the script and extract address information from it.
+If you want to transform any script to a p2sh Address paying
+to that script&#39;s hash instead, use {{Address#payingTo}}</p>
+<p><strong>Kind</strong>: static method of <code><a href="#Address">Address</a></code><br><strong>Returns</strong>: <code><a href="#Address">Address</a></code> - A new valid and frozen instance of an Address  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>script</td>
+<td><code>Script</code></td>
+<td>An instance of Script</td>
+</tr>
+<tr>
+<td>network</td>
+<td><code>String</code> &#124; <code>Network</code></td>
+<td>either a Network instance, &#39;livenet&#39;, or &#39;testnet&#39;</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Address.fromBuffer"></a></p>
+<h3 id="address-frombuffer-buffer-network-type-code-address-address-code-">Address.fromBuffer(buffer, network, [type]) ⇒ <code><a href="#Address">Address</a></code></h3>
+<p>Instantiate an address from a buffer of the address</p>
+<p><strong>Kind</strong>: static method of <code><a href="#Address">Address</a></code><br><strong>Returns</strong>: <code><a href="#Address">Address</a></code> - A new valid and frozen instance of an Address  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>buffer</td>
+<td><code>Buffer</code></td>
+<td>An instance of buffer of the address</td>
+</tr>
+<tr>
+<td>network</td>
+<td><code>String</code> &#124; <code>Network</code></td>
+<td>either a Network instance, &#39;livenet&#39;, or &#39;testnet&#39;</td>
+</tr>
+<tr>
+<td>[type]</td>
+<td><code>string</code></td>
+<td>The type of address: &#39;script&#39; or &#39;pubkey&#39;</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Address.fromString"></a></p>
+<h3 id="address-fromstring-str-network-type-code-address-address-code-">Address.fromString(str, network, [type]) ⇒ <code><a href="#Address">Address</a></code></h3>
+<p>Instantiate an address from an address string</p>
+<p><strong>Kind</strong>: static method of <code><a href="#Address">Address</a></code><br><strong>Returns</strong>: <code><a href="#Address">Address</a></code> - A new valid and frozen instance of an Address  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>str</td>
+<td><code>string</code></td>
+<td>An string of the bitcoin address</td>
+</tr>
+<tr>
+<td>network</td>
+<td><code>String</code> &#124; <code>Network</code></td>
+<td>either a Network instance, &#39;livenet&#39;, or &#39;testnet&#39;</td>
+</tr>
+<tr>
+<td>[type]</td>
+<td><code>string</code></td>
+<td>The type of address: &#39;script&#39; or &#39;pubkey&#39;</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Address.fromObject"></a></p>
+<h3 id="address-fromobject-json-code-address-address-code-">Address.fromObject(json) ⇒ <code><a href="#Address">Address</a></code></h3>
+<p>Instantiate an address from an Object</p>
+<p><strong>Kind</strong>: static method of <code><a href="#Address">Address</a></code><br><strong>Returns</strong>: <code><a href="#Address">Address</a></code> - A new valid instance of an Address  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>json</td>
+<td><code>string</code></td>
+<td>An JSON string or Object with keys: hash, network and type</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Address.getValidationError"></a></p>
+<h3 id="address-getvalidationerror-data-network-type-code-null-code-124-code-error-code-">Address.getValidationError(data, network, type) ⇒ <code>null</code> &#124; <code>Error</code></h3>
+<p>Will return a validation error if exists</p>
+<p><strong>Kind</strong>: static method of <code><a href="#Address">Address</a></code><br><strong>Returns</strong>: <code>null</code> &#124; <code>Error</code> - The corresponding error message  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td><code>string</code></td>
+<td>The encoded data</td>
+</tr>
+<tr>
+<td>network</td>
+<td><code>String</code> &#124; <code>Network</code></td>
+<td>either a Network instance, &#39;livenet&#39;, or &#39;testnet&#39;</td>
+</tr>
+<tr>
+<td>type</td>
+<td><code>string</code></td>
+<td>The type of address: &#39;script&#39; or &#39;pubkey&#39;</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong>  </p>
+<pre><code class="lang-javascript">// a network mismatch error
+var error = Address.getValidationError(&#39;15vkcKf7gB23wLAnZLmbVuMiiVDc1Nm4a2&#39;, &#39;testnet&#39;);
+</code></pre>
+<p><a name="Address.isValid"></a></p>
+<h3 id="address-isvalid-data-network-type-code-boolean-code-">Address.isValid(data, network, type) ⇒ <code>boolean</code></h3>
+<p>Will return a boolean if an address is valid</p>
+<p><strong>Kind</strong>: static method of <code><a href="#Address">Address</a></code><br><strong>Returns</strong>: <code>boolean</code> - The corresponding error message  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td><code>string</code></td>
+<td>The encoded data</td>
+</tr>
+<tr>
+<td>network</td>
+<td><code>String</code> &#124; <code>Network</code></td>
+<td>either a Network instance, &#39;livenet&#39;, or &#39;testnet&#39;</td>
+</tr>
+<tr>
+<td>type</td>
+<td><code>string</code></td>
+<td>The type of address: &#39;script&#39; or &#39;pubkey&#39;</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong>  </p>
+<pre><code class="lang-javascript">assert(Address.isValid(&#39;15vkcKf7gB23wLAnZLmbVuMiiVDc1Nm4a2&#39;, &#39;livenet&#39;));
+</code></pre>
+</div></div></div></div></div><a class="exit-off-canvas"></a><script src="/scripts/main.min.bf683792.js" data-no-instant="data-no-instant"></script></body></html>

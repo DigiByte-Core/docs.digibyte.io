@@ -1,0 +1,255 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Bitcoin URIs | Bitcore</title><meta name="description" content="Utility to parse and create standard bitcoin URIs."><!-- Twitter Card data--><meta name="twitter:card" content="summary"><meta name="twitter:site" content="@BitPay"><meta name="twitter:title" content="Bitcoin URIs"><meta name="twitter:description" content="Utility to parse and create standard bitcoin URIs."><meta name="twitter:image" content="https://bitcore.io/images/social/card.jpg"><!-- Open Graph data (Facebook and Reddit)--><meta property="og:title" content="Bitcoin URIs"><meta property="og:type" content="article"><meta property="og:url" content="https://bitcore.io/"><meta property="og:image" content="https://bitcore.io/images/social/avatar.jpg"><meta property="og:description" content="Utility to parse and create standard bitcoin URIs."><meta property="og:site_name" content="Bitcore.io"><!-- Add to homescreen for Chrome on Android--><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/images/touch/chrome-touch-icon-192x192.b0c7306c.png"><!-- Add to homescreen for Safari on iOS--><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Bitcore"><link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png"><!-- Tile icon for Win8 (144x144 + tile color)--><meta name="msapplication-TileImage" content="/images/touch/ms-touch-icon-144x144-precomposed.dcbb3eea.png"><meta name="msapplication-TileColor" content="#F9AB3D"><!-- Favicon--><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/styles/main.88c254de.css" data-instant-track><link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,700italic,600italic|Titillium+Web:400,300,700" rel="stylesheet" type="text/css"><script type="text/javascript" data-no-instant>
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.1";
+  if(this.location.host === 'bitcore.io'){ analytics.load('hP7mqqPCPPa5hRatDaulKFxm0kPiB6Es'); }
+  else { analytics.load("dgbXyNcmHR3bJIjumdYoe3GZFrs6sHBd"); }
+  }}();
+</script>
+<script data-no-instant>
+  var $buoop = {vs:{i:9,f:30,o:25,s:5.1},c:2};
+  function $buo_f(){
+   var e = document.createElement("script");
+   e.src = "//browser-update.org/update.js";
+   document.body.appendChild(e);
+  };
+  try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+  catch(e){window.attachEvent("onload", $buo_f)}
+</script>
+<meta name="google-site-verification" content="GOfbzCpKO__Imdru-L0nG1Fo9tTvyH3QVAIWsYO9rCk"></head><body><nav class="navbar navbar-fixed-top dark-nav hidden-sm-down"><a href="/" title="Home" class="logo logo-light margin-top"></a><ul class="nav navbar-nav pull-right"><li class="nav-item"><a href="/start" class="nav-link">Getting Started</a></li><li class="nav-item"><a href="/guides" class="nav-link">Guides</a></li><li class="nav-item"><a href="/api" class="nav-link active">Docs</a></li><li class="nav-item"><a href="/playground" class="nav-link">Playground        </a></li><li class="nav-item"><a href="//forum.bitcore.io/" class="nav-link">Forum</a></li></ul></nav><div class="mobile-menu hidden-md-up navbar-fixed-top"><div id="exCollapsingNavbar" class="collapse"><div class="bg-inverse p-md"><h3 class="m-b-0"> <ul class="p-l-0 no-bullets m-b-0"><li class="nav-item"><a href="/" class="nav-link">Home</a></li><li class="nav-item"><a href="/start" class="nav-link">Getting Started</a></li><li class="nav-item"><a href="/guides" class="nav-link">Guides</a></li><li class="nav-item"><a href="/api" class="nav-link active">Docs</a></li><li class="nav-item"><a href="/playground" class="nav-link">Playground        </a></li><li class="nav-item"><a href="//forum.bitcore.io/" class="nav-link">Forum</a></li></ul></h3></div></div><nav class="navbar dark-nav"><button type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" class="navbar-toggler p-l-0"><div class="logo logo-square-orange menu-text color-white">Menu</div></button></nav></div><div class="fixed-sidebar bg-gray border-right-grey p-l-md"><a href="/api/"><h3 class="menu-header m-t-md">Bitcore</h3><ul class="nav nav-pills nav-stacked"><li class="nav-item"><a href="/api/" class="nav-link">Overview</a></li></ul></a><a href="/api/node"><h3 class="menu-header m-t-md">Node</h3></a><a href="/api/service"><h3 class="menu-header m-t-md">Services</h3></a><h3 class="menu-header m-t-md">Library API</h3><ul class="nav nav-pills nav-stacked"><li class="nav-item"><a href="/api/lib" class="nav-link">Overview</a></li><li class="nav-item"><a href="/api/lib/address" class="nav-link">Address</a></li><li class="nav-item"><a href="/api/lib/block" class="nav-link">Block</a></li><li class="nav-item"><a href="/api/lib/crypto" class="nav-link">Crypto</a></li><li class="nav-item"><a href="/api/lib/encoding" class="nav-link">Encoding</a></li><li class="nav-item"><a href="/api/lib/hd-keys" class="nav-link">HD Keys</a></li><li class="nav-item"><a href="/api/lib/networks" class="nav-link">Networks</a></li><li class="nav-item"><a href="/api/lib/private-key" class="nav-link">Private Key</a></li><li class="nav-item"><a href="/api/lib/public-key" class="nav-link">Public Key</a></li><li class="nav-item"><a href="/api/lib/script" class="nav-link">Script</a></li><li class="nav-item"><a href="/api/lib/transaction" class="nav-link">Transaction</a></li><li class="nav-item"><a href="/api/lib/unit" class="nav-link">Bitcoin Units</a></li><li class="nav-item"><a href="/api/lib/unspent-output" class="nav-link">Unspent Outputs</a></li><li class="nav-item"><a href="/api/lib/uri" class="active nav-link">Bitcoin URIs</a></li></ul><a href="/api/mnemonic"><h3 class="menu-header m-t-md">Library Modules</h3></a><a href="/api/p2p"><h3 class="menu-header m-t-md">Peer-to-Peer</h3></a></div><div class="scroll-content"><div class="api-content"><div class="docs bg-white"><div class="container"><div class="section p-t-lg"><div class="text-right bring-to-front"><a href="https://github.com/bitpay/bitcore-lib/edit/master/docs/uri.md">Edit</a></div><h1 id="bitcoin-uris">Bitcoin URIs</h1>
+<p>Represents a bitcoin payment URI. Bitcoin URI strings became the most popular way to share payment request, sometimes as a bitcoin link and others using a QR code.</p>
+<p>URI Examples:</p>
+<pre><code>bitcoin:12A1MyfXbW6RhdRAZEqofac5jCQQjwEPBu
+bitcoin:12A1MyfXbW6RhdRAZEqofac5jCQQjwEPBu?amount=1.2
+bitcoin:12A1MyfXbW6RhdRAZEqofac5jCQQjwEPBu?amount=1.2&amp;message=Payment&amp;label=Satoshi&amp;extra=other-param
+</code></pre><h2 id="uri-validation">URI Validation</h2>
+<p>The main use that we expect you&#39;ll have for the <code>URI</code> class in bitcore is validating and parsing bitcoin URIs. A <code>URI</code> instance exposes the address as a bitcore <code>Address</code> object and the amount in Satoshis, if present.</p>
+<p>The code for validating URIs looks like this:</p>
+<pre><code class="lang-javascript">var uriString = &#39;bitcoin:12A1MyfXbW6RhdRAZEqofac5jCQQjwEPBu?amount=1.2&#39;;
+var valid = URI.isValid(uriString);
+var uri = new URI(uriString);
+console.log(uri.address.network, uri.amount); // &#39;livenet&#39;, 120000000
+</code></pre>
+<h2 id="uri-parameters">URI Parameters</h2>
+<p>All standard parameters can be found as members of the <code>URI</code> instance. However a bitcoin URI may contain other non-standard parameters, all those can be found under the <code>extra</code> namespace.</p>
+<p>See <a href="https://github.com/bitcoin/bips/blob/master/bip-0021.mediawiki">the official BIP21 spec</a> for more information.</p>
+<h2 id="create-uri">Create URI</h2>
+<p>Another important use case for the <code>URI</code> class is creating a bitcoin URI for sharing a payment request. That can be accomplished by using a dictionary to create an instance of URI.</p>
+<p>The code for creating an URI from an Object looks like this:</p>
+<pre><code class="lang-javascript">var uriString = new URI({
+  address: &#39;12A1MyfXbW6RhdRAZEqofac5jCQQjwEPBu&#39;,
+  amount : 10000, // in satoshis
+  message: &#39;My payment request&#39;
+});
+var uriString = uri.toString();
+</code></pre>
+</div></div></div><div class="lib bg-dark"><div class="container"><div class="section p-t-lg"><div class="text-right bring-to-front"><a href="https://github.com/bitpay/bitcore-lib/blob/master/lib/uri.js">View Source</a></div><p><a name="URI"></a></p>
+<h2 id="uri">URI</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#URI">URI</a><ul>
+<li><a href="#new_URI_new">new URI(data, [knownParams])</a></li>
+<li><em>instance</em><ul>
+<li><a href="#URI+_fromObject">._fromObject(obj)</a></li>
+<li><a href="#URI+_parseAmount">._parseAmount(amount)</a> ⇒ <code>Object</code></li>
+<li><a href="#URI+toString">.toString()</a> ⇒ <code>string</code></li>
+<li><a href="#URI+inspect">.inspect()</a> ⇒ <code>string</code></li>
+</ul>
+</li>
+<li><em>static</em><ul>
+<li><a href="#URI.fromString">.fromString(str)</a> ⇒ <code><a href="#URI">URI</a></code></li>
+<li><a href="#URI.fromObject">.fromObject(data)</a> ⇒ <code><a href="#URI">URI</a></code></li>
+<li><a href="#URI.isValid">.isValid(data, [knownParams])</a> ⇒ <code>boolean</code></li>
+<li><a href="#URI.parse">.parse(uri)</a> ⇒ <code>Object</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="new_URI_new"></a></p>
+<h3 id="new-uri-data-knownparams-">new URI(data, [knownParams])</h3>
+<p>Bitcore URI</p>
+<p>Instantiate an URI from a bitcoin URI String or an Object. An URI instance
+can be created with a bitcoin uri string or an object. All instances of
+URI are valid, the static method isValid allows checking before instantiation.</p>
+<p>All standard parameters can be found as members of the class, the address
+is represented using an {Address} instance and the amount is represented in
+satoshis. Any other non-standard parameters can be found under the extra member.</p>
+<p><strong>Returns</strong>: <code><a href="#URI">URI</a></code> - A new valid and frozen instance of URI<br><strong>Throws</strong>:</p>
+<ul>
+<li><code>TypeError</code> Invalid bitcoin address</li>
+<li><code>TypeError</code> Invalid amount</li>
+<li><code>Error</code> Unknown required argument</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td><code>string</code> &#124; <code>Object</code></td>
+<td>A bitcoin URI string or an Object</td>
+</tr>
+<tr>
+<td>[knownParams]</td>
+<td><code>Array.&lt;string&gt;</code></td>
+<td>Required non-standard params</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong>  </p>
+<pre><code class="lang-javascript">
+var uri = new URI(&#39;bitcoin:12A1MyfXbW6RhdRAZEqofac5jCQQjwEPBu?amount=1.2&#39;);
+console.log(uri.address, uri.amount);
+</code></pre>
+<p><a name="URI+_fromObject"></a></p>
+<h3 id="uri-_fromobject-obj-">urI._fromObject(obj)</h3>
+<p>Internal function to load the URI instance with an object.</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#URI">URI</a></code><br><strong>Throws</strong>:</p>
+<ul>
+<li><code>TypeError</code> Invalid bitcoin address</li>
+<li><code>TypeError</code> Invalid amount</li>
+<li><code>Error</code> Unknown required argument</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>obj</td>
+<td><code>Object</code></td>
+<td>Object with the information</td>
+</tr>
+</tbody>
+</table>
+<p><a name="URI+_parseAmount"></a></p>
+<h3 id="uri-_parseamount-amount-code-object-code-">urI._parseAmount(amount) ⇒ <code>Object</code></h3>
+<p>Internal function to transform a BTC string amount into satoshis</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#URI">URI</a></code><br><strong>Returns</strong>: <code>Object</code> - Amount represented in satoshis<br><strong>Throws</strong>:</p>
+<ul>
+<li><code>TypeError</code> Invalid amount</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>amount</td>
+<td><code>string</code></td>
+<td>Amount BTC string</td>
+</tr>
+</tbody>
+</table>
+<p><a name="URI+toString"></a></p>
+<h3 id="uri-tostring-code-string-code-">urI.toString() ⇒ <code>string</code></h3>
+<p>Will return a the string representation of the URI</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#URI">URI</a></code><br><strong>Returns</strong>: <code>string</code> - Bitcoin URI string<br><a name="URI+inspect"></a></p>
+<h3 id="uri-inspect-code-string-code-">urI.inspect() ⇒ <code>string</code></h3>
+<p>Will return a string formatted for the console</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#URI">URI</a></code><br><strong>Returns</strong>: <code>string</code> - Bitcoin URI<br><a name="URI.fromString"></a></p>
+<h3 id="uri-fromstring-str-code-uri-uri-code-">URI.fromString(str) ⇒ <code><a href="#URI">URI</a></code></h3>
+<p>Instantiate a URI from a String</p>
+<p><strong>Kind</strong>: static method of <code><a href="#URI">URI</a></code><br><strong>Returns</strong>: <code><a href="#URI">URI</a></code> - A new instance of a URI  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>str</td>
+<td><code>string</code></td>
+<td>JSON string or object of the URI</td>
+</tr>
+</tbody>
+</table>
+<p><a name="URI.fromObject"></a></p>
+<h3 id="uri-fromobject-data-code-uri-uri-code-">URI.fromObject(data) ⇒ <code><a href="#URI">URI</a></code></h3>
+<p>Instantiate a URI from an Object</p>
+<p><strong>Kind</strong>: static method of <code><a href="#URI">URI</a></code><br><strong>Returns</strong>: <code><a href="#URI">URI</a></code> - A new instance of a URI  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td><code>Object</code></td>
+<td>object of the URI</td>
+</tr>
+</tbody>
+</table>
+<p><a name="URI.isValid"></a></p>
+<h3 id="uri-isvalid-data-knownparams-code-boolean-code-">URI.isValid(data, [knownParams]) ⇒ <code>boolean</code></h3>
+<p>Check if an bitcoin URI string is valid</p>
+<p><strong>Kind</strong>: static method of <code><a href="#URI">URI</a></code><br><strong>Returns</strong>: <code>boolean</code> - Result of uri validation  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td><code>string</code> &#124; <code>Object</code></td>
+<td>A bitcoin URI string or an Object</td>
+</tr>
+<tr>
+<td>[knownParams]</td>
+<td><code>Array.&lt;string&gt;</code></td>
+<td>Required non-standard params</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong>  </p>
+<pre><code class="lang-javascript">
+var valid = URI.isValid(&#39;bitcoin:12A1MyfXbW6RhdRAZEqofac5jCQQjwEPBu&#39;);
+// true
+</code></pre>
+<p><a name="URI.parse"></a></p>
+<h3 id="uri-parse-uri-code-object-code-">URI.parse(uri) ⇒ <code>Object</code></h3>
+<p>Convert a bitcoin URI string into a simple object.</p>
+<p><strong>Kind</strong>: static method of <code><a href="#URI">URI</a></code><br><strong>Returns</strong>: <code>Object</code> - An object with the parsed params<br><strong>Throws</strong>:</p>
+<ul>
+<li><code>TypeError</code> Invalid bitcoin URI</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>uri</td>
+<td><code>string</code></td>
+<td>A bitcoin URI string</td>
+</tr>
+</tbody>
+</table>
+</div></div></div></div></div><a class="exit-off-canvas"></a><script src="/scripts/main.min.bf683792.js" data-no-instant="data-no-instant"></script></body></html>

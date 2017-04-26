@@ -1,0 +1,1162 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Transaction | Bitcore</title><meta name="description" content="A robust interface to create, parse and validate bitcoin transactions."><!-- Twitter Card data--><meta name="twitter:card" content="summary"><meta name="twitter:site" content="@BitPay"><meta name="twitter:title" content="Transaction"><meta name="twitter:description" content="A robust interface to create, parse and validate bitcoin transactions."><meta name="twitter:image" content="https://bitcore.io/images/social/card.jpg"><!-- Open Graph data (Facebook and Reddit)--><meta property="og:title" content="Transaction"><meta property="og:type" content="article"><meta property="og:url" content="https://bitcore.io/"><meta property="og:image" content="https://bitcore.io/images/social/avatar.jpg"><meta property="og:description" content="A robust interface to create, parse and validate bitcoin transactions."><meta property="og:site_name" content="Bitcore.io"><!-- Add to homescreen for Chrome on Android--><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/images/touch/chrome-touch-icon-192x192.b0c7306c.png"><!-- Add to homescreen for Safari on iOS--><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Bitcore"><link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png"><!-- Tile icon for Win8 (144x144 + tile color)--><meta name="msapplication-TileImage" content="/images/touch/ms-touch-icon-144x144-precomposed.dcbb3eea.png"><meta name="msapplication-TileColor" content="#F9AB3D"><!-- Favicon--><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/styles/main.88c254de.css" data-instant-track><link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,700italic,600italic|Titillium+Web:400,300,700" rel="stylesheet" type="text/css"><script type="text/javascript" data-no-instant>
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.1";
+  if(this.location.host === 'bitcore.io'){ analytics.load('hP7mqqPCPPa5hRatDaulKFxm0kPiB6Es'); }
+  else { analytics.load("dgbXyNcmHR3bJIjumdYoe3GZFrs6sHBd"); }
+  }}();
+</script>
+<script data-no-instant>
+  var $buoop = {vs:{i:9,f:30,o:25,s:5.1},c:2};
+  function $buo_f(){
+   var e = document.createElement("script");
+   e.src = "//browser-update.org/update.js";
+   document.body.appendChild(e);
+  };
+  try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+  catch(e){window.attachEvent("onload", $buo_f)}
+</script>
+<meta name="google-site-verification" content="GOfbzCpKO__Imdru-L0nG1Fo9tTvyH3QVAIWsYO9rCk"></head><body><nav class="navbar navbar-fixed-top dark-nav hidden-sm-down"><a href="/" title="Home" class="logo logo-light margin-top"></a><ul class="nav navbar-nav pull-right"><li class="nav-item"><a href="/start" class="nav-link">Getting Started</a></li><li class="nav-item"><a href="/guides" class="nav-link">Guides</a></li><li class="nav-item"><a href="/api" class="nav-link active">Docs</a></li><li class="nav-item"><a href="/playground" class="nav-link">Playground        </a></li><li class="nav-item"><a href="//forum.bitcore.io/" class="nav-link">Forum</a></li></ul></nav><div class="mobile-menu hidden-md-up navbar-fixed-top"><div id="exCollapsingNavbar" class="collapse"><div class="bg-inverse p-md"><h3 class="m-b-0"> <ul class="p-l-0 no-bullets m-b-0"><li class="nav-item"><a href="/" class="nav-link">Home</a></li><li class="nav-item"><a href="/start" class="nav-link">Getting Started</a></li><li class="nav-item"><a href="/guides" class="nav-link">Guides</a></li><li class="nav-item"><a href="/api" class="nav-link active">Docs</a></li><li class="nav-item"><a href="/playground" class="nav-link">Playground        </a></li><li class="nav-item"><a href="//forum.bitcore.io/" class="nav-link">Forum</a></li></ul></h3></div></div><nav class="navbar dark-nav"><button type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" class="navbar-toggler p-l-0"><div class="logo logo-square-orange menu-text color-white">Menu</div></button></nav></div><div class="fixed-sidebar bg-gray border-right-grey p-l-md"><a href="/api/"><h3 class="menu-header m-t-md">Bitcore</h3><ul class="nav nav-pills nav-stacked"><li class="nav-item"><a href="/api/" class="nav-link">Overview</a></li></ul></a><a href="/api/node"><h3 class="menu-header m-t-md">Node</h3></a><a href="/api/service"><h3 class="menu-header m-t-md">Services</h3></a><h3 class="menu-header m-t-md">Library API</h3><ul class="nav nav-pills nav-stacked"><li class="nav-item"><a href="/api/lib" class="nav-link">Overview</a></li><li class="nav-item"><a href="/api/lib/address" class="nav-link">Address</a></li><li class="nav-item"><a href="/api/lib/block" class="nav-link">Block</a></li><li class="nav-item"><a href="/api/lib/crypto" class="nav-link">Crypto</a></li><li class="nav-item"><a href="/api/lib/encoding" class="nav-link">Encoding</a></li><li class="nav-item"><a href="/api/lib/hd-keys" class="nav-link">HD Keys</a></li><li class="nav-item"><a href="/api/lib/networks" class="nav-link">Networks</a></li><li class="nav-item"><a href="/api/lib/private-key" class="nav-link">Private Key</a></li><li class="nav-item"><a href="/api/lib/public-key" class="nav-link">Public Key</a></li><li class="nav-item"><a href="/api/lib/script" class="nav-link">Script</a></li><li class="nav-item"><a href="/api/lib/transaction" class="active nav-link">Transaction</a></li><li class="nav-item"><a href="/api/lib/unit" class="nav-link">Bitcoin Units</a></li><li class="nav-item"><a href="/api/lib/unspent-output" class="nav-link">Unspent Outputs</a></li><li class="nav-item"><a href="/api/lib/uri" class="nav-link">Bitcoin URIs</a></li></ul><a href="/api/mnemonic"><h3 class="menu-header m-t-md">Library Modules</h3></a><a href="/api/p2p"><h3 class="menu-header m-t-md">Peer-to-Peer</h3></a></div><div class="scroll-content"><div class="api-content"><div class="docs bg-white"><div class="container"><div class="section p-t-lg"><div class="text-right bring-to-front"><a href="https://github.com/bitpay/bitcore-lib/edit/master/docs/transaction.md">Edit</a></div><h1 id="transaction">Transaction</h1>
+<p>Bitcore provides a very simple API for creating transactions. We expect this API to be accessible for developers without knowing the working internals of bitcoin in deep detail. What follows is a small introduction to transactions with some basic knowledge required to use this API.</p>
+<p>A Transaction contains a set of inputs and a set of outputs. Each input contains a reference to another transaction&#39;s output, and a signature that allows the value referenced in that output to be used in this transaction.</p>
+<p>Note also that an output can be used only once. That&#39;s why there&#39;s a concept of &quot;change address&quot; in the bitcoin ecosystem: if an output of 10 BTC is available for me to spend, but I only need to transmit 1 BTC, I&#39;ll create a transaction with two outputs, one with 1 BTC that I want to spend, and the other with 9 BTC to a change address, so I can spend this 9 BTC with another private key that I own.</p>
+<p>So, in order to transmit a valid transaction, you must know what other transactions on the network store outputs that have not been spent and that are available for you to spend (meaning that you have the set of keys that can validate you own those funds). The unspent outputs are usually referred to as &quot;utxo&quot;s.</p>
+<p>Let&#39;s take a look at some very simple transactions:</p>
+<pre><code class="lang-javascript">var transaction = new Transaction()
+    .from(utxos)          // Feed information about what unspent outputs one can use
+    .to(address, amount)  // Add an output with the given amount of satoshis
+    .change(address)      // Sets up a change address where the rest of the funds will go
+    .sign(privkeySet)     // Signs all the inputs it can
+</code></pre>
+<p>You can obtain the input and output total amounts of the transaction in satoshis by accessing the fields <code>inputAmount</code> and <code>outputAmount</code>.</p>
+<p>Now, this could just be serialized to hexadecimal ASCII values (<code>transaction.serialize()</code>) and sent over to the bitcoind reference client.</p>
+<pre><code class="lang-bash">bitcoin-cli sendrawtransaction &lt;serialized transaction&gt;
+</code></pre>
+<p>You can also override the fee estimation with another amount, specified in satoshis:</p>
+<pre><code class="lang-javascript">var transaction = new Transaction().fee(5430); // Minimum non-dust amount
+var transaction = new Transaction().fee(1e8);  // Generous fee of 1 BTC
+</code></pre>
+<h2 id="multisig-transactions">Multisig Transactions</h2>
+<p>To send a transaction to a multisig address, the API is the same as in the above example. To spend outputs that require multiple signatures, the process needs extra information: the public keys of the signers that can unlock that output.</p>
+<pre><code class="lang-javascript">var multiSigTx = new Transaction()
+    .from(utxo, publicKeys, threshold)
+    .change(address)
+    .sign(myKeys);
+
+var serialized = multiSigTx.toObject();
+</code></pre>
+<p>This can be serialized and sent to another party, to complete with the needed signatures:</p>
+<pre><code class="lang-javascript">var multiSigTx = new Transaction(serialized)
+    .sign(anotherSetOfKeys);
+
+assert(multiSigTx.isFullySigned());
+</code></pre>
+<p>Also, you can just send over the signature for your private key:</p>
+<pre><code class="lang-javascript">var multiSigTx = new Transaction()
+    .from(utxo, publicKeys, threshold)
+    .change(address);
+
+var signature = multiSigTx.getSignatures(privateKey)[0];
+console.log(JSON.stringify(signature));
+console.log(signature.toObject());
+console.log(signature.signature.toString()); // Outputs a DER signature
+console.log(signature.sigtype);
+</code></pre>
+<p>Transfer that over the wire, and on the other side, apply it to a transaction:</p>
+<pre><code class="lang-javascript">assert(transaction.isValidSignature(receivedSig));
+transaction.applySignature(receivedSig);
+</code></pre>
+<h2 id="adding-inputs">Adding inputs</h2>
+<p>Transaction inputs are instances of either <a href="https://github.com/bitpay/bitcore/tree/master/lib/transaction/input">Input</a> or its subclasses. <code>Input</code> has some abstract methods, as there is no actual concept of a &quot;signed input&quot; in the bitcoin scripting system (just valid signatures for <tt>OP_CHECKSIG</tt> and similar opcodes). They are stored in the <code>input</code> property of <code>Transaction</code> instances.</p>
+<p>Bitcore contains two implementations of <code>Input</code>, one for spending <em>Pay to Public Key Hash</em> outputs (called <code>PublicKeyHashInput</code>) and another to spend <em>Pay to Script Hash</em> outputs for which the redeem script is a Multisig script (called <code>MultisigScriptHashInput</code>).</p>
+<p>All inputs have the following five properties:</p>
+<ul>
+<li><code>prevTxId</code>: a <code>Buffer</code> with the id of the transaction with the output this input is spending</li>
+<li><code>outputIndex</code>: a <code>number</code> the index of the output in the previous transaction</li>
+<li><code>sequenceNumber</code>: a <code>number</code>, the sequence number, see <a href="https://bitcoin.org/en/developer-guide#locktime-and-sequence-number">bitcoin&#39;s developer guide on nLockTime and the sequence number</a>.</li>
+<li><code>script</code>: the <code>Script</code> instance for this input. Usually called <code>scriptSig</code> in the bitcoin community.</li>
+<li><code>output</code>: if available, a <code>Output</code> instance of the output associated with this input.</li>
+</ul>
+<p>Both <code>PublicKeyHashInput</code> and <code>MultisigScriptHashInput</code> cache the information about signatures, even though this information could somehow be encoded in the script. Both need to have the <code>output</code> property set in order to calculate the <code>sighash</code> so signatures can be created.</p>
+<p>Some methods related to adding inputs are:</p>
+<ul>
+<li><p><code>from</code>: A high level interface to add an input from a UTXO. It has a series of variants:</p>
+<ul>
+<li><code>from(utxo)</code>: add an input from an <a href="http://bitcore.io/guide/unspentoutput.html">Unspent Transaction Output</a>. Currently, only P2PKH outputs are supported.</li>
+<li><code>from(utxos)</code>: same as above, but passing in an array of Unspent Outputs.</li>
+<li><code>from(utxo, publicKeys, threshold)</code>: add an input that spends a UTXO with a P2SH output for a Multisig script. The <code>publicKeys</code> argument is an array of public keys, and <code>threshold</code> is the number of required signatures in the Multisig script.</li>
+</ul>
+</li>
+<li><p><code>addInput</code>: Performs a series of checks on an input and appends it to the end of the <code>input</code> vector and updates the amount of incoming bitcoins of the transaction.</p>
+</li>
+<li><code>uncheckedAddInput</code>: adds an input to the end of the <code>input</code> vector and updates the <code>inputAmount</code> without performing any checks.</li>
+</ul>
+<h3 id="publickeyhashinput">PublicKeyHashInput</h3>
+<p>This input uses the <code>script</code> property to mark the input as unsigned if the script is empty.</p>
+<h3 id="multisigscripthashinput">MultisigScriptHashInput</h3>
+<p>This input contains a set of signatures in a <code>signatures</code> property, and each time a signature is added, a potentially partial and/or invalid script is created. The <code>isFullySigned</code> method will only return true if all needed signatures are already added and valid. If <code>addSignature</code> is added after all need signatures are already set, an exception will be thrown.</p>
+<h2 id="signing-a-transaction">Signing a Transaction</h2>
+<p>The following methods are used to manage signatures for a transaction:</p>
+<ul>
+<li><p><code>getSignatures</code>: takes an array of <code>PrivateKey</code> or strings from which a <code>PrivateKey</code> can be instantiated; the transaction to be signed; the kind of <a href="https://bitcoin.org/en/developer-guide#signature-hash-types">signature hash to use</a>. Returns an array of objects with the following properties:</p>
+<ul>
+<li><code>signature</code>: an instance of <a href="https://github.com/bitpay/bitcore/blob/master/lib/crypto/signature.js">Signature</a></li>
+<li><code>prevTxId</code>: this input&#39;s <code>prevTxId</code>,</li>
+<li><code>outputIndex</code>: this input&#39;s <code>outputIndex</code>,</li>
+<li><code>inputIndex</code>: this input&#39;s index in the transaction</li>
+<li><code>sigtype</code>: the &quot;sighash&quot;, the type of transaction hash used to calculate the signature</li>
+<li><code>publicKey</code>: a <code>PublicKey</code> of the <code>PrivateKey</code> used to create the signature</li>
+</ul>
+</li>
+<li><p><code>addSignature</code>: takes an element outputed by <code>getSignatures</code> and applies the signature to this input (modifies the script to include the new signature).</p>
+</li>
+<li><code>clearSignatures</code>: removes all signatures for this input</li>
+<li><code>isFullySigned</code>: returns true if the input is fully signed</li>
+</ul>
+<h2 id="handling-outputs">Handling Outputs</h2>
+<p>Outputs can be added by:</p>
+<ul>
+<li>The <code>addOutput(output)</code> method, which pushes an <code>Output</code> to the end of the <code>outputs</code> property and updates the <code>outputAmount</code> field. It also clears signatures (as the hash of the transaction may have changed) and updates the change output.</li>
+<li>The <code>to(address, amount)</code> method, that adds an output with the script that corresponds to the given address. Builds an output and calls the <code>addOutput</code> method.</li>
+<li>Specifying a <a href="#Fee_calculation">change address</a></li>
+</ul>
+<p>To remove all outputs, you can use <code>clearOutputs()</code>, which preserves change output configuration.</p>
+<h2 id="serialization">Serialization</h2>
+<p>There are a series of methods used for serialization:</p>
+<ul>
+<li><code>toObject</code>: Returns a plain JavaScript object with no methods and enough information to fully restore the state of this transaction. Using other serialization methods (except for <code>toJSON</code>) will cause a some information to be lost.</li>
+<li><code>toJSON</code>: Will be called when using <code>JSON.stringify</code> to return JSON-encoded string using the output from <code>toObject</code>.</li>
+<li><code>toString</code> or <code>uncheckedSerialize</code>: Returns an hexadecimal serialization of the transaction, in the <a href="https://bitcoin.org/en/developer-reference#raw-transaction-format">serialization format for bitcoin</a>.</li>
+<li><code>serialize</code>: Does a series of checks before serializing the transaction</li>
+<li><code>inspect</code>: Returns a string with some information about the transaction (currently a string formatted as <code>&lt;Transaction 000...000&gt;</code>, that only shows the serialized value of the transaction.</li>
+<li><code>toBuffer</code>: Serializes the transaction for sending over the wire in the bitcoin network</li>
+<li><code>toBufferWriter</code>: Uses an already existing BufferWriter to copy over the serialized transaction</li>
+</ul>
+<h2 id="serialization-checks">Serialization Checks</h2>
+<p>When serializing, the bitcore library performs a series of checks. These can be disabled by providing an object to the <code>serialize</code> method with the checks that you&#39;ll like to skip.</p>
+<ul>
+<li><code>disableLargeFees</code> avoids checking that the fee is no more than <code>Transaction.FEE_PER_KB * Transaction.FEE_SECURITY_MARGIN * size_in_kb</code>.</li>
+<li><code>disableSmallFees</code> avoids checking that the fee is less than <code>Transaction.FEE_PER_KB * size_in_kb / Transaction.FEE_SECURITY_MARGIN</code>.</li>
+<li><code>disableIsFullySigned</code> does not check if all inputs are fully signed</li>
+<li><code>disableDustOutputs</code> does not check for dust outputs being generated</li>
+<li><code>disableMoreOutputThanInput</code> avoids checking that the sum of the output amounts is less than or equal to the sum of the amounts for the outputs being spent in the transaction</li>
+</ul>
+<p>These are the current default values in the bitcore library involved on these checks:</p>
+<ul>
+<li><code>Transaction.FEE_PER_KB</code>: <code>10000</code> (satoshis per kilobyte)</li>
+<li><code>Transaction.FEE_SECURITY_MARGIN</code>: <code>15</code></li>
+<li><code>Transaction.DUST_AMOUNT</code>: <code>546</code> (satoshis)</li>
+</ul>
+<h2 id="fee-calculation">Fee calculation</h2>
+<p>When outputs&#39; value don&#39;t sum up to the same amount that inputs, the difference in bitcoins goes to the miner of the block that includes this transaction. The concept of a &quot;change address&quot; usually is associated with this: an output with an address that can be spent by the creator of the transaction.</p>
+<p>For this reason, some methods in the Transaction class are provided:</p>
+<ul>
+<li><code>change(address)</code>: Set up the change address. This will set an internal <code>_changeScript</code> property that will store the change script associated with that address.</li>
+<li><code>fee(amount)</code>: Sets up the exact amount of fee to pay. If no change address is provided, this will raise an exception.</li>
+<li><code>getFee()</code>: returns the estimated fee amount to be paid, based on the size of the transaction, but disregarding the priority of the outputs.</li>
+</ul>
+<p>Internally, a <code>_changeIndex</code> property stores the index of the change output (so it can get updated when a new input or output is added).</p>
+<h2 id="time-locking-transaction">Time-Locking transaction</h2>
+<p>All bitcoin transactions contain a locktime field. The locktime indicates the earliest time a transaction can be added to the blockchain. Locktime allows signers to create time-locked transactions which will only become valid in the future, giving the signers a chance to change their minds. Locktime can be set in the form of a bitcoin block height (the transaction can only be included in a block with a higher height than specified) or a linux timestamp (transaction can only be confirmed after that time). For more information see <a href="https://bitcoin.org/en/developer-guide#locktime-and-sequence-number">bitcoin&#39;s development guide section on locktime</a>.</p>
+<p>In bitcore, you can set a <code>Transaction</code>&#39;s locktime by using the methods <code>Transaction#lockUntilDate</code> and <code>Transaction#lockUntilBlockHeight</code>. You can also get a friendly version of the locktime field via <code>Transaction#getLockTime</code>;</p>
+<p>For example:</p>
+<pre><code class="lang-javascript">var future = new Date(2025,10,30); // Sun Nov 30 2025
+var transaction = new Transaction()
+  .lockUntilDate(future);
+console.log(transaction.getLockTime());
+// output similar to: Sun Nov 30 2025 00:00:00 GMT-0300 (ART)
+</code></pre>
+<h2 id="upcoming-changes">Upcoming changes</h2>
+<p>We&#39;re debating an API for Merge Avoidance, CoinJoin, Smart contracts, CoinSwap, and Stealth Addresses. We&#39;re expecting to have all of them by some time in 2015. Payment channel creation is available in the <a href="https://github.com/bitpay/bitcore-channel">bitcore-channel</a> module.</p>
+</div></div></div><div class="lib bg-dark"><div class="container"><div class="section p-t-lg"><div class="text-right bring-to-front"><a href="https://github.com/bitpay/bitcore-lib/blob/master/lib/transaction/input/index.js">View Source</a></div></div><div class="section p-t-lg"><div class="text-right bring-to-front"><a href="https://github.com/bitpay/bitcore-lib/blob/master/lib/transaction/input/input.js">View Source</a></div></div><div class="section p-t-lg"><div class="text-right bring-to-front"><a href="https://github.com/bitpay/bitcore-lib/blob/master/lib/transaction/input/multisigscripthash.js">View Source</a></div><p><a name="MultiSigScriptHashInput"></a></p>
+<h2 id="multisigscripthashinput">MultiSigScriptHashInput</h2>
+<p><strong>Kind</strong>: global class  </p>
+</div><div class="section p-t-lg"><div class="text-right bring-to-front"><a href="https://github.com/bitpay/bitcore-lib/blob/master/lib/transaction/input/publickey.js">View Source</a></div><p><a name="PublicKeyInput"></a></p>
+<h2 id="publickeyinput">PublicKeyInput</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#PublicKeyInput">PublicKeyInput</a><ul>
+<li><a href="#new_PublicKeyInput_new">new PublicKeyInput()</a></li>
+<li><a href="#PublicKeyInput+getSignatures">.getSignatures(transaction, privateKey, index, [sigtype])</a> ⇒ <code>Array</code></li>
+<li><a href="#PublicKeyInput+addSignature">.addSignature(signature)</a> ⇒ <code><a href="#PublicKeyInput">PublicKeyInput</a></code></li>
+<li><a href="#PublicKeyInput+clearSignatures">.clearSignatures()</a> ⇒ <code>PublicKeyHashInput</code></li>
+<li><a href="#PublicKeyInput+isFullySigned">.isFullySigned()</a> ⇒ <code>boolean</code></li>
+</ul>
+</li>
+</ul>
+<p><a name="new_PublicKeyInput_new"></a></p>
+<h3 id="new-publickeyinput-">new PublicKeyInput()</h3>
+<p>Represents a special kind of input of PayToPublicKey kind.</p>
+<p><a name="PublicKeyInput+getSignatures"></a></p>
+<h3 id="publickeyinput-getsignatures-transaction-privatekey-index-sigtype-code-array-code-">publicKeyInput.getSignatures(transaction, privateKey, index, [sigtype]) ⇒ <code>Array</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#PublicKeyInput">PublicKeyInput</a></code><br><strong>Returns</strong>: <code>Array</code> - of objects that can be  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transaction</td>
+<td><code>Transaction</code></td>
+<td>the transaction to be signed</td>
+</tr>
+<tr>
+<td>privateKey</td>
+<td><code>PrivateKey</code></td>
+<td>the private key with which to sign the transaction</td>
+</tr>
+<tr>
+<td>index</td>
+<td><code>number</code></td>
+<td>the index of the input in the transaction input vector</td>
+</tr>
+<tr>
+<td>[sigtype]</td>
+<td><code>number</code></td>
+<td>the type of signature, defaults to Signature.SIGHASH_ALL</td>
+</tr>
+</tbody>
+</table>
+<p><a name="PublicKeyInput+addSignature"></a></p>
+<h3 id="publickeyinput-addsignature-signature-code-publickeyinput-publickeyinput-code-">publicKeyInput.addSignature(signature) ⇒ <code><a href="#PublicKeyInput">PublicKeyInput</a></code></h3>
+<p>Add the provided signature</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#PublicKeyInput">PublicKeyInput</a></code><br><strong>Returns</strong>: <code><a href="#PublicKeyInput">PublicKeyInput</a></code> - this, for chaining  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>signature</td>
+<td><code>Object</code></td>
+</tr>
+<tr>
+<td>signature.publicKey</td>
+<td><code>PublicKey</code></td>
+</tr>
+<tr>
+<td>signature.signature</td>
+<td><code>Signature</code></td>
+</tr>
+<tr>
+<td>[signature.sigtype]</td>
+<td><code>number</code></td>
+</tr>
+</tbody>
+</table>
+<p><a name="PublicKeyInput+clearSignatures"></a></p>
+<h3 id="publickeyinput-clearsignatures-code-publickeyhashinput-code-">publicKeyInput.clearSignatures() ⇒ <code>PublicKeyHashInput</code></h3>
+<p>Clear the input&#39;s signature</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#PublicKeyInput">PublicKeyInput</a></code><br><strong>Returns</strong>: <code>PublicKeyHashInput</code> - this, for chaining<br><a name="PublicKeyInput+isFullySigned"></a></p>
+<h3 id="publickeyinput-isfullysigned-code-boolean-code-">publicKeyInput.isFullySigned() ⇒ <code>boolean</code></h3>
+<p>Query whether the input is signed</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#PublicKeyInput">PublicKeyInput</a></code>  </p>
+</div><div class="section p-t-lg"><div class="text-right bring-to-front"><a href="https://github.com/bitpay/bitcore-lib/blob/master/lib/transaction/input/publickeyhash.js">View Source</a></div><p><a name="PublicKeyHashInput"></a></p>
+<h2 id="publickeyhashinput">PublicKeyHashInput</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#PublicKeyHashInput">PublicKeyHashInput</a><ul>
+<li><a href="#new_PublicKeyHashInput_new">new PublicKeyHashInput()</a></li>
+<li><a href="#PublicKeyHashInput+getSignatures">.getSignatures(transaction, privateKey, index, [sigtype], [hashData])</a> ⇒ <code>Array</code></li>
+<li><a href="#PublicKeyHashInput+addSignature">.addSignature(signature)</a> ⇒ <code><a href="#PublicKeyHashInput">PublicKeyHashInput</a></code></li>
+<li><a href="#PublicKeyHashInput+clearSignatures">.clearSignatures()</a> ⇒ <code><a href="#PublicKeyHashInput">PublicKeyHashInput</a></code></li>
+<li><a href="#PublicKeyHashInput+isFullySigned">.isFullySigned()</a> ⇒ <code>boolean</code></li>
+</ul>
+</li>
+</ul>
+<p><a name="new_PublicKeyHashInput_new"></a></p>
+<h3 id="new-publickeyhashinput-">new PublicKeyHashInput()</h3>
+<p>Represents a special kind of input of PayToPublicKeyHash kind.</p>
+<p><a name="PublicKeyHashInput+getSignatures"></a></p>
+<h3 id="publickeyhashinput-getsignatures-transaction-privatekey-index-sigtype-hashdata-code-array-code-">publicKeyHashInput.getSignatures(transaction, privateKey, index, [sigtype], [hashData]) ⇒ <code>Array</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#PublicKeyHashInput">PublicKeyHashInput</a></code><br><strong>Returns</strong>: <code>Array</code> - of objects that can be  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transaction</td>
+<td><code>Transaction</code></td>
+<td>the transaction to be signed</td>
+</tr>
+<tr>
+<td>privateKey</td>
+<td><code>PrivateKey</code></td>
+<td>the private key with which to sign the transaction</td>
+</tr>
+<tr>
+<td>index</td>
+<td><code>number</code></td>
+<td>the index of the input in the transaction input vector</td>
+</tr>
+<tr>
+<td>[sigtype]</td>
+<td><code>number</code></td>
+<td>the type of signature, defaults to Signature.SIGHASH_ALL</td>
+</tr>
+<tr>
+<td>[hashData]</td>
+<td><code>Buffer</code></td>
+<td>the precalculated hash of the public key associated with the privateKey provided</td>
+</tr>
+</tbody>
+</table>
+<p><a name="PublicKeyHashInput+addSignature"></a></p>
+<h3 id="publickeyhashinput-addsignature-signature-code-publickeyhashinput-publickeyhashinput-code-">publicKeyHashInput.addSignature(signature) ⇒ <code><a href="#PublicKeyHashInput">PublicKeyHashInput</a></code></h3>
+<p>Add the provided signature</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#PublicKeyHashInput">PublicKeyHashInput</a></code><br><strong>Returns</strong>: <code><a href="#PublicKeyHashInput">PublicKeyHashInput</a></code> - this, for chaining  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>signature</td>
+<td><code>Object</code></td>
+</tr>
+<tr>
+<td>signature.publicKey</td>
+<td><code>PublicKey</code></td>
+</tr>
+<tr>
+<td>signature.signature</td>
+<td><code>Signature</code></td>
+</tr>
+<tr>
+<td>[signature.sigtype]</td>
+<td><code>number</code></td>
+</tr>
+</tbody>
+</table>
+<p><a name="PublicKeyHashInput+clearSignatures"></a></p>
+<h3 id="publickeyhashinput-clearsignatures-code-publickeyhashinput-publickeyhashinput-code-">publicKeyHashInput.clearSignatures() ⇒ <code><a href="#PublicKeyHashInput">PublicKeyHashInput</a></code></h3>
+<p>Clear the input&#39;s signature</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#PublicKeyHashInput">PublicKeyHashInput</a></code><br><strong>Returns</strong>: <code><a href="#PublicKeyHashInput">PublicKeyHashInput</a></code> - this, for chaining<br><a name="PublicKeyHashInput+isFullySigned"></a></p>
+<h3 id="publickeyhashinput-isfullysigned-code-boolean-code-">publicKeyHashInput.isFullySigned() ⇒ <code>boolean</code></h3>
+<p>Query whether the input is signed</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#PublicKeyHashInput">PublicKeyHashInput</a></code>  </p>
+</div><div class="section p-t-lg"><div class="text-right bring-to-front"><a href="https://github.com/bitpay/bitcore-lib/blob/master/lib/transaction/index.js">View Source</a></div></div><div class="section p-t-lg"><div class="text-right bring-to-front"><a href="https://github.com/bitpay/bitcore-lib/blob/master/lib/transaction/output.js">View Source</a></div></div><div class="section p-t-lg"><div class="text-right bring-to-front"><a href="https://github.com/bitpay/bitcore-lib/blob/master/lib/transaction/sighash.js">View Source</a></div><p><a name="Signing"></a></p>
+<h2 id="signing-code-object-code-">Signing : <code>object</code></h2>
+<p><strong>Kind</strong>: global namespace  </p>
+<ul>
+<li><a href="#Signing">Signing</a> : <code>object</code><ul>
+<li><a href="#Signing.sighash">.sighash</a></li>
+<li><a href="#Signing.sign">.sign</a> ⇒ <code>Signature</code></li>
+<li><a href="#Signing.verify">.verify</a> ⇒ <code>boolean</code></li>
+</ul>
+</li>
+</ul>
+<p><a name="Signing.sighash"></a></p>
+<h3 id="signing-sighash">Signing.sighash</h3>
+<p>Returns a buffer of length 32 bytes with the hash that needs to be signed
+for OP_CHECKSIG.</p>
+<p><strong>Kind</strong>: static property of <code><a href="#Signing">Signing</a></code>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transaction</td>
+<td><code>Transaction</code></td>
+<td>the transaction to sign</td>
+</tr>
+<tr>
+<td>sighashType</td>
+<td><code>number</code></td>
+<td>the type of the hash</td>
+</tr>
+<tr>
+<td>inputNumber</td>
+<td><code>number</code></td>
+<td>the input index for the signature</td>
+</tr>
+<tr>
+<td>subscript</td>
+<td><code>Script</code></td>
+<td>the script that will be signed</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Signing.sign"></a></p>
+<h3 id="signing-sign-code-signature-code-">Signing.sign ⇒ <code>Signature</code></h3>
+<p>Create a signature</p>
+<p><strong>Kind</strong>: static property of <code><a href="#Signing">Signing</a></code>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transaction</td>
+<td><code>Transaction</code></td>
+</tr>
+<tr>
+<td>privateKey</td>
+<td><code>PrivateKey</code></td>
+</tr>
+<tr>
+<td>sighash</td>
+<td><code>number</code></td>
+</tr>
+<tr>
+<td>inputIndex</td>
+<td><code>number</code></td>
+</tr>
+<tr>
+<td>subscript</td>
+<td><code>Script</code></td>
+</tr>
+</tbody>
+</table>
+<p><a name="Signing.verify"></a></p>
+<h3 id="signing-verify-code-boolean-code-">Signing.verify ⇒ <code>boolean</code></h3>
+<p>Verify a signature</p>
+<p><strong>Kind</strong>: static property of <code><a href="#Signing">Signing</a></code>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transaction</td>
+<td><code>Transaction</code></td>
+</tr>
+<tr>
+<td>signature</td>
+<td><code>Signature</code></td>
+</tr>
+<tr>
+<td>publicKey</td>
+<td><code>PublicKey</code></td>
+</tr>
+<tr>
+<td>inputIndex</td>
+<td><code>number</code></td>
+</tr>
+<tr>
+<td>subscript</td>
+<td><code>Script</code></td>
+</tr>
+</tbody>
+</table>
+</div><div class="section p-t-lg"><div class="text-right bring-to-front"><a href="https://github.com/bitpay/bitcore-lib/blob/master/lib/transaction/signature.js">View Source</a></div><p><a name="TransactionSignature"></a></p>
+<h2 id="transactionsignature">TransactionSignature</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#TransactionSignature">TransactionSignature</a><ul>
+<li><a href="#new_TransactionSignature_new">new TransactionSignature(arg)</a></li>
+<li><em>instance</em><ul>
+<li><a href="#TransactionSignature+toObject">.toObject</a> ⇒ <code>Object</code></li>
+</ul>
+</li>
+<li><em>static</em><ul>
+<li><a href="#TransactionSignature.fromObject">.fromObject(object)</a> ⇒ <code><a href="#TransactionSignature">TransactionSignature</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="new_TransactionSignature_new"></a></p>
+<h3 id="new-transactionsignature-arg-">new TransactionSignature(arg)</h3>
+<p>Wrapper around Signature with fields related to signing a transaction specifically</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>arg</td>
+<td><code>Object</code> &#124; <code>string</code> &#124; <code><a href="#TransactionSignature">TransactionSignature</a></code></td>
+</tr>
+</tbody>
+</table>
+<p><a name="TransactionSignature+toObject"></a></p>
+<h3 id="transactionsignature-toobject-code-object-code-">transactionSignature.toObject ⇒ <code>Object</code></h3>
+<p>Serializes a transaction to a plain JS object</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#TransactionSignature">TransactionSignature</a></code><br><a name="TransactionSignature.fromObject"></a></p>
+<h3 id="transactionsignature-fromobject-object-code-transactionsignature-transactionsignature-code-">TransactionSignature.fromObject(object) ⇒ <code><a href="#TransactionSignature">TransactionSignature</a></code></h3>
+<p>Builds a TransactionSignature from an object</p>
+<p><strong>Kind</strong>: static method of <code><a href="#TransactionSignature">TransactionSignature</a></code>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>object</td>
+<td><code>Object</code></td>
+</tr>
+</tbody>
+</table>
+</div><div class="section p-t-lg"><div class="text-right bring-to-front"><a href="https://github.com/bitpay/bitcore-lib/blob/master/lib/transaction/transaction.js">View Source</a></div><p><a name="Transaction"></a></p>
+<h2 id="transaction">Transaction</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#Transaction">Transaction</a><ul>
+<li><a href="#new_Transaction_new">new Transaction(serialized)</a></li>
+<li><em>instance</em><ul>
+<li><a href="#Transaction+_getHash">._getHash()</a> ⇒ <code>Buffer</code></li>
+<li><a href="#Transaction+serialize">.serialize(unsafe)</a> ⇒ <code>string</code></li>
+<li><a href="#Transaction+checkedSerialize">.checkedSerialize(opts)</a> ⇒ <code>string</code></li>
+<li><a href="#Transaction+getSerializationError">.getSerializationError(opts)</a> ⇒ <code>bitcore.Error</code></li>
+<li><a href="#Transaction+lockUntilDate">.lockUntilDate(time)</a> ⇒ <code><a href="#Transaction">Transaction</a></code></li>
+<li><a href="#Transaction+lockUntilBlockHeight">.lockUntilBlockHeight(height)</a> ⇒ <code><a href="#Transaction">Transaction</a></code></li>
+<li><a href="#Transaction+getLockTime">.getLockTime()</a> ⇒ <code>Number</code> &#124; <code>Date</code></li>
+<li><a href="#Transaction+from">.from(utxo, [pubkeys], [threshold])</a></li>
+<li><a href="#Transaction+addInput">.addInput(input, outputScript, satoshis)</a> ⇒</li>
+<li><a href="#Transaction+uncheckedAddInput">.uncheckedAddInput(input)</a> ⇒</li>
+<li><a href="#Transaction+hasAllUtxoInfo">.hasAllUtxoInfo()</a> ⇒ <code>boolean</code></li>
+<li><a href="#Transaction+fee">.fee(amount)</a> ⇒ <code><a href="#Transaction">Transaction</a></code></li>
+<li><a href="#Transaction+feePerKb">.feePerKb(amount)</a> ⇒ <code><a href="#Transaction">Transaction</a></code></li>
+<li><a href="#Transaction+change">.change(address)</a> ⇒ <code><a href="#Transaction">Transaction</a></code></li>
+<li><a href="#Transaction+getChangeOutput">.getChangeOutput()</a> ⇒ <code>Output</code></li>
+<li><a href="#Transaction+to">.to(address, amount)</a> ⇒ <code><a href="#Transaction">Transaction</a></code></li>
+<li><a href="#Transaction+addData">.addData(value)</a> ⇒ <code><a href="#Transaction">Transaction</a></code></li>
+<li><a href="#Transaction+addOutput">.addOutput(output)</a> ⇒ <code><a href="#Transaction">Transaction</a></code></li>
+<li><a href="#Transaction+clearOutputs">.clearOutputs()</a> ⇒ <code><a href="#Transaction">Transaction</a></code></li>
+<li><a href="#Transaction+_getOutputAmount">._getOutputAmount()</a> ⇒ <code>Number</code></li>
+<li><a href="#Transaction+_getInputAmount">._getInputAmount()</a> ⇒ <code>Number</code></li>
+<li><a href="#Transaction+getFee">.getFee()</a> ⇒ <code>Number</code></li>
+<li><a href="#Transaction+_estimateFee">._estimateFee()</a></li>
+<li><a href="#Transaction+sort">.sort()</a> ⇒ <code><a href="#Transaction">Transaction</a></code></li>
+<li><a href="#Transaction+shuffleOutputs">.shuffleOutputs()</a> ⇒ <code><a href="#Transaction">Transaction</a></code></li>
+<li><a href="#Transaction+sortOutputs">.sortOutputs(sortingFunction)</a> ⇒ <code><a href="#Transaction">Transaction</a></code></li>
+<li><a href="#Transaction+sortInputs">.sortInputs(sortingFunction)</a> ⇒ <code><a href="#Transaction">Transaction</a></code></li>
+<li><a href="#Transaction+sign">.sign(privateKey, sigtype)</a> ⇒ <code><a href="#Transaction">Transaction</a></code></li>
+<li><a href="#Transaction+applySignature">.applySignature(signature)</a> ⇒ <code><a href="#Transaction">Transaction</a></code></li>
+<li><a href="#Transaction+verifySignature">.verifySignature()</a> ⇒ <code>bool</code></li>
+<li><a href="#Transaction+verify">.verify()</a></li>
+<li><a href="#Transaction+isCoinbase">.isCoinbase()</a></li>
+<li><a href="#Transaction+isRBF">.isRBF()</a></li>
+<li><a href="#Transaction+enableRBF">.enableRBF()</a></li>
+</ul>
+</li>
+<li><em>static</em><ul>
+<li><a href="#Transaction.shallowCopy">.shallowCopy(transaction)</a> ⇒ <code><a href="#Transaction">Transaction</a></code></li>
+</ul>
+</li>
+<li><em>inner</em><ul>
+<li><a href="#Transaction..fromObject">~fromObject</a> : <code>Object</code></li>
+<li><a href="#Transaction..toObject">~toObject</a> : <code>Object</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="new_Transaction_new"></a></p>
+<h3 id="new-transaction-serialized-">new Transaction(serialized)</h3>
+<p>Represents a transaction, a set of inputs and outputs to change ownership of tokens</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>serialized</td>
+<td><code>*</code></td>
+</tr>
+</tbody>
+</table>
+<p><a name="Transaction+_getHash"></a></p>
+<h3 id="transaction-_gethash-code-buffer-code-">transaction._getHash() ⇒ <code>Buffer</code></h3>
+<p>Retrieve the little endian hash of the transaction (used for serialization)</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><a name="Transaction+serialize"></a></p>
+<h3 id="transaction-serialize-unsafe-code-string-code-">transaction.serialize(unsafe) ⇒ <code>string</code></h3>
+<p>Retrieve a hexa string that can be used with bitcoind&#39;s CLI interface
+(decoderawtransaction, sendrawtransaction)</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>unsafe</td>
+<td><code>Object</code> &#124; <code>boolean</code></td>
+<td>if true, skip all tests. if it&#39;s an object,   it&#39;s expected to contain a set of flags to skip certain tests: <em> <code>disableAll</code>: disable all checks </em> <code>disableSmallFees</code>: disable checking for fees that are too small <em> <code>disableLargeFees</code>: disable checking for fees that are too large </em> <code>disableIsFullySigned</code>: disable checking if all inputs are fully signed <em> <code>disableDustOutputs</code>: disable checking if there are no outputs that are dust amounts </em> <code>disableMoreOutputThanInput</code>: disable checking if the transaction spends more bitcoins than the sum of the input amounts</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Transaction+checkedSerialize"></a></p>
+<h3 id="transaction-checkedserialize-opts-code-string-code-">transaction.checkedSerialize(opts) ⇒ <code>string</code></h3>
+<p>Retrieve a hexa string that can be used with bitcoind&#39;s CLI interface
+(decoderawtransaction, sendrawtransaction)</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>opts</td>
+<td><code>Object</code></td>
+<td>allows to skip certain tests. {@see Transaction#serialize}</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Transaction+getSerializationError"></a></p>
+<h3 id="transaction-getserializationerror-opts-code-bitcore-error-code-">transaction.getSerializationError(opts) ⇒ <code>bitcore.Error</code></h3>
+<p>Retrieve a possible error that could appear when trying to serialize and
+broadcast this transaction.</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>opts</td>
+<td><code>Object</code></td>
+<td>allows to skip certain tests. {@see Transaction#serialize}</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Transaction+lockUntilDate"></a></p>
+<h3 id="transaction-lockuntildate-time-code-transaction-transaction-code-">transaction.lockUntilDate(time) ⇒ <code><a href="#Transaction">Transaction</a></code></h3>
+<p>Sets nLockTime so that transaction is not valid until the desired date(a
+timestamp in seconds since UNIX epoch is also accepted)</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><strong>Returns</strong>: <code><a href="#Transaction">Transaction</a></code> - this  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>time</td>
+<td><code>Date</code> &#124; <code>Number</code></td>
+</tr>
+</tbody>
+</table>
+<p><a name="Transaction+lockUntilBlockHeight"></a></p>
+<h3 id="transaction-lockuntilblockheight-height-code-transaction-transaction-code-">transaction.lockUntilBlockHeight(height) ⇒ <code><a href="#Transaction">Transaction</a></code></h3>
+<p>Sets nLockTime so that transaction is not valid until the desired block
+height.</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><strong>Returns</strong>: <code><a href="#Transaction">Transaction</a></code> - this  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>height</td>
+<td><code>Number</code></td>
+</tr>
+</tbody>
+</table>
+<p><a name="Transaction+getLockTime"></a></p>
+<h3 id="transaction-getlocktime-code-number-code-124-code-date-code-">transaction.getLockTime() ⇒ <code>Number</code> &#124; <code>Date</code></h3>
+<p>Returns a semantic version of the transaction&#39;s nLockTime.</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><strong>Returns</strong>: <code>Number</code> &#124; <code>Date</code> - If nLockTime is 0, it returns null,
+ if it is &lt; 500000000, it returns a block height (number)
+ else it returns a Date object.<br><a name="Transaction+from"></a></p>
+<h3 id="transaction-from-utxo-pubkeys-threshold-">transaction.from(utxo, [pubkeys], [threshold])</h3>
+<p>Add an input to this transaction. This is a high level interface
+to add an input, for more control, use @{link Transaction#addInput}.</p>
+<p>Can receive, as output information, the output of bitcoind&#39;s <code>listunspent</code> command,
+and a slightly fancier format recognized by bitcore:</p>
+<pre><code>{
+ address: &#39;mszYqVnqKoQx4jcTdJXxwKAissE3Jbrrc1&#39;,
+ txId: &#39;a477af6b2667c29670467e4e0728b685ee07b240235771862318e29ddbe58458&#39;,
+ outputIndex: 0,
+ script: Script.empty(),
+ satoshis: 1020000
+}
+</code></pre><p>Where <code>address</code> can be either a string or a bitcore Address object. The
+same is true for <code>script</code>, which can be a string or a bitcore Script.</p>
+<p>Beware that this resets all the signatures for inputs (in further versions,
+SIGHASH_SINGLE or SIGHASH_NONE signatures will not be reset).</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>utxo</td>
+<td><code><a href="#Transaction..fromObject">Array.&lt;fromObject&gt;</a></code> &#124; <code><a href="#Transaction..fromObject">fromObject</a></code></td>
+</tr>
+<tr>
+<td>[pubkeys]</td>
+<td><code>Array</code></td>
+</tr>
+<tr>
+<td>[threshold]</td>
+<td><code>number</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong>  </p>
+<pre><code class="lang-javascript">var transaction = new Transaction();
+
+// From a pay to public key hash output from bitcoind&#39;s listunspent
+transaction.from({&#39;txid&#39;: &#39;0000...&#39;, vout: 0, amount: 0.1, scriptPubKey: &#39;OP_DUP ...&#39;});
+
+// From a pay to public key hash output
+transaction.from({&#39;txId&#39;: &#39;0000...&#39;, outputIndex: 0, satoshis: 1000, script: &#39;OP_DUP ...&#39;});
+
+// From a multisig P2SH output
+transaction.from({&#39;txId&#39;: &#39;0000...&#39;, inputIndex: 0, satoshis: 1000, script: &#39;... OP_HASH&#39;},
+                 [&#39;03000...&#39;, &#39;02000...&#39;], 2);
+</code></pre>
+<p><a name="Transaction+addInput"></a></p>
+<h3 id="transaction-addinput-input-outputscript-satoshis-">transaction.addInput(input, outputScript, satoshis) ⇒</h3>
+<p>Add an input to this transaction. The input must be an instance of the <code>Input</code> class.
+It should have information about the Output that it&#39;s spending, but if it&#39;s not already
+set, two additional parameters, <code>outputScript</code> and <code>satoshis</code> can be provided.</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><strong>Returns</strong>: Transaction this, for chaining  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>input</td>
+<td><code>Input</code></td>
+</tr>
+<tr>
+<td>outputScript</td>
+<td><code>String</code> &#124; <code>Script</code></td>
+</tr>
+<tr>
+<td>satoshis</td>
+<td><code>number</code></td>
+</tr>
+</tbody>
+</table>
+<p><a name="Transaction+uncheckedAddInput"></a></p>
+<h3 id="transaction-uncheckedaddinput-input-">transaction.uncheckedAddInput(input) ⇒</h3>
+<p>Add an input to this transaction, without checking that the input has information about
+the output that it&#39;s spending.</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><strong>Returns</strong>: Transaction this, for chaining  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>input</td>
+<td><code>Input</code></td>
+</tr>
+</tbody>
+</table>
+<p><a name="Transaction+hasAllUtxoInfo"></a></p>
+<h3 id="transaction-hasallutxoinfo-code-boolean-code-">transaction.hasAllUtxoInfo() ⇒ <code>boolean</code></h3>
+<p>Returns true if the transaction has enough info on all inputs to be correctly validated</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><a name="Transaction+fee"></a></p>
+<h3 id="transaction-fee-amount-code-transaction-transaction-code-">transaction.fee(amount) ⇒ <code><a href="#Transaction">Transaction</a></code></h3>
+<p>Manually set the fee for this transaction. Beware that this resets all the signatures
+for inputs (in further versions, SIGHASH_SINGLE or SIGHASH_NONE signatures will not
+be reset).</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><strong>Returns</strong>: <code><a href="#Transaction">Transaction</a></code> - this, for chaining  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>amount</td>
+<td><code>number</code></td>
+<td>satoshis to be sent</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Transaction+feePerKb"></a></p>
+<h3 id="transaction-feeperkb-amount-code-transaction-transaction-code-">transaction.feePerKb(amount) ⇒ <code><a href="#Transaction">Transaction</a></code></h3>
+<p>Manually set the fee per KB for this transaction. Beware that this resets all the signatures
+for inputs (in further versions, SIGHASH_SINGLE or SIGHASH_NONE signatures will not
+be reset).</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><strong>Returns</strong>: <code><a href="#Transaction">Transaction</a></code> - this, for chaining  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>amount</td>
+<td><code>number</code></td>
+<td>satoshis per KB to be sent</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Transaction+change"></a></p>
+<h3 id="transaction-change-address-code-transaction-transaction-code-">transaction.change(address) ⇒ <code><a href="#Transaction">Transaction</a></code></h3>
+<p>Set the change address for this transaction</p>
+<p>Beware that this resets all the signatures for inputs (in further versions,
+SIGHASH_SINGLE or SIGHASH_NONE signatures will not be reset).</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><strong>Returns</strong>: <code><a href="#Transaction">Transaction</a></code> - this, for chaining  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>address</td>
+<td><code>Address</code></td>
+<td>An address for change to be sent to.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Transaction+getChangeOutput"></a></p>
+<h3 id="transaction-getchangeoutput-code-output-code-">transaction.getChangeOutput() ⇒ <code>Output</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><strong>Returns</strong>: <code>Output</code> - change output, if it exists<br><a name="Transaction+to"></a></p>
+<h3 id="transaction-to-address-amount-code-transaction-transaction-code-">transaction.to(address, amount) ⇒ <code><a href="#Transaction">Transaction</a></code></h3>
+<p>Add an output to the transaction.</p>
+<p>Beware that this resets all the signatures for inputs (in further versions,
+SIGHASH_SINGLE or SIGHASH_NONE signatures will not be reset).</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><strong>Returns</strong>: <code><a href="#Transaction">Transaction</a></code> - this, for chaining  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>address</td>
+<td><code>string</code> &#124; <code>Address</code> &#124; <code><a href="#Transaction..toObject">Array.&lt;toObject&gt;</a></code></td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td><code>number</code></td>
+<td>in satoshis</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Transaction+addData"></a></p>
+<h3 id="transaction-adddata-value-code-transaction-transaction-code-">transaction.addData(value) ⇒ <code><a href="#Transaction">Transaction</a></code></h3>
+<p>Add an OP_RETURN output to the transaction.</p>
+<p>Beware that this resets all the signatures for inputs (in further versions,
+SIGHASH_SINGLE or SIGHASH_NONE signatures will not be reset).</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><strong>Returns</strong>: <code><a href="#Transaction">Transaction</a></code> - this, for chaining  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td><code>Buffer</code> &#124; <code>string</code></td>
+<td>the data to be stored in the OP_RETURN output.    In case of a string, the UTF-8 representation will be stored</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Transaction+addOutput"></a></p>
+<h3 id="transaction-addoutput-output-code-transaction-transaction-code-">transaction.addOutput(output) ⇒ <code><a href="#Transaction">Transaction</a></code></h3>
+<p>Add an output to the transaction.</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><strong>Returns</strong>: <code><a href="#Transaction">Transaction</a></code> - this, for chaining  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>output</td>
+<td><code>Output</code></td>
+<td>the output to add.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Transaction+clearOutputs"></a></p>
+<h3 id="transaction-clearoutputs-code-transaction-transaction-code-">transaction.clearOutputs() ⇒ <code><a href="#Transaction">Transaction</a></code></h3>
+<p>Remove all outputs from the transaction.</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><strong>Returns</strong>: <code><a href="#Transaction">Transaction</a></code> - this, for chaining<br><a name="Transaction+_getOutputAmount"></a></p>
+<h3 id="transaction-_getoutputamount-code-number-code-">transaction._getOutputAmount() ⇒ <code>Number</code></h3>
+<p>Calculates or gets the total output amount in satoshis</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><strong>Returns</strong>: <code>Number</code> - the transaction total output amount<br><a name="Transaction+_getInputAmount"></a></p>
+<h3 id="transaction-_getinputamount-code-number-code-">transaction._getInputAmount() ⇒ <code>Number</code></h3>
+<p>Calculates or gets the total input amount in satoshis</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><strong>Returns</strong>: <code>Number</code> - the transaction total input amount<br><a name="Transaction+getFee"></a></p>
+<h3 id="transaction-getfee-code-number-code-">transaction.getFee() ⇒ <code>Number</code></h3>
+<p>Calculates the fee of the transaction.</p>
+<p>If there&#39;s a fixed fee set, return that.</p>
+<p>If there is no change output set, the fee is the
+total value of the outputs minus inputs. Note that
+a serialized transaction only specifies the value
+of its outputs. (The value of inputs are recorded
+in the previous transaction outputs being spent.)
+This method therefore raises a &quot;MissingPreviousOutput&quot;
+error when called on a serialized transaction.</p>
+<p>If there&#39;s no fee set and no change address,
+estimate the fee based on size.</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><strong>Returns</strong>: <code>Number</code> - fee of this transaction in satoshis<br><a name="Transaction+_estimateFee"></a></p>
+<h3 id="transaction-_estimatefee-">transaction._estimateFee()</h3>
+<p>Estimates fee from serialized transaction size in bytes.</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><a name="Transaction+sort"></a></p>
+<h3 id="transaction-sort-code-transaction-transaction-code-">transaction.sort() ⇒ <code><a href="#Transaction">Transaction</a></code></h3>
+<p>Sort a transaction&#39;s inputs and outputs according to BIP69</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><strong>Returns</strong>: <code><a href="#Transaction">Transaction</a></code> - this<br><strong>See</strong>: {<a href="https://github.com/bitcoin/bips/blob/master/bip-0069.mediawiki}">https://github.com/bitcoin/bips/blob/master/bip-0069.mediawiki}</a><br><a name="Transaction+shuffleOutputs"></a></p>
+<h3 id="transaction-shuffleoutputs-code-transaction-transaction-code-">transaction.shuffleOutputs() ⇒ <code><a href="#Transaction">Transaction</a></code></h3>
+<p>Randomize this transaction&#39;s outputs ordering. The shuffling algorithm is a
+version of the Fisher-Yates shuffle, provided by lodash&#39;s _.shuffle().</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><strong>Returns</strong>: <code><a href="#Transaction">Transaction</a></code> - this<br><a name="Transaction+sortOutputs"></a></p>
+<h3 id="transaction-sortoutputs-sortingfunction-code-transaction-transaction-code-">transaction.sortOutputs(sortingFunction) ⇒ <code><a href="#Transaction">Transaction</a></code></h3>
+<p>Sort this transaction&#39;s outputs, according to a given sorting function that
+takes an array as argument and returns a new array, with the same elements
+but with a different order. The argument function MUST NOT modify the order
+of the original array</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><strong>Returns</strong>: <code><a href="#Transaction">Transaction</a></code> - this  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sortingFunction</td>
+<td><code>function</code></td>
+</tr>
+</tbody>
+</table>
+<p><a name="Transaction+sortInputs"></a></p>
+<h3 id="transaction-sortinputs-sortingfunction-code-transaction-transaction-code-">transaction.sortInputs(sortingFunction) ⇒ <code><a href="#Transaction">Transaction</a></code></h3>
+<p>Sort this transaction&#39;s inputs, according to a given sorting function that
+takes an array as argument and returns a new array, with the same elements
+but with a different order.</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><strong>Returns</strong>: <code><a href="#Transaction">Transaction</a></code> - this  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sortingFunction</td>
+<td><code>function</code></td>
+</tr>
+</tbody>
+</table>
+<p><a name="Transaction+sign"></a></p>
+<h3 id="transaction-sign-privatekey-sigtype-code-transaction-transaction-code-">transaction.sign(privateKey, sigtype) ⇒ <code><a href="#Transaction">Transaction</a></code></h3>
+<p>Sign the transaction using one or more private keys.</p>
+<p>It tries to sign each input, verifying that the signature will be valid
+(matches a public key).</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><strong>Returns</strong>: <code><a href="#Transaction">Transaction</a></code> - this, for chaining  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>privateKey</td>
+<td><code>Array</code> &#124; <code>String</code> &#124; <code>PrivateKey</code></td>
+</tr>
+<tr>
+<td>sigtype</td>
+<td><code>number</code></td>
+</tr>
+</tbody>
+</table>
+<p><a name="Transaction+applySignature"></a></p>
+<h3 id="transaction-applysignature-signature-code-transaction-transaction-code-">transaction.applySignature(signature) ⇒ <code><a href="#Transaction">Transaction</a></code></h3>
+<p>Add a signature to the transaction</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><strong>Returns</strong>: <code><a href="#Transaction">Transaction</a></code> - this, for chaining  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>signature</td>
+<td><code>Object</code></td>
+</tr>
+<tr>
+<td>signature.inputIndex</td>
+<td><code>number</code></td>
+</tr>
+<tr>
+<td>signature.sigtype</td>
+<td><code>number</code></td>
+</tr>
+<tr>
+<td>signature.publicKey</td>
+<td><code>PublicKey</code></td>
+</tr>
+<tr>
+<td>signature.signature</td>
+<td><code>Signature</code></td>
+</tr>
+</tbody>
+</table>
+<p><a name="Transaction+verifySignature"></a></p>
+<h3 id="transaction-verifysignature-code-bool-code-">transaction.verifySignature() ⇒ <code>bool</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><strong>Returns</strong>: <code>bool</code> - whether the signature is valid for this transaction input<br><a name="Transaction+verify"></a></p>
+<h3 id="transaction-verify-">transaction.verify()</h3>
+<p>Check that a transaction passes basic sanity tests. If not, return a string
+describing the error. This function contains the same logic as
+CheckTransaction in bitcoin core.</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><a name="Transaction+isCoinbase"></a></p>
+<h3 id="transaction-iscoinbase-">transaction.isCoinbase()</h3>
+<p>Analogous to bitcoind&#39;s IsCoinBase function in transaction.h</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><a name="Transaction+isRBF"></a></p>
+<h3 id="transaction-isrbf-">transaction.isRBF()</h3>
+<p>Determines if this transaction can be replaced in the mempool with another
+transaction that provides a sufficiently higher fee (RBF).</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><a name="Transaction+enableRBF"></a></p>
+<h3 id="transaction-enablerbf-">transaction.enableRBF()</h3>
+<p>Enable this transaction to be replaced in the mempool (RBF) if a transaction
+includes a sufficiently higher fee. It will set the sequenceNumber to
+DEFAULT_RBF_SEQNUMBER for all inputs if the sequence number does not
+already enable RBF.</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Transaction">Transaction</a></code><br><a name="Transaction.shallowCopy"></a></p>
+<h3 id="transaction-shallowcopy-transaction-code-transaction-transaction-code-">Transaction.shallowCopy(transaction) ⇒ <code><a href="#Transaction">Transaction</a></code></h3>
+<p>Create a &#39;shallow&#39; copy of the transaction, by serializing and deserializing
+it dropping any additional information that inputs and outputs may have hold</p>
+<p><strong>Kind</strong>: static method of <code><a href="#Transaction">Transaction</a></code>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transaction</td>
+<td><code><a href="#Transaction">Transaction</a></code></td>
+</tr>
+</tbody>
+</table>
+<p><a name="Transaction..fromObject"></a></p>
+<h3 id="transaction-fromobject-code-object-code-">Transaction~fromObject : <code>Object</code></h3>
+<p><strong>Kind</strong>: inner typedef of <code><a href="#Transaction">Transaction</a></code><br><strong>Properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>prevTxId</td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td>outputIndex</td>
+<td><code>number</code></td>
+</tr>
+<tr>
+<td>script</td>
+<td><code>Buffer</code> &#124; <code>string</code> &#124; <code>Script</code></td>
+</tr>
+<tr>
+<td>satoshis</td>
+<td><code>number</code></td>
+</tr>
+</tbody>
+</table>
+<p><a name="Transaction..toObject"></a></p>
+<h3 id="transaction-toobject-code-object-code-">Transaction~toObject : <code>Object</code></h3>
+<p><strong>Kind</strong>: inner typedef of <code><a href="#Transaction">Transaction</a></code><br><strong>Properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>address</td>
+<td><code>string</code> &#124; <code>Address</code></td>
+</tr>
+<tr>
+<td>satoshis</td>
+<td><code>number</code></td>
+</tr>
+</tbody>
+</table>
+</div></div></div></div></div><a class="exit-off-canvas"></a><script src="/scripts/main.min.bf683792.js" data-no-instant="data-no-instant"></script></body></html>

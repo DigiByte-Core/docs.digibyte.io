@@ -1,0 +1,357 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Public Key | Bitcore</title><meta name="description" content="A simple interface for handling private keys."><!-- Twitter Card data--><meta name="twitter:card" content="summary"><meta name="twitter:site" content="@BitPay"><meta name="twitter:title" content="Public Key"><meta name="twitter:description" content="A simple interface for handling private keys."><meta name="twitter:image" content="https://bitcore.io/images/social/card.jpg"><!-- Open Graph data (Facebook and Reddit)--><meta property="og:title" content="Public Key"><meta property="og:type" content="article"><meta property="og:url" content="https://bitcore.io/"><meta property="og:image" content="https://bitcore.io/images/social/avatar.jpg"><meta property="og:description" content="A simple interface for handling private keys."><meta property="og:site_name" content="Bitcore.io"><!-- Add to homescreen for Chrome on Android--><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/images/touch/chrome-touch-icon-192x192.b0c7306c.png"><!-- Add to homescreen for Safari on iOS--><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Bitcore"><link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png"><!-- Tile icon for Win8 (144x144 + tile color)--><meta name="msapplication-TileImage" content="/images/touch/ms-touch-icon-144x144-precomposed.dcbb3eea.png"><meta name="msapplication-TileColor" content="#F9AB3D"><!-- Favicon--><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/styles/main.88c254de.css" data-instant-track><link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,700italic,600italic|Titillium+Web:400,300,700" rel="stylesheet" type="text/css"><script type="text/javascript" data-no-instant>
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.1";
+  if(this.location.host === 'bitcore.io'){ analytics.load('hP7mqqPCPPa5hRatDaulKFxm0kPiB6Es'); }
+  else { analytics.load("dgbXyNcmHR3bJIjumdYoe3GZFrs6sHBd"); }
+  }}();
+</script>
+<script data-no-instant>
+  var $buoop = {vs:{i:9,f:30,o:25,s:5.1},c:2};
+  function $buo_f(){
+   var e = document.createElement("script");
+   e.src = "//browser-update.org/update.js";
+   document.body.appendChild(e);
+  };
+  try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+  catch(e){window.attachEvent("onload", $buo_f)}
+</script>
+<meta name="google-site-verification" content="GOfbzCpKO__Imdru-L0nG1Fo9tTvyH3QVAIWsYO9rCk"></head><body><nav class="navbar navbar-fixed-top dark-nav hidden-sm-down"><a href="/" title="Home" class="logo logo-light margin-top"></a><ul class="nav navbar-nav pull-right"><li class="nav-item"><a href="/start" class="nav-link">Getting Started</a></li><li class="nav-item"><a href="/guides" class="nav-link">Guides</a></li><li class="nav-item"><a href="/api" class="nav-link active">Docs</a></li><li class="nav-item"><a href="/playground" class="nav-link">Playground        </a></li><li class="nav-item"><a href="//forum.bitcore.io/" class="nav-link">Forum</a></li></ul></nav><div class="mobile-menu hidden-md-up navbar-fixed-top"><div id="exCollapsingNavbar" class="collapse"><div class="bg-inverse p-md"><h3 class="m-b-0"> <ul class="p-l-0 no-bullets m-b-0"><li class="nav-item"><a href="/" class="nav-link">Home</a></li><li class="nav-item"><a href="/start" class="nav-link">Getting Started</a></li><li class="nav-item"><a href="/guides" class="nav-link">Guides</a></li><li class="nav-item"><a href="/api" class="nav-link active">Docs</a></li><li class="nav-item"><a href="/playground" class="nav-link">Playground        </a></li><li class="nav-item"><a href="//forum.bitcore.io/" class="nav-link">Forum</a></li></ul></h3></div></div><nav class="navbar dark-nav"><button type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" class="navbar-toggler p-l-0"><div class="logo logo-square-orange menu-text color-white">Menu</div></button></nav></div><div class="fixed-sidebar bg-gray border-right-grey p-l-md"><a href="/api/"><h3 class="menu-header m-t-md">Bitcore</h3><ul class="nav nav-pills nav-stacked"><li class="nav-item"><a href="/api/" class="nav-link">Overview</a></li></ul></a><a href="/api/node"><h3 class="menu-header m-t-md">Node</h3></a><a href="/api/service"><h3 class="menu-header m-t-md">Services</h3></a><h3 class="menu-header m-t-md">Library API</h3><ul class="nav nav-pills nav-stacked"><li class="nav-item"><a href="/api/lib" class="nav-link">Overview</a></li><li class="nav-item"><a href="/api/lib/address" class="nav-link">Address</a></li><li class="nav-item"><a href="/api/lib/block" class="nav-link">Block</a></li><li class="nav-item"><a href="/api/lib/crypto" class="nav-link">Crypto</a></li><li class="nav-item"><a href="/api/lib/encoding" class="nav-link">Encoding</a></li><li class="nav-item"><a href="/api/lib/hd-keys" class="nav-link">HD Keys</a></li><li class="nav-item"><a href="/api/lib/networks" class="nav-link">Networks</a></li><li class="nav-item"><a href="/api/lib/private-key" class="nav-link">Private Key</a></li><li class="nav-item"><a href="/api/lib/public-key" class="active nav-link">Public Key</a></li><li class="nav-item"><a href="/api/lib/script" class="nav-link">Script</a></li><li class="nav-item"><a href="/api/lib/transaction" class="nav-link">Transaction</a></li><li class="nav-item"><a href="/api/lib/unit" class="nav-link">Bitcoin Units</a></li><li class="nav-item"><a href="/api/lib/unspent-output" class="nav-link">Unspent Outputs</a></li><li class="nav-item"><a href="/api/lib/uri" class="nav-link">Bitcoin URIs</a></li></ul><a href="/api/mnemonic"><h3 class="menu-header m-t-md">Library Modules</h3></a><a href="/api/p2p"><h3 class="menu-header m-t-md">Peer-to-Peer</h3></a></div><div class="scroll-content"><div class="api-content"><div class="docs bg-white"><div class="container"><div class="section p-t-lg"><div class="text-right bring-to-front"><a href="https://github.com/bitpay/bitcore-lib/edit/master/docs/publickey.md">Edit</a></div><h1 id="public-key">Public Key</h1>
+<p>Represents a bitcoin public key and is needed to be able to receive bitcoin, as is usually represented as a bitcoin <a href=/api/lib/address>Address</a>. See the official <a href="https://en.bitcoin.it/wiki/Technical_background_of_version_1_Bitcoin_addresses">Bitcoin Wiki</a>.</p>
+<p>A PublicKey in Bitcore is an immutable object and can be instantiated from a <a href=/api/lib/crypto>Point</a>, string, <a href=/api/lib/private-key>PrivateKey</a>, Buffer or a <a href=/api/lib/crypto>BN</a>.</p>
+<h2 id="instantiate-a-public-key">Instantiate a Public Key</h2>
+<p>Here is how to instantiate a public key:</p>
+<pre><code class="lang-javascript">
+var privateKey = new PrivateKey();
+
+// from a private key
+var publicKey = new PublicKey(privateKey);
+
+// from a der hex encoded string
+var publicKey2 = new PublicKey(&#39;02a1633cafcc01ebfb6d78e39f687a1f0995c62fc95f51ead10a02ee0be551b5dc&#39;);
+</code></pre>
+<h2 id="validating-a-public-key">Validating a Public Key</h2>
+<p>A public key point should be on the <a href="https://en.bitcoin.it/wiki/Secp256k1">secp256k1</a> curve, instantiating a new PublicKey will validate this and will throw an error if it&#39;s invalid. To check that a public key is valid:</p>
+<pre><code class="lang-javascript">if (PublicKey.isValid(&#39;02a1633cafcc01ebfb6d78e39f687a1f0995c62fc95f51ead10a02ee0be551b5dc&#39;)){
+  // valid public key
+}
+</code></pre>
+<h2 id="compressed-vs-uncompressed">Compressed vs Uncompressed</h2>
+<p>It&#39;s important to note that there are two possible ways to represent a public key. The standard is <em>compressed</em> and includes the X value and parity (as represented above in the documentation). There is also a longer version that is <em>uncompressed</em> which includes both X and Y values. Using this encoding will generate a different bitcoin address, so be careful when selecting the encoding. Uncompressed public keys start with 0x04; compressed public keys begin with 0x03 or 0x02 depending on whether they&#39;re greater or less than the midpoint of the curve. These prefix bytes are all used in official secp256k1 documentation.</p>
+<p>Example:</p>
+<pre><code class="lang-javascript">&gt; var bitcore = require(&#39;bitcore&#39;);
+
+// compressed public key starting with 0x03 (greater than midpoint of curve)
+&gt; var compressedPK = bitcore.PublicKey(&#39;030589ee559348bd6a7325994f9c8eff12bd&#39;+
+    &#39;5d73cc683142bd0dd1a17abc99b0dc&#39;);
+&gt; compressedPK.compressed;
+true
+&gt; compressedPK.toAddress().toString();
+&#39;1KbUJ4x8epz6QqxkmZbTc4f79JbWWz6g37&#39;
+// compressed public key starting with 0x02 (smaller than midpoint of curve)
+&gt; var compressedPK2 = new bitcore.PublicKey(&#39;02a1633cafcc01ebfb6d78e39f687a1f&#39;+
+    &#39;0995c62fc95f51ead10a02ee0be551b5dc&#39;);
+&gt; compressedPK2.compressed;
+true
+&gt; compressedPK.toAddress().toString();
+&#39;1KbUJ4x8epz6QqxkmZbTc4f79JbWWz6g37&#39;
+// uncompressed public key, starting with 0x04. Contains both X and Y encoded
+&gt; var uncompressed = bitcore.PublicKey(&#39;0479BE667EF9DCBBAC55A06295CE870B07029&#39;+
+    &#39;BFCDB2DCE28D959F2815B16F81798483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68&#39;+
+    &#39;554199C47D08FFB10D4B8&#39;);
+&gt; uncompressed.compressed
+false
+&gt; uncompressed.toAddress().toString()
+&#39;1EHNa6Q4Jz2uvNExL497mE43ikXhwF6kZm&#39;
+</code></pre>
+</div></div></div><div class="lib bg-dark"><div class="container"><div class="section p-t-lg"><div class="text-right bring-to-front"><a href="https://github.com/bitpay/bitcore-lib/blob/master/lib/publickey.js">View Source</a></div><p><a name="PublicKey"></a></p>
+<h2 id="publickey">PublicKey</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#PublicKey">PublicKey</a><ul>
+<li><a href="#new_PublicKey_new">new PublicKey(data, extra)</a></li>
+<li><em>instance</em><ul>
+<li><a href="#PublicKey+toObject">.toObject</a> ⇒ <code>Object</code></li>
+<li><a href="#PublicKey+toBuffer">.toBuffer</a> ⇒ <code>Buffer</code></li>
+<li><a href="#PublicKey+_classifyArgs">._classifyArgs(data, extra)</a></li>
+<li><a href="#PublicKey+_getID">._getID()</a> ⇒ <code>Buffer</code></li>
+<li><a href="#PublicKey+toAddress">.toAddress(network)</a> ⇒ <code>Address</code></li>
+<li><a href="#PublicKey+toString">.toString()</a> ⇒ <code>string</code></li>
+<li><a href="#PublicKey+inspect">.inspect()</a> ⇒ <code>string</code></li>
+</ul>
+</li>
+<li><em>static</em><ul>
+<li><a href="#PublicKey.fromDER">.fromDER</a> ⇒ <code><a href="#PublicKey">PublicKey</a></code></li>
+<li><a href="#PublicKey.fromPrivateKey">.fromPrivateKey(privkey)</a> ⇒ <code><a href="#PublicKey">PublicKey</a></code></li>
+<li><a href="#PublicKey.fromPoint">.fromPoint(point, [compressed])</a> ⇒ <code><a href="#PublicKey">PublicKey</a></code></li>
+<li><a href="#PublicKey.fromString">.fromString(str, [encoding])</a> ⇒ <code><a href="#PublicKey">PublicKey</a></code></li>
+<li><a href="#PublicKey.fromX">.fromX(odd, x)</a> ⇒ <code><a href="#PublicKey">PublicKey</a></code></li>
+<li><a href="#PublicKey.getValidationError">.getValidationError(data)</a> ⇒ <code>null</code> &#124; <code>Error</code></li>
+<li><a href="#PublicKey.isValid">.isValid(data)</a> ⇒ <code>Boolean</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="new_PublicKey_new"></a></p>
+<h3 id="new-publickey-data-extra-">new PublicKey(data, extra)</h3>
+<p>Instantiate a PublicKey from a <a href="PrivateKey">PrivateKey</a>, <a href="Point">Point</a>, <code>string</code>, or <code>Buffer</code>.</p>
+<p>There are two internal properties, <code>network</code> and <code>compressed</code>, that deal with importing
+a PublicKey from a PrivateKey in WIF format. More details described on <a href="PrivateKey">PrivateKey</a></p>
+<p><strong>Returns</strong>: <code><a href="#PublicKey">PublicKey</a></code> - A new valid instance of an PublicKey  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td><code>string</code></td>
+<td>The encoded data in various formats</td>
+</tr>
+<tr>
+<td>extra</td>
+<td><code>Object</code></td>
+<td>additional options</td>
+</tr>
+<tr>
+<td>[extra.network]</td>
+<td><code>Network</code></td>
+<td>Which network should the address for this public key be for</td>
+</tr>
+<tr>
+<td>[extra.compressed]</td>
+<td><code>String</code></td>
+<td>If the public key is compressed</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong>  </p>
+<pre><code class="lang-javascript">// instantiate from a private key
+var key = PublicKey(privateKey, true);
+
+// export to as a DER hex encoded string
+var exported = key.toString();
+
+// import the public key
+var imported = PublicKey.fromString(exported);
+</code></pre>
+<p><a name="PublicKey+toObject"></a></p>
+<h3 id="publickey-toobject-code-object-code-">publicKey.toObject ⇒ <code>Object</code></h3>
+<p><strong>Kind</strong>: instance property of <code><a href="#PublicKey">PublicKey</a></code><br><strong>Returns</strong>: <code>Object</code> - A plain object of the PublicKey<br><a name="PublicKey+toBuffer"></a></p>
+<h3 id="publickey-tobuffer-code-buffer-code-">publicKey.toBuffer ⇒ <code>Buffer</code></h3>
+<p>Will output the PublicKey to a DER Buffer</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#PublicKey">PublicKey</a></code><br><strong>Returns</strong>: <code>Buffer</code> - A DER hex encoded buffer<br><a name="PublicKey+_classifyArgs"></a></p>
+<h3 id="publickey-_classifyargs-data-extra-">publicKey._classifyArgs(data, extra)</h3>
+<p>Internal function to differentiate between arguments passed to the constructor</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#PublicKey">PublicKey</a></code>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td><code>*</code></td>
+</tr>
+<tr>
+<td>extra</td>
+<td><code>Object</code></td>
+</tr>
+</tbody>
+</table>
+<p><a name="PublicKey+_getID"></a></p>
+<h3 id="publickey-_getid-code-buffer-code-">publicKey._getID() ⇒ <code>Buffer</code></h3>
+<p>Will return a sha256 + ripemd160 hash of the serialized public key</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#PublicKey">PublicKey</a></code><br><strong>See</strong>: <a href="https://github.com/bitcoin/bitcoin/blob/master/src/pubkey.h#L141">https://github.com/bitcoin/bitcoin/blob/master/src/pubkey.h#L141</a><br><a name="PublicKey+toAddress"></a></p>
+<h3 id="publickey-toaddress-network-code-address-code-">publicKey.toAddress(network) ⇒ <code>Address</code></h3>
+<p>Will return an address for the public key</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#PublicKey">PublicKey</a></code><br><strong>Returns</strong>: <code>Address</code> - An address generated from the public key  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>network</td>
+<td><code>String</code> &#124; <code>Network</code></td>
+<td>Which network should the address be for</td>
+</tr>
+</tbody>
+</table>
+<p><a name="PublicKey+toString"></a></p>
+<h3 id="publickey-tostring-code-string-code-">publicKey.toString() ⇒ <code>string</code></h3>
+<p>Will output the PublicKey to a DER encoded hex string</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#PublicKey">PublicKey</a></code><br><strong>Returns</strong>: <code>string</code> - A DER hex encoded string<br><a name="PublicKey+inspect"></a></p>
+<h3 id="publickey-inspect-code-string-code-">publicKey.inspect() ⇒ <code>string</code></h3>
+<p>Will return a string formatted for the console</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#PublicKey">PublicKey</a></code><br><strong>Returns</strong>: <code>string</code> - Public key<br><a name="PublicKey.fromDER"></a></p>
+<h3 id="publickey-fromder-code-publickey-publickey-code-">PublicKey.fromDER ⇒ <code><a href="#PublicKey">PublicKey</a></code></h3>
+<p>Instantiate a PublicKey from a Buffer</p>
+<p><strong>Kind</strong>: static property of <code><a href="#PublicKey">PublicKey</a></code><br><strong>Returns</strong>: <code><a href="#PublicKey">PublicKey</a></code> - A new valid instance of PublicKey  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>buf</td>
+<td><code>Buffer</code></td>
+<td>A DER hex buffer</td>
+</tr>
+<tr>
+<td>[strict]</td>
+<td><code>bool</code></td>
+<td>if set to false, will loosen some conditions</td>
+</tr>
+</tbody>
+</table>
+<p><a name="PublicKey.fromPrivateKey"></a></p>
+<h3 id="publickey-fromprivatekey-privkey-code-publickey-publickey-code-">PublicKey.fromPrivateKey(privkey) ⇒ <code><a href="#PublicKey">PublicKey</a></code></h3>
+<p>Instantiate a PublicKey from a PrivateKey</p>
+<p><strong>Kind</strong>: static method of <code><a href="#PublicKey">PublicKey</a></code><br><strong>Returns</strong>: <code><a href="#PublicKey">PublicKey</a></code> - A new valid instance of PublicKey  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>privkey</td>
+<td><code>PrivateKey</code></td>
+<td>An instance of PrivateKey</td>
+</tr>
+</tbody>
+</table>
+<p><a name="PublicKey.fromPoint"></a></p>
+<h3 id="publickey-frompoint-point-compressed-code-publickey-publickey-code-">PublicKey.fromPoint(point, [compressed]) ⇒ <code><a href="#PublicKey">PublicKey</a></code></h3>
+<p>Instantiate a PublicKey from a Point</p>
+<p><strong>Kind</strong>: static method of <code><a href="#PublicKey">PublicKey</a></code><br><strong>Returns</strong>: <code><a href="#PublicKey">PublicKey</a></code> - A new valid instance of PublicKey  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>point</td>
+<td><code>Point</code></td>
+<td>A Point instance</td>
+</tr>
+<tr>
+<td>[compressed]</td>
+<td><code>boolean</code></td>
+<td>whether to store this public key as compressed format</td>
+</tr>
+</tbody>
+</table>
+<p><a name="PublicKey.fromString"></a></p>
+<h3 id="publickey-fromstring-str-encoding-code-publickey-publickey-code-">PublicKey.fromString(str, [encoding]) ⇒ <code><a href="#PublicKey">PublicKey</a></code></h3>
+<p>Instantiate a PublicKey from a DER hex encoded string</p>
+<p><strong>Kind</strong>: static method of <code><a href="#PublicKey">PublicKey</a></code><br><strong>Returns</strong>: <code><a href="#PublicKey">PublicKey</a></code> - A new valid instance of PublicKey  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>str</td>
+<td><code>string</code></td>
+<td>A DER hex string</td>
+</tr>
+<tr>
+<td>[encoding]</td>
+<td><code>String</code></td>
+<td>The type of string encoding</td>
+</tr>
+</tbody>
+</table>
+<p><a name="PublicKey.fromX"></a></p>
+<h3 id="publickey-fromx-odd-x-code-publickey-publickey-code-">PublicKey.fromX(odd, x) ⇒ <code><a href="#PublicKey">PublicKey</a></code></h3>
+<p>Instantiate a PublicKey from an X Point</p>
+<p><strong>Kind</strong>: static method of <code><a href="#PublicKey">PublicKey</a></code><br><strong>Returns</strong>: <code><a href="#PublicKey">PublicKey</a></code> - A new valid instance of PublicKey  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>odd</td>
+<td><code>Boolean</code></td>
+<td>If the point is above or below the x axis</td>
+</tr>
+<tr>
+<td>x</td>
+<td><code>Point</code></td>
+<td>The x point</td>
+</tr>
+</tbody>
+</table>
+<p><a name="PublicKey.getValidationError"></a></p>
+<h3 id="publickey-getvalidationerror-data-code-null-code-124-code-error-code-">PublicKey.getValidationError(data) ⇒ <code>null</code> &#124; <code>Error</code></h3>
+<p>Check if there would be any errors when initializing a PublicKey</p>
+<p><strong>Kind</strong>: static method of <code><a href="#PublicKey">PublicKey</a></code><br><strong>Returns</strong>: <code>null</code> &#124; <code>Error</code> - An error if exists  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td><code>string</code></td>
+<td>The encoded data in various formats</td>
+</tr>
+</tbody>
+</table>
+<p><a name="PublicKey.isValid"></a></p>
+<h3 id="publickey-isvalid-data-code-boolean-code-">PublicKey.isValid(data) ⇒ <code>Boolean</code></h3>
+<p>Check if the parameters are valid</p>
+<p><strong>Kind</strong>: static method of <code><a href="#PublicKey">PublicKey</a></code><br><strong>Returns</strong>: <code>Boolean</code> - If the public key would be valid  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td><code>string</code></td>
+<td>The encoded data in various formats</td>
+</tr>
+</tbody>
+</table>
+</div></div></div></div></div><a class="exit-off-canvas"></a><script src="/scripts/main.min.bf683792.js" data-no-instant="data-no-instant"></script></body></html>

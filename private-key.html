@@ -1,0 +1,317 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Private Key | Bitcore</title><meta name="description" content="A simple interface to generate, import, and handle private keys."><!-- Twitter Card data--><meta name="twitter:card" content="summary"><meta name="twitter:site" content="@BitPay"><meta name="twitter:title" content="Private Key"><meta name="twitter:description" content="A simple interface to generate, import, and handle private keys."><meta name="twitter:image" content="https://bitcore.io/images/social/card.jpg"><!-- Open Graph data (Facebook and Reddit)--><meta property="og:title" content="Private Key"><meta property="og:type" content="article"><meta property="og:url" content="https://bitcore.io/"><meta property="og:image" content="https://bitcore.io/images/social/avatar.jpg"><meta property="og:description" content="A simple interface to generate, import, and handle private keys."><meta property="og:site_name" content="Bitcore.io"><!-- Add to homescreen for Chrome on Android--><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/images/touch/chrome-touch-icon-192x192.b0c7306c.png"><!-- Add to homescreen for Safari on iOS--><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Bitcore"><link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png"><!-- Tile icon for Win8 (144x144 + tile color)--><meta name="msapplication-TileImage" content="/images/touch/ms-touch-icon-144x144-precomposed.dcbb3eea.png"><meta name="msapplication-TileColor" content="#F9AB3D"><!-- Favicon--><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/styles/main.88c254de.css" data-instant-track><link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,700italic,600italic|Titillium+Web:400,300,700" rel="stylesheet" type="text/css"><script type="text/javascript" data-no-instant>
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.1";
+  if(this.location.host === 'bitcore.io'){ analytics.load('hP7mqqPCPPa5hRatDaulKFxm0kPiB6Es'); }
+  else { analytics.load("dgbXyNcmHR3bJIjumdYoe3GZFrs6sHBd"); }
+  }}();
+</script>
+<script data-no-instant>
+  var $buoop = {vs:{i:9,f:30,o:25,s:5.1},c:2};
+  function $buo_f(){
+   var e = document.createElement("script");
+   e.src = "//browser-update.org/update.js";
+   document.body.appendChild(e);
+  };
+  try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+  catch(e){window.attachEvent("onload", $buo_f)}
+</script>
+<meta name="google-site-verification" content="GOfbzCpKO__Imdru-L0nG1Fo9tTvyH3QVAIWsYO9rCk"></head><body><nav class="navbar navbar-fixed-top dark-nav hidden-sm-down"><a href="/" title="Home" class="logo logo-light margin-top"></a><ul class="nav navbar-nav pull-right"><li class="nav-item"><a href="/start" class="nav-link">Getting Started</a></li><li class="nav-item"><a href="/guides" class="nav-link">Guides</a></li><li class="nav-item"><a href="/api" class="nav-link active">Docs</a></li><li class="nav-item"><a href="/playground" class="nav-link">Playground        </a></li><li class="nav-item"><a href="//forum.bitcore.io/" class="nav-link">Forum</a></li></ul></nav><div class="mobile-menu hidden-md-up navbar-fixed-top"><div id="exCollapsingNavbar" class="collapse"><div class="bg-inverse p-md"><h3 class="m-b-0"> <ul class="p-l-0 no-bullets m-b-0"><li class="nav-item"><a href="/" class="nav-link">Home</a></li><li class="nav-item"><a href="/start" class="nav-link">Getting Started</a></li><li class="nav-item"><a href="/guides" class="nav-link">Guides</a></li><li class="nav-item"><a href="/api" class="nav-link active">Docs</a></li><li class="nav-item"><a href="/playground" class="nav-link">Playground        </a></li><li class="nav-item"><a href="//forum.bitcore.io/" class="nav-link">Forum</a></li></ul></h3></div></div><nav class="navbar dark-nav"><button type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" class="navbar-toggler p-l-0"><div class="logo logo-square-orange menu-text color-white">Menu</div></button></nav></div><div class="fixed-sidebar bg-gray border-right-grey p-l-md"><a href="/api/"><h3 class="menu-header m-t-md">Bitcore</h3><ul class="nav nav-pills nav-stacked"><li class="nav-item"><a href="/api/" class="nav-link">Overview</a></li></ul></a><a href="/api/node"><h3 class="menu-header m-t-md">Node</h3></a><a href="/api/service"><h3 class="menu-header m-t-md">Services</h3></a><h3 class="menu-header m-t-md">Library API</h3><ul class="nav nav-pills nav-stacked"><li class="nav-item"><a href="/api/lib" class="nav-link">Overview</a></li><li class="nav-item"><a href="/api/lib/address" class="nav-link">Address</a></li><li class="nav-item"><a href="/api/lib/block" class="nav-link">Block</a></li><li class="nav-item"><a href="/api/lib/crypto" class="nav-link">Crypto</a></li><li class="nav-item"><a href="/api/lib/encoding" class="nav-link">Encoding</a></li><li class="nav-item"><a href="/api/lib/hd-keys" class="nav-link">HD Keys</a></li><li class="nav-item"><a href="/api/lib/networks" class="nav-link">Networks</a></li><li class="nav-item"><a href="/api/lib/private-key" class="active nav-link">Private Key</a></li><li class="nav-item"><a href="/api/lib/public-key" class="nav-link">Public Key</a></li><li class="nav-item"><a href="/api/lib/script" class="nav-link">Script</a></li><li class="nav-item"><a href="/api/lib/transaction" class="nav-link">Transaction</a></li><li class="nav-item"><a href="/api/lib/unit" class="nav-link">Bitcoin Units</a></li><li class="nav-item"><a href="/api/lib/unspent-output" class="nav-link">Unspent Outputs</a></li><li class="nav-item"><a href="/api/lib/uri" class="nav-link">Bitcoin URIs</a></li></ul><a href="/api/mnemonic"><h3 class="menu-header m-t-md">Library Modules</h3></a><a href="/api/p2p"><h3 class="menu-header m-t-md">Peer-to-Peer</h3></a></div><div class="scroll-content"><div class="api-content"><div class="docs bg-white"><div class="container"><div class="section p-t-lg"><div class="text-right bring-to-front"><a href="https://github.com/bitpay/bitcore-lib/edit/master/docs/privatekey.md">Edit</a></div><h1 id="private-key">Private Key</h1>
+<p>Represents a bitcoin private key and is needed to be able to spend bitcoin and sign transactions. See the official <a href="https://en.bitcoin.it/wiki/Private_key">Bitcoin Wiki</a> for more information about private keys. A PrivateKey in Bitcore is an immutable object that has methods to import and export into a variety of formats including <a href="https://en.bitcoin.it/wiki/Wallet_import_format">Wallet Import Format</a>.</p>
+<h2 id="instantiate-a-private-key">Instantiate a Private Key</h2>
+<p>Here is how to create a new private key. It will generate a new random number using <code>window.crypto</code> or the Node.js <code>crypto</code> library.</p>
+<pre><code class="lang-javascript">var privateKey = new PrivateKey();
+
+// Creates a private key from a hexa encoded number
+var privateKey2 = new PrivateKey(&#39;b221d9dbb083a7f33428d7c2a3c3198ae925614d70210e28716ccaa7cd4ddb79&#39;);
+</code></pre>
+<p>To export and import a private key, you can do the following:</p>
+<pre><code class="lang-javascript">// encode into wallet export format
+var exported = privateKey.toWIF();
+
+// instantiate from the exported (and saved) private key
+var imported = PrivateKey.fromWIF(&#39;L3T1s1TYP9oyhHpXgkyLoJFGniEgkv2Jhi138d7R2yJ9F4QdDU2m&#39;);
+</code></pre>
+<p>Note: The WIF (Wallet Import Format) includes information about the network and if the associated public key is compressed or uncompressed (thus the same bitcoin address will be generated by using this format).</p>
+<p>To generate an Address or PublicKey from a PrivateKey:</p>
+<pre><code class="lang-javascript">var publicKey = privateKey.toPublicKey();
+var address = publicKey.toAddress(Networks.livenet);
+</code></pre>
+<h2 id="validating-a-private-key">Validating a Private Key</h2>
+<p>The code to do these validations looks like this:</p>
+<pre><code class="lang-javascript">// validate an address
+if (PrivateKey.isValid(input)){
+  ...
+}
+
+// get the specific validation error that can occurred
+var error = PrivateKey.getValidationError(input, Networks.livenet);
+if (error) {
+  // handle the error
+}
+</code></pre>
+</div></div></div><div class="lib bg-dark"><div class="container"><div class="section p-t-lg"><div class="text-right bring-to-front"><a href="https://github.com/bitpay/bitcore-lib/blob/master/lib/privatekey.js">View Source</a></div><p><a name="PrivateKey"></a></p>
+<h2 id="privatekey">PrivateKey</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#PrivateKey">PrivateKey</a><ul>
+<li><a href="#new_PrivateKey_new">new PrivateKey(data, network)</a></li>
+<li><em>instance</em><ul>
+<li><a href="#PrivateKey+toObject">.toObject</a> ⇒ <code>Object</code></li>
+<li><a href="#PrivateKey+_classifyArguments">._classifyArguments(data, network)</a> ⇒ <code>Object</code></li>
+<li><a href="#PrivateKey+toString">.toString()</a> ⇒ <code>string</code></li>
+<li><a href="#PrivateKey+toWIF">.toWIF()</a> ⇒ <code>string</code></li>
+<li><a href="#PrivateKey+toBigNumber">.toBigNumber()</a> ⇒ <code>BN</code></li>
+<li><a href="#PrivateKey+toBuffer">.toBuffer()</a> ⇒ <code>Buffer</code></li>
+<li><a href="#PrivateKey+toPublicKey">.toPublicKey()</a> ⇒ <code>PublicKey</code></li>
+<li><a href="#PrivateKey+toAddress">.toAddress([network])</a> ⇒ <code>Address</code></li>
+<li><a href="#PrivateKey+inspect">.inspect()</a> ⇒ <code>string</code></li>
+</ul>
+</li>
+<li><em>static</em><ul>
+<li><a href="#PrivateKey.fromString">.fromString</a> ⇒ <code><a href="#PrivateKey">PrivateKey</a></code></li>
+<li><a href="#PrivateKey.fromBuffer">.fromBuffer(arg, network)</a> ⇒ <code><a href="#PrivateKey">PrivateKey</a></code></li>
+<li><a href="#PrivateKey.fromObject">.fromObject(obj)</a></li>
+<li><a href="#PrivateKey.fromRandom">.fromRandom([network])</a> ⇒ <code><a href="#PrivateKey">PrivateKey</a></code></li>
+<li><a href="#PrivateKey.getValidationError">.getValidationError(data, [network])</a> ⇒ <code>null</code> &#124; <code>Error</code></li>
+<li><a href="#PrivateKey.isValid">.isValid(data, [network])</a> ⇒ <code>Boolean</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="new_PrivateKey_new"></a></p>
+<h3 id="new-privatekey-data-network-">new PrivateKey(data, network)</h3>
+<p>Instantiate a PrivateKey from a BN, Buffer and WIF.</p>
+<p><strong>Returns</strong>: <code><a href="#PrivateKey">PrivateKey</a></code> - A new valid instance of an PrivateKey  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td><code>string</code></td>
+<td>The encoded data in various formats</td>
+</tr>
+<tr>
+<td>network</td>
+<td><code>Network</code> &#124; <code>string</code></td>
+<td>a <a href="Network">Network</a> object, or a string with the network name</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong>  </p>
+<pre><code class="lang-javascript">// generate a new random key
+var key = PrivateKey();
+
+// get the associated address
+var address = key.toAddress();
+
+// encode into wallet export format
+var exported = key.toWIF();
+
+// instantiate from the exported (and saved) private key
+var imported = PrivateKey.fromWIF(exported);
+</code></pre>
+<p><a name="PrivateKey+toObject"></a></p>
+<h3 id="privatekey-toobject-code-object-code-">privateKey.toObject ⇒ <code>Object</code></h3>
+<p><strong>Kind</strong>: instance property of <code><a href="#PrivateKey">PrivateKey</a></code><br><strong>Returns</strong>: <code>Object</code> - A plain object representation<br><a name="PrivateKey+_classifyArguments"></a></p>
+<h3 id="privatekey-_classifyarguments-data-network-code-object-code-">privateKey._classifyArguments(data, network) ⇒ <code>Object</code></h3>
+<p>Internal helper to instantiate PrivateKey internal <code>info</code> object from
+different kinds of arguments passed to the constructor.</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#PrivateKey">PrivateKey</a></code>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td><code>*</code></td>
+<td></td>
+</tr>
+<tr>
+<td>network</td>
+<td><code>Network</code> &#124; <code>string</code></td>
+<td>a <a href="Network">Network</a> object, or a string with the network name</td>
+</tr>
+</tbody>
+</table>
+<p><a name="PrivateKey+toString"></a></p>
+<h3 id="privatekey-tostring-code-string-code-">privateKey.toString() ⇒ <code>string</code></h3>
+<p>Will output the PrivateKey encoded as hex string</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#PrivateKey">PrivateKey</a></code><br><a name="PrivateKey+toWIF"></a></p>
+<h3 id="privatekey-towif-code-string-code-">privateKey.toWIF() ⇒ <code>string</code></h3>
+<p>Will output the PrivateKey to a WIF string</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#PrivateKey">PrivateKey</a></code><br><strong>Returns</strong>: <code>string</code> - A WIP representation of the private key<br><a name="PrivateKey+toBigNumber"></a></p>
+<h3 id="privatekey-tobignumber-code-bn-code-">privateKey.toBigNumber() ⇒ <code>BN</code></h3>
+<p>Will return the private key as a BN instance</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#PrivateKey">PrivateKey</a></code><br><strong>Returns</strong>: <code>BN</code> - A BN instance of the private key<br><a name="PrivateKey+toBuffer"></a></p>
+<h3 id="privatekey-tobuffer-code-buffer-code-">privateKey.toBuffer() ⇒ <code>Buffer</code></h3>
+<p>Will return the private key as a BN buffer</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#PrivateKey">PrivateKey</a></code><br><strong>Returns</strong>: <code>Buffer</code> - A buffer of the private key<br><a name="PrivateKey+toPublicKey"></a></p>
+<h3 id="privatekey-topublickey-code-publickey-code-">privateKey.toPublicKey() ⇒ <code>PublicKey</code></h3>
+<p>Will return the corresponding public key</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#PrivateKey">PrivateKey</a></code><br><strong>Returns</strong>: <code>PublicKey</code> - A public key generated from the private key<br><a name="PrivateKey+toAddress"></a></p>
+<h3 id="privatekey-toaddress-network-code-address-code-">privateKey.toAddress([network]) ⇒ <code>Address</code></h3>
+<p>Will return an address for the private key</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#PrivateKey">PrivateKey</a></code><br><strong>Returns</strong>: <code>Address</code> - An address generated from the private key  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[network]</td>
+<td><code>Network</code></td>
+<td>optional parameter specifying the desired network for the address</td>
+</tr>
+</tbody>
+</table>
+<p><a name="PrivateKey+inspect"></a></p>
+<h3 id="privatekey-inspect-code-string-code-">privateKey.inspect() ⇒ <code>string</code></h3>
+<p>Will return a string formatted for the console</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#PrivateKey">PrivateKey</a></code><br><strong>Returns</strong>: <code>string</code> - Private key<br><a name="PrivateKey.fromString"></a></p>
+<h3 id="privatekey-fromstring-code-privatekey-privatekey-code-">PrivateKey.fromString ⇒ <code><a href="#PrivateKey">PrivateKey</a></code></h3>
+<p>Instantiate a PrivateKey from a WIF string</p>
+<p><strong>Kind</strong>: static property of <code><a href="#PrivateKey">PrivateKey</a></code><br><strong>Returns</strong>: <code><a href="#PrivateKey">PrivateKey</a></code> - A new valid instance of PrivateKey  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>str</td>
+<td><code>string</code></td>
+<td>The WIF encoded private key string</td>
+</tr>
+</tbody>
+</table>
+<p><a name="PrivateKey.fromBuffer"></a></p>
+<h3 id="privatekey-frombuffer-arg-network-code-privatekey-privatekey-code-">PrivateKey.fromBuffer(arg, network) ⇒ <code><a href="#PrivateKey">PrivateKey</a></code></h3>
+<p>Instantiate a PrivateKey from a Buffer with the DER or WIF representation</p>
+<p><strong>Kind</strong>: static method of <code><a href="#PrivateKey">PrivateKey</a></code>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>arg</td>
+<td><code>Buffer</code></td>
+</tr>
+<tr>
+<td>network</td>
+<td><code>Network</code></td>
+</tr>
+</tbody>
+</table>
+<p><a name="PrivateKey.fromObject"></a></p>
+<h3 id="privatekey-fromobject-obj-">PrivateKey.fromObject(obj)</h3>
+<p>Instantiate a PrivateKey from a plain JavaScript object</p>
+<p><strong>Kind</strong>: static method of <code><a href="#PrivateKey">PrivateKey</a></code>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>obj</td>
+<td><code>Object</code></td>
+<td>The output from privateKey.toObject()</td>
+</tr>
+</tbody>
+</table>
+<p><a name="PrivateKey.fromRandom"></a></p>
+<h3 id="privatekey-fromrandom-network-code-privatekey-privatekey-code-">PrivateKey.fromRandom([network]) ⇒ <code><a href="#PrivateKey">PrivateKey</a></code></h3>
+<p>Instantiate a PrivateKey from random bytes</p>
+<p><strong>Kind</strong>: static method of <code><a href="#PrivateKey">PrivateKey</a></code><br><strong>Returns</strong>: <code><a href="#PrivateKey">PrivateKey</a></code> - A new valid instance of PrivateKey  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[network]</td>
+<td><code>string</code></td>
+<td>Either &quot;livenet&quot; or &quot;testnet&quot;</td>
+</tr>
+</tbody>
+</table>
+<p><a name="PrivateKey.getValidationError"></a></p>
+<h3 id="privatekey-getvalidationerror-data-network-code-null-code-124-code-error-code-">PrivateKey.getValidationError(data, [network]) ⇒ <code>null</code> &#124; <code>Error</code></h3>
+<p>Check if there would be any errors when initializing a PrivateKey</p>
+<p><strong>Kind</strong>: static method of <code><a href="#PrivateKey">PrivateKey</a></code><br><strong>Returns</strong>: <code>null</code> &#124; <code>Error</code> - An error if exists  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td><code>string</code></td>
+<td>The encoded data in various formats</td>
+</tr>
+<tr>
+<td>[network]</td>
+<td><code>string</code></td>
+<td>Either &quot;livenet&quot; or &quot;testnet&quot;</td>
+</tr>
+</tbody>
+</table>
+<p><a name="PrivateKey.isValid"></a></p>
+<h3 id="privatekey-isvalid-data-network-code-boolean-code-">PrivateKey.isValid(data, [network]) ⇒ <code>Boolean</code></h3>
+<p>Check if the parameters are valid</p>
+<p><strong>Kind</strong>: static method of <code><a href="#PrivateKey">PrivateKey</a></code><br><strong>Returns</strong>: <code>Boolean</code> - If the private key is would be valid  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td><code>string</code></td>
+<td>The encoded data in various formats</td>
+</tr>
+<tr>
+<td>[network]</td>
+<td><code>string</code></td>
+<td>Either &quot;livenet&quot; or &quot;testnet&quot;</td>
+</tr>
+</tbody>
+</table>
+</div></div></div></div></div><a class="exit-off-canvas"></a><script src="/scripts/main.min.bf683792.js" data-no-instant="data-no-instant"></script></body></html>

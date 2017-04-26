@@ -1,0 +1,690 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Script | Bitcore</title><meta name="description" content="A powerful interface to create, parse, and validate bitcoin scripts."><!-- Twitter Card data--><meta name="twitter:card" content="summary"><meta name="twitter:site" content="@BitPay"><meta name="twitter:title" content="Script"><meta name="twitter:description" content="A powerful interface to create, parse, and validate bitcoin scripts."><meta name="twitter:image" content="https://bitcore.io/images/social/card.jpg"><!-- Open Graph data (Facebook and Reddit)--><meta property="og:title" content="Script"><meta property="og:type" content="article"><meta property="og:url" content="https://bitcore.io/"><meta property="og:image" content="https://bitcore.io/images/social/avatar.jpg"><meta property="og:description" content="A powerful interface to create, parse, and validate bitcoin scripts."><meta property="og:site_name" content="Bitcore.io"><!-- Add to homescreen for Chrome on Android--><meta name="mobile-web-app-capable" content="yes"><link rel="icon" sizes="192x192" href="/images/touch/chrome-touch-icon-192x192.b0c7306c.png"><!-- Add to homescreen for Safari on iOS--><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Bitcore"><link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png"><!-- Tile icon for Win8 (144x144 + tile color)--><meta name="msapplication-TileImage" content="/images/touch/ms-touch-icon-144x144-precomposed.dcbb3eea.png"><meta name="msapplication-TileColor" content="#F9AB3D"><!-- Favicon--><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/styles/main.88c254de.css" data-instant-track><link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,700italic,600italic|Titillium+Web:400,300,700" rel="stylesheet" type="text/css"><script type="text/javascript" data-no-instant>
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.1";
+  if(this.location.host === 'bitcore.io'){ analytics.load('hP7mqqPCPPa5hRatDaulKFxm0kPiB6Es'); }
+  else { analytics.load("dgbXyNcmHR3bJIjumdYoe3GZFrs6sHBd"); }
+  }}();
+</script>
+<script data-no-instant>
+  var $buoop = {vs:{i:9,f:30,o:25,s:5.1},c:2};
+  function $buo_f(){
+   var e = document.createElement("script");
+   e.src = "//browser-update.org/update.js";
+   document.body.appendChild(e);
+  };
+  try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+  catch(e){window.attachEvent("onload", $buo_f)}
+</script>
+<meta name="google-site-verification" content="GOfbzCpKO__Imdru-L0nG1Fo9tTvyH3QVAIWsYO9rCk"></head><body><nav class="navbar navbar-fixed-top dark-nav hidden-sm-down"><a href="/" title="Home" class="logo logo-light margin-top"></a><ul class="nav navbar-nav pull-right"><li class="nav-item"><a href="/start" class="nav-link">Getting Started</a></li><li class="nav-item"><a href="/guides" class="nav-link">Guides</a></li><li class="nav-item"><a href="/api" class="nav-link active">Docs</a></li><li class="nav-item"><a href="/playground" class="nav-link">Playground        </a></li><li class="nav-item"><a href="//forum.bitcore.io/" class="nav-link">Forum</a></li></ul></nav><div class="mobile-menu hidden-md-up navbar-fixed-top"><div id="exCollapsingNavbar" class="collapse"><div class="bg-inverse p-md"><h3 class="m-b-0"> <ul class="p-l-0 no-bullets m-b-0"><li class="nav-item"><a href="/" class="nav-link">Home</a></li><li class="nav-item"><a href="/start" class="nav-link">Getting Started</a></li><li class="nav-item"><a href="/guides" class="nav-link">Guides</a></li><li class="nav-item"><a href="/api" class="nav-link active">Docs</a></li><li class="nav-item"><a href="/playground" class="nav-link">Playground        </a></li><li class="nav-item"><a href="//forum.bitcore.io/" class="nav-link">Forum</a></li></ul></h3></div></div><nav class="navbar dark-nav"><button type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" class="navbar-toggler p-l-0"><div class="logo logo-square-orange menu-text color-white">Menu</div></button></nav></div><div class="fixed-sidebar bg-gray border-right-grey p-l-md"><a href="/api/"><h3 class="menu-header m-t-md">Bitcore</h3><ul class="nav nav-pills nav-stacked"><li class="nav-item"><a href="/api/" class="nav-link">Overview</a></li></ul></a><a href="/api/node"><h3 class="menu-header m-t-md">Node</h3></a><a href="/api/service"><h3 class="menu-header m-t-md">Services</h3></a><h3 class="menu-header m-t-md">Library API</h3><ul class="nav nav-pills nav-stacked"><li class="nav-item"><a href="/api/lib" class="nav-link">Overview</a></li><li class="nav-item"><a href="/api/lib/address" class="nav-link">Address</a></li><li class="nav-item"><a href="/api/lib/block" class="nav-link">Block</a></li><li class="nav-item"><a href="/api/lib/crypto" class="nav-link">Crypto</a></li><li class="nav-item"><a href="/api/lib/encoding" class="nav-link">Encoding</a></li><li class="nav-item"><a href="/api/lib/hd-keys" class="nav-link">HD Keys</a></li><li class="nav-item"><a href="/api/lib/networks" class="nav-link">Networks</a></li><li class="nav-item"><a href="/api/lib/private-key" class="nav-link">Private Key</a></li><li class="nav-item"><a href="/api/lib/public-key" class="nav-link">Public Key</a></li><li class="nav-item"><a href="/api/lib/script" class="active nav-link">Script</a></li><li class="nav-item"><a href="/api/lib/transaction" class="nav-link">Transaction</a></li><li class="nav-item"><a href="/api/lib/unit" class="nav-link">Bitcoin Units</a></li><li class="nav-item"><a href="/api/lib/unspent-output" class="nav-link">Unspent Outputs</a></li><li class="nav-item"><a href="/api/lib/uri" class="nav-link">Bitcoin URIs</a></li></ul><a href="/api/mnemonic"><h3 class="menu-header m-t-md">Library Modules</h3></a><a href="/api/p2p"><h3 class="menu-header m-t-md">Peer-to-Peer</h3></a></div><div class="scroll-content"><div class="api-content"><div class="docs bg-white"><div class="container"><div class="section p-t-lg"><div class="text-right bring-to-front"><a href="https://github.com/bitpay/bitcore-lib/edit/master/docs/script.md">Edit</a></div><h1 id="script">Script</h1>
+<p>All bitcoin transactions have scripts embedded into its inputs and outputs.  The scripts use a very simple programming language, which is evaluated from left to right using a stack. The language is designed such that it guarantees all scripts will execute in a limited amount of time (it is not Turing-Complete).</p>
+<p>When a transaction is validated, the input scripts are concatenated with the output scripts and evaluated. To be valid, all transaction scripts must evaluate to true.  A good analogy for how this works is that the output scripts are puzzles that specify in which conditions can those bitcoins be spent. The input scripts provide the correct data to make those output scripts evaluate to true.</p>
+<p>For more detailed information about the bitcoin scripting language, check the online reference <a href="https://en.bitcoin.it/wiki/Script">on bitcoin&#39;s wiki</a>.</p>
+<p>The <code>Script</code> object provides an interface to construct, parse, and identify bitcoin scripts. It also gives simple interfaces to create most common script types. This class is useful if you want to create custom input or output scripts. In other case, you should probably use <code>Transaction</code>.</p>
+<h2 id="script-creation">Script creation</h2>
+<p>Here&#39;s how to use <code>Script</code> to create the five most common script types:</p>
+<h3 id="pay-to-public-key-hash-p2pkh-">Pay to Public Key Hash (p2pkh)</h3>
+<p>This is the most commonly used transaction output script. It&#39;s used to pay to a bitcoin address (a bitcoin address is a public key hash encoded in base58check)</p>
+<pre><code class="lang-javascript">// create a new p2pkh paying to a specific address
+var address = Address.fromString(&#39;1NaTVwXDDUJaXDQajoa9MqHhz4uTxtgK14&#39;);
+var script = Script.buildPublicKeyHashOut(address);
+assert(script.toString() === &#39;OP_DUP OP_HASH160 20 0xecae7d092947b7ee4998e254aa48900d26d2ce1d OP_EQUALVERIFY OP_CHECKSIG&#39;);
+</code></pre>
+<h3 id="pay-to-public-key-p2pk-">Pay to Public Key (p2pk)</h3>
+<p>Pay to public key scripts are a simplified form of the p2pkh, but aren&#39;t commonly used in new transactions anymore, because p2pkh scripts are more secure (the public key is not revealed until the output is spent).</p>
+<pre><code class="lang-javascript">// create a new p2pk paying to a specific public key
+var pubkey = new PublicKey(&#39;022df8750480ad5b26950b25c7ba79d3e37d75f640f8e5d9bcd5b150a0f85014da&#39;);
+var script = Script.buildPublicKeyOut(pubkey);
+assert(script.toString() === &#39;33 0x022df8750480ad5b26950b25c7ba79d3e37d75f640f8e5d9bcd5b150a0f85014da OP_CHECKSIG&#39;);
+</code></pre>
+<h3 id="pay-to-multisig-p2ms-">Pay to Multisig (p2ms)</h3>
+<p>Multisig outputs allow to share control of bitcoins between several keys. When creating the script, one specifies the public keys that control the funds, and how many of those keys are required to sign off spending transactions to be valid. An output with N public keys of which M are required is called an m-of-n output (For example, 2-of-3, 3-of-5, 4-of-4, etc.)</p>
+<p>Note that regular multisig outputs are rarely used nowadays. The best practice is to use a p2sh multisig output (See Script#toScriptHashOut()).</p>
+<pre><code class="lang-javascript">// create a new 2-of-3 multisig output from 3 given public keys
+var pubkeys = [
+  new PublicKey(&#39;022df8750480ad5b26950b25c7ba79d3e37d75f640f8e5d9bcd5b150a0f85014da&#39;),
+  new PublicKey(&#39;03e3818b65bcc73a7d64064106a859cc1a5a728c4345ff0b641209fba0d90de6e9&#39;),
+  new PublicKey(&#39;021f2f6e1e50cb6a953935c3601284925decd3fd21bc445712576873fb8c6ebc18&#39;),
+];
+var threshold = 2;
+var script = Script.buildMultisigOut(pubkeys, threshold);
+assert(script.toString() === &#39;OP_2 33 0x022df8750480ad5b26950b25c7ba79d3e37d75f640f8e5d9bcd5b150a0f85014da&#39;
+      + &#39; 33 0x03e3818b65bcc73a7d64064106a859cc1a5a728c4345ff0b641209fba0d90de6e9&#39;
+      + &#39; 33 0x021f2f6e1e50cb6a953935c3601284925decd3fd21bc445712576873fb8c6ebc18 OP_3 OP_CHECKMULTISIG&#39;);
+</code></pre>
+<h3 id="pay-to-script-hash-p2sh-">Pay to Script Hash (p2sh)</h3>
+<p>Pay to script hash outputs are scripts that contain the hash of another script, called <code>redeemScript</code>. To spend bitcoins sent in a p2sh output, the spending transaction must provide a script matching the script hash and data which makes the script evaluate to true.  This allows to defer revealing the spending conditions to the moment of spending. It also makes it possible for the receiver to set the conditions to spend those bitcoins.</p>
+<p>Most multisig transactions today use p2sh outputs where the <code>redeemScript</code> is a multisig output.</p>
+<pre><code class="lang-javascript">// create a p2sh multisig output
+var pubkeys = [
+  new PublicKey(&#39;022df8750480ad5b26950b25c7ba79d3e37d75f640f8e5d9bcd5b150a0f85014da&#39;),
+  new PublicKey(&#39;03e3818b65bcc73a7d64064106a859cc1a5a728c4345ff0b641209fba0d90de6e9&#39;),
+  new PublicKey(&#39;021f2f6e1e50cb6a953935c3601284925decd3fd21bc445712576873fb8c6ebc18&#39;),
+];
+var redeemScript = Script.buildMultisigOut(pubkeys, 2);
+var script = redeemScript.toScriptHashOut();
+assert(script.toString() === &#39;OP_HASH160 20 0x620a6eeaf538ec9eb89b6ae83f2ed8ef98566a03 OP_EQUAL&#39;);
+</code></pre>
+<h3 id="data-output">Data output</h3>
+<p>Data outputs are used to push data into the blockchain. Up to 40 bytes can be pushed in a standard way, but more data can be used, if a miner decides to accept the transaction.</p>
+<pre><code class="lang-javascript">var data = &#39;hello world!!!&#39;;
+var script = Script.buildDataOut(data);
+assert(script.toString() === &#39;OP_RETURN 14 0x68656c6c6f20776f726c64212121&#39;
+</code></pre>
+<h3 id="custom-scripts">Custom Scripts</h3>
+<p>To create a custom <code>Script</code> instance, you must rely on the lower-level methods <code>add</code> and <code>prepend</code>. Both methods accept the same parameter types, and insert an opcode or data at the beginning (<code>prepend</code>) or end (<code>add</code>) of the <code>Script</code>.</p>
+<pre><code>var script = Script()
+  .add(&#39;OP_IF&#39;)                       // add an opcode by name
+  .prepend(114)                       // add OP_2SWAP by code
+  .add(Opcode.OP_NOT)                 // add an opcode object
+  .add(new Buffer(&#39;bacacafe&#39;, &#39;hex&#39;)) // add a data buffer (will append the size of the push operation first)
+
+assert(script.toString() === &#39;OP_2SWAP OP_IF OP_NOT 4 0xbacacafe&#39;);
+</code></pre><h2 id="script-parsing-and-identification">Script Parsing and Identification</h2>
+<p><code>Script</code> has an easy interface to parse raw scripts from the network or bitcoind, and to extract useful information. An illustrative example (for more options check the API reference)</p>
+<pre><code class="lang-javascript">var raw_script = new Buffer(&#39;5221022df8750480ad5b26950b25c7ba79d3e37d75f640f8e5d9bcd5b150a0f85014da2103e3818b65bcc73a7d64064106a859cc1a5a728c4345ff0b641209fba0d90de6e921021f2f6e1e50cb6a953935c3601284925decd3fd21bc445712576873fb8c6ebc1853ae&#39;, &#39;hex&#39;);
+var s = new Script(raw_script);
+console.log(s.toString());
+// &#39;OP_2 33 0x022df8750480ad5b26950b25c7ba79d3e37d75f640f8e5d9bcd5b150a0f85014da 33 0x03e3818b65bcc73a7d64064106a859cc1a5a728c4345ff0b641209fba0d90de6e9 33 0x021f2f6e1e50cb6a953935c3601284925decd3fd21bc445712576873fb8c6ebc18 OP_3 OP_CHECKMULTISIG&#39;
+
+s.isPublicKeyHashOut() // false
+s.isScriptHashOut() // false
+s.isMultisigOut() // true
+</code></pre>
+<h2 id="script-interpreting-and-validation">Script Interpreting and Validation</h2>
+<p>To validate a transaction, the bitcoin network validates all of its inputs and outputs. To validate an input, the input&#39;s script is concatenated with the referenced output script, and the result is executed. If at the end of execution the stack contains a &#39;true&#39; value, then the transaction is valid. You can do this in <code>bitcore</code> by using the <code>Interpreter</code> class. The entry point (and probably the only interface you&#39;ll need for most applications) is the method <code>Interpreter#verify()</code>.</p>
+<p>You can use it like this:</p>
+<pre><code>var inputScript = Script(&#39;OP_1&#39;);
+var outputScript = Script(&#39;OP_15 OP_ADD OP_16 OP_EQUAL&#39;);
+
+var verified = Interpreter().verify(inputScript, outputScript);
+// verified will be true
+</code></pre><p>Note that <code>verify</code> expects two scripts: one is the input script (scriptSig) and the other is the output script (scriptPubkey). This is because different conditions are checked for each.</p>
+<p>It also accepts some optional parameters, assuming defaults if not provided:</p>
+<pre><code>// first we create a transaction
+var tx = new Transaction()
+  .from(utxo)
+  .to(toAddress, 100000)
+  .sign(privateKey);
+
+// we then extract the signature from the first input
+var inputIndex = 0;
+var signature = tx.getSignatures(privateKey)[inputIndex].signature;
+
+var scriptSig = Script.buildPublicKeyHashIn(publicKey, signature);
+var flags = Interpreter.SCRIPT_VERIFY_P2SH | Interpreter.SCRIPT_VERIFY_STRICTENC;
+var verified = Interpreter().verify(scriptSig, scriptPubkey, tx, inputIndex, flags);
+</code></pre></div></div></div><div class="lib bg-dark"><div class="container"><div class="section p-t-lg"><div class="text-right bring-to-front"><a href="https://github.com/bitpay/bitcore-lib/blob/master/lib/script/interpreter.js">View Source</a></div><p><a name="Interpreter"></a></p>
+<h2 id="interpreter-">Interpreter()</h2>
+<p>Bitcoin transactions contain scripts. Each input has a script called the
+scriptSig, and each output has a script called the scriptPubkey. To validate
+an input, the input&#39;s script is concatenated with the referenced output script,
+and the result is executed. If at the end of execution the stack contains a
+&quot;true&quot; value, then the transaction is valid.</p>
+<p>The primary way to use this class is via the verify function.
+e.g., Interpreter().verify( ... );</p>
+<p><strong>Kind</strong>: global function  </p>
+<ul>
+<li><a href="#Interpreter">Interpreter()</a><ul>
+<li><a href="#Interpreter+verify">.verify(scriptSig, scriptPubkey, [tx], nin, flags)</a></li>
+<li><a href="#Interpreter+checkSignatureEncoding">.checkSignatureEncoding()</a></li>
+<li><a href="#Interpreter+checkPubkeyEncoding">.checkPubkeyEncoding()</a></li>
+<li><a href="#Interpreter+evaluate">.evaluate()</a></li>
+<li><a href="#Interpreter+checkLockTime">.checkLockTime(nLockTime)</a> ⇒ <code>boolean</code></li>
+<li><a href="#Interpreter+step">.step()</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="Interpreter+verify"></a></p>
+<h3 id="interpreter-verify-scriptsig-scriptpubkey-tx-nin-flags-">interpreter.verify(scriptSig, scriptPubkey, [tx], nin, flags)</h3>
+<p>Verifies a Script by executing it and returns true if it is valid.
+This function needs to be provided with the scriptSig and the scriptPubkey
+separately.</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interpreter">Interpreter</a></code>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>scriptSig</td>
+<td><code>Script</code></td>
+<td>the script&#39;s first part (corresponding to the tx input)</td>
+</tr>
+<tr>
+<td>scriptPubkey</td>
+<td><code>Script</code></td>
+<td>the script&#39;s last part (corresponding to the tx output)</td>
+</tr>
+<tr>
+<td>[tx]</td>
+<td><code>Transaction</code></td>
+<td>the Transaction containing the scriptSig in one input (used    to check signature validity for some opcodes like OP_CHECKSIG)</td>
+</tr>
+<tr>
+<td>nin</td>
+<td><code>number</code></td>
+<td>index of the transaction input containing the scriptSig verified.</td>
+</tr>
+<tr>
+<td>flags</td>
+<td><code>number</code></td>
+<td>evaluation flags. See Interpreter.SCRIPT_* constants Translated from bitcoind&#39;s VerifyScript</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Interpreter+checkSignatureEncoding"></a></p>
+<h3 id="interpreter-checksignatureencoding-">interpreter.checkSignatureEncoding()</h3>
+<p>Translated from bitcoind&#39;s CheckSignatureEncoding</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interpreter">Interpreter</a></code><br><a name="Interpreter+checkPubkeyEncoding"></a></p>
+<h3 id="interpreter-checkpubkeyencoding-">interpreter.checkPubkeyEncoding()</h3>
+<p>Translated from bitcoind&#39;s CheckPubKeyEncoding</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interpreter">Interpreter</a></code><br><a name="Interpreter+evaluate"></a></p>
+<h3 id="interpreter-evaluate-">interpreter.evaluate()</h3>
+<p>Based on bitcoind&#39;s EvalScript function, with the inner loop moved to
+Interpreter.prototype.step()
+bitcoind commit: b5d1b1092998bc95313856d535c632ea5a8f9104</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interpreter">Interpreter</a></code><br><a name="Interpreter+checkLockTime"></a></p>
+<h3 id="interpreter-checklocktime-nlocktime-code-boolean-code-">interpreter.checkLockTime(nLockTime) ⇒ <code>boolean</code></h3>
+<p>Checks a locktime parameter with the transaction&#39;s locktime.
+There are two times of nLockTime: lock-by-blockheight and lock-by-blocktime,
+distinguished by whether nLockTime &lt; LOCKTIME_THRESHOLD = 500000000</p>
+<p>See the corresponding code on bitcoin core:
+<a href="https://github.com/bitcoin/bitcoin/blob/ffd75adce01a78b3461b3ff05bcc2b530a9ce994/src/script/interpreter.cpp#L1129">https://github.com/bitcoin/bitcoin/blob/ffd75adce01a78b3461b3ff05bcc2b530a9ce994/src/script/interpreter.cpp#L1129</a></p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interpreter">Interpreter</a></code><br><strong>Returns</strong>: <code>boolean</code> - true if the transaction&#39;s locktime is less than or equal to
+                  the transaction&#39;s locktime  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nLockTime</td>
+<td><code>BN</code></td>
+<td>the locktime read from the script</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Interpreter+step"></a></p>
+<h3 id="interpreter-step-">interpreter.step()</h3>
+<p>Based on the inner loop of bitcoind&#39;s EvalScript function
+bitcoind commit: b5d1b1092998bc95313856d535c632ea5a8f9104</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interpreter">Interpreter</a></code>  </p>
+</div><div class="section p-t-lg"><div class="text-right bring-to-front"><a href="https://github.com/bitpay/bitcore-lib/blob/master/lib/script/script.js">View Source</a></div><p><a name="Script"></a></p>
+<h2 id="script">Script</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#Script">Script</a><ul>
+<li><a href="#new_Script_new">new Script(from)</a></li>
+<li><em>instance</em><ul>
+<li><a href="#Script+isPublicKeyHashOut">.isPublicKeyHashOut()</a> ⇒ <code>boolean</code></li>
+<li><a href="#Script+isPublicKeyHashIn">.isPublicKeyHashIn()</a> ⇒ <code>boolean</code></li>
+<li><a href="#Script+isPublicKeyOut">.isPublicKeyOut()</a> ⇒ <code>boolean</code></li>
+<li><a href="#Script+isPublicKeyIn">.isPublicKeyIn()</a> ⇒ <code>boolean</code></li>
+<li><a href="#Script+isScriptHashOut">.isScriptHashOut()</a> ⇒ <code>boolean</code></li>
+<li><a href="#Script+isScriptHashIn">.isScriptHashIn()</a> ⇒ <code>boolean</code></li>
+<li><a href="#Script+isMultisigOut">.isMultisigOut()</a> ⇒ <code>boolean</code></li>
+<li><a href="#Script+isMultisigIn">.isMultisigIn()</a> ⇒ <code>boolean</code></li>
+<li><a href="#Script+isDataOut">.isDataOut()</a> ⇒ <code>boolean</code></li>
+<li><a href="#Script+getData">.getData()</a> ⇒ <code>Buffer</code></li>
+<li><a href="#Script+isPushOnly">.isPushOnly()</a> ⇒ <code>boolean</code></li>
+<li><a href="#Script+classify">.classify()</a> ⇒ <code>object</code></li>
+<li><a href="#Script+classifyOutput">.classifyOutput()</a> ⇒ <code>object</code></li>
+<li><a href="#Script+classifyInput">.classifyInput()</a> ⇒ <code>object</code></li>
+<li><a href="#Script+isStandard">.isStandard()</a> ⇒ <code>boolean</code></li>
+<li><a href="#Script+prepend">.prepend(obj)</a> ⇒ <code><a href="#Script">Script</a></code></li>
+<li><a href="#Script+equals">.equals()</a></li>
+<li><a href="#Script+add">.add(obj)</a> ⇒ <code><a href="#Script">Script</a></code></li>
+<li><a href="#Script+toScriptHashOut">.toScriptHashOut()</a> ⇒ <code><a href="#Script">Script</a></code></li>
+<li><a href="#Script+getAddressInfo">.getAddressInfo()</a> ⇒ <code>Address</code> &#124; <code>boolean</code></li>
+<li><a href="#Script+toAddress">.toAddress([network])</a> ⇒ <code>Address</code> &#124; <code>boolean</code></li>
+<li><a href="#Script+findAndDelete">.findAndDelete()</a></li>
+<li><a href="#Script+checkMinimalPush">.checkMinimalPush()</a> ⇒ <code>boolean</code></li>
+<li><a href="#Script+_decodeOP_N">._decodeOP_N(opcode)</a> ⇒ <code>number</code></li>
+<li><a href="#Script+getSignatureOperationsCount">.getSignatureOperationsCount(use)</a> ⇒ <code>number</code></li>
+</ul>
+</li>
+<li><em>static</em><ul>
+<li><a href="#Script.buildMultisigOut">.buildMultisigOut(publicKeys, threshold, [opts])</a> ⇒ <code><a href="#Script">Script</a></code></li>
+<li><a href="#Script.buildMultisigIn">.buildMultisigIn(pubkeys, threshold, signatures, [opts])</a> ⇒ <code><a href="#Script">Script</a></code></li>
+<li><a href="#Script.buildP2SHMultisigIn">.buildP2SHMultisigIn(pubkeys, threshold, signatures, [opts])</a> ⇒ <code><a href="#Script">Script</a></code></li>
+<li><a href="#Script.buildPublicKeyHashOut">.buildPublicKeyHashOut(to)</a> ⇒ <code><a href="#Script">Script</a></code></li>
+<li><a href="#Script.buildPublicKeyOut">.buildPublicKeyOut()</a> ⇒ <code><a href="#Script">Script</a></code></li>
+<li><a href="#Script.buildDataOut">.buildDataOut(data, encoding)</a> ⇒ <code><a href="#Script">Script</a></code></li>
+<li><a href="#Script.buildScriptHashOut">.buildScriptHashOut(script)</a> ⇒ <code><a href="#Script">Script</a></code></li>
+<li><a href="#Script.buildPublicKeyIn">.buildPublicKeyIn(signature, [sigtype])</a></li>
+<li><a href="#Script.buildPublicKeyHashIn">.buildPublicKeyHashIn(publicKey, signature, [sigtype])</a></li>
+<li><a href="#Script.empty">.empty()</a> ⇒ <code><a href="#Script">Script</a></code></li>
+<li><a href="#Script.fromAddress">.fromAddress()</a> ⇒ <code><a href="#Script">Script</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="new_Script_new"></a></p>
+<h3 id="new-script-from-">new Script(from)</h3>
+<p>A bitcoin transaction script. Each transaction&#39;s inputs and outputs
+has a script that is evaluated to validate it&#39;s spending.</p>
+<p>See <a href="https://en.bitcoin.it/wiki/Script">https://en.bitcoin.it/wiki/Script</a></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>from</td>
+<td><code>Object</code> &#124; <code>string</code> &#124; <code>Buffer</code></td>
+<td>optional data to populate script</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Script+isPublicKeyHashOut"></a></p>
+<h3 id="script-ispublickeyhashout-code-boolean-code-">script.isPublicKeyHashOut() ⇒ <code>boolean</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code>boolean</code> - if this is a pay to pubkey hash output script<br><a name="Script+isPublicKeyHashIn"></a></p>
+<h3 id="script-ispublickeyhashin-code-boolean-code-">script.isPublicKeyHashIn() ⇒ <code>boolean</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code>boolean</code> - if this is a pay to public key hash input script<br><a name="Script+isPublicKeyOut"></a></p>
+<h3 id="script-ispublickeyout-code-boolean-code-">script.isPublicKeyOut() ⇒ <code>boolean</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code>boolean</code> - if this is a public key output script<br><a name="Script+isPublicKeyIn"></a></p>
+<h3 id="script-ispublickeyin-code-boolean-code-">script.isPublicKeyIn() ⇒ <code>boolean</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code>boolean</code> - if this is a pay to public key input script<br><a name="Script+isScriptHashOut"></a></p>
+<h3 id="script-isscripthashout-code-boolean-code-">script.isScriptHashOut() ⇒ <code>boolean</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code>boolean</code> - if this is a p2sh output script<br><a name="Script+isScriptHashIn"></a></p>
+<h3 id="script-isscripthashin-code-boolean-code-">script.isScriptHashIn() ⇒ <code>boolean</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code>boolean</code> - if this is a p2sh input script
+Note that these are frequently indistinguishable from pubkeyhashin<br><a name="Script+isMultisigOut"></a></p>
+<h3 id="script-ismultisigout-code-boolean-code-">script.isMultisigOut() ⇒ <code>boolean</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code>boolean</code> - if this is a mutlsig output script<br><a name="Script+isMultisigIn"></a></p>
+<h3 id="script-ismultisigin-code-boolean-code-">script.isMultisigIn() ⇒ <code>boolean</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code>boolean</code> - if this is a multisig input script<br><a name="Script+isDataOut"></a></p>
+<h3 id="script-isdataout-code-boolean-code-">script.isDataOut() ⇒ <code>boolean</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code>boolean</code> - true if this is a valid standard OP_RETURN output<br><a name="Script+getData"></a></p>
+<h3 id="script-getdata-code-buffer-code-">script.getData() ⇒ <code>Buffer</code></h3>
+<p>Retrieve the associated data for this script.
+In the case of a pay to public key hash or P2SH, return the hash.
+In the case of a standard OP_RETURN, return the data</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Script">Script</a></code><br><a name="Script+isPushOnly"></a></p>
+<h3 id="script-ispushonly-code-boolean-code-">script.isPushOnly() ⇒ <code>boolean</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code>boolean</code> - if the script is only composed of data pushing
+opcodes or small int opcodes (OP_0, OP_1, ..., OP_16)<br><a name="Script+classify"></a></p>
+<h3 id="script-classify-code-object-code-">script.classify() ⇒ <code>object</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code>object</code> - The Script type if it is a known form,
+or Script.UNKNOWN if it isn&#39;t<br><a name="Script+classifyOutput"></a></p>
+<h3 id="script-classifyoutput-code-object-code-">script.classifyOutput() ⇒ <code>object</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code>object</code> - The Script type if it is a known form,
+or Script.UNKNOWN if it isn&#39;t<br><a name="Script+classifyInput"></a></p>
+<h3 id="script-classifyinput-code-object-code-">script.classifyInput() ⇒ <code>object</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code>object</code> - The Script type if it is a known form,
+or Script.UNKNOWN if it isn&#39;t<br><a name="Script+isStandard"></a></p>
+<h3 id="script-isstandard-code-boolean-code-">script.isStandard() ⇒ <code>boolean</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code>boolean</code> - if script is one of the known types<br><a name="Script+prepend"></a></p>
+<h3 id="script-prepend-obj-code-script-script-code-">script.prepend(obj) ⇒ <code><a href="#Script">Script</a></code></h3>
+<p>Adds a script element at the start of the script.</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code><a href="#Script">Script</a></code> - this script instance  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>obj</td>
+<td><code>*</code></td>
+<td>a string, number, Opcode, Buffer, or object to add</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Script+equals"></a></p>
+<h3 id="script-equals-">script.equals()</h3>
+<p>Compares a script with another script</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Script">Script</a></code><br><a name="Script+add"></a></p>
+<h3 id="script-add-obj-code-script-script-code-">script.add(obj) ⇒ <code><a href="#Script">Script</a></code></h3>
+<p>Adds a script element to the end of the script.</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code><a href="#Script">Script</a></code> - this script instance  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>obj</td>
+<td><code>*</code></td>
+<td>a string, number, Opcode, Buffer, or object to add</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Script+toScriptHashOut"></a></p>
+<h3 id="script-toscripthashout-code-script-script-code-">script.toScriptHashOut() ⇒ <code><a href="#Script">Script</a></code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code><a href="#Script">Script</a></code> - a new pay to script hash script that pays to this script<br><a name="Script+getAddressInfo"></a></p>
+<h3 id="script-getaddressinfo-code-address-code-124-code-boolean-code-">script.getAddressInfo() ⇒ <code>Address</code> &#124; <code>boolean</code></h3>
+<p>Will return the associated address information object</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Script">Script</a></code><br><a name="Script+toAddress"></a></p>
+<h3 id="script-toaddress-network-code-address-code-124-code-boolean-code-">script.toAddress([network]) ⇒ <code>Address</code> &#124; <code>boolean</code></h3>
+<p><strong>Kind</strong>: instance method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code>Address</code> &#124; <code>boolean</code> - the associated address for this script if possible, or false  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[network]</td>
+<td><code>Network</code></td>
+</tr>
+</tbody>
+</table>
+<p><a name="Script+findAndDelete"></a></p>
+<h3 id="script-findanddelete-">script.findAndDelete()</h3>
+<p>Analogous to bitcoind&#39;s FindAndDelete. Find and delete equivalent chunks,
+typically used with push data chunks.  Note that this will find and delete
+not just the same data, but the same data with the same push data op as
+produced by default. i.e., if a pushdata in a tx does not use the minimal
+pushdata op, then when you try to remove the data it is pushing, it will not
+be removed, because they do not use the same pushdata op.</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Script">Script</a></code><br><a name="Script+checkMinimalPush"></a></p>
+<h3 id="script-checkminimalpush-code-boolean-code-">script.checkMinimalPush() ⇒ <code>boolean</code></h3>
+<p>Comes from bitcoind&#39;s script interpreter CheckMinimalPush function</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code>boolean</code> - if the chunk {i} is the smallest way to push that particular data.<br><a name="Script+_decodeOP_N"></a></p>
+<h3 id="script-_decodeop_n-opcode-code-number-code-">script._decodeOP_N(opcode) ⇒ <code>number</code></h3>
+<p>Comes from bitcoind&#39;s script DecodeOP_N function</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code>number</code> - numeric value in range of 0 to 16  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>opcode</td>
+<td><code>number</code></td>
+</tr>
+</tbody>
+</table>
+<p><a name="Script+getSignatureOperationsCount"></a></p>
+<h3 id="script-getsignatureoperationscount-use-code-number-code-">script.getSignatureOperationsCount(use) ⇒ <code>number</code></h3>
+<p>Comes from bitcoind&#39;s script GetSigOpCount(boolean) function</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code>number</code> - number of signature operations required by this script  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>use</td>
+<td><code>boolean</code></td>
+<td>current (true) or pre-version-0.6 (false) logic</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Script.buildMultisigOut"></a></p>
+<h3 id="script-buildmultisigout-publickeys-threshold-opts-code-script-script-code-">Script.buildMultisigOut(publicKeys, threshold, [opts]) ⇒ <code><a href="#Script">Script</a></code></h3>
+<p><strong>Kind</strong>: static method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code><a href="#Script">Script</a></code> - a new Multisig output script for given public keys,
+requiring m of those public keys to spend  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>publicKeys</td>
+<td><code>Array.&lt;PublicKey&gt;</code></td>
+<td>list of all public keys controlling the output</td>
+</tr>
+<tr>
+<td>threshold</td>
+<td><code>number</code></td>
+<td>amount of required signatures to spend the output</td>
+</tr>
+<tr>
+<td>[opts]</td>
+<td><code>Object</code></td>
+<td>Several options:        - noSorting: defaults to false, if true, don&#39;t sort the given                      public keys before creating the script</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Script.buildMultisigIn"></a></p>
+<h3 id="script-buildmultisigin-pubkeys-threshold-signatures-opts-code-script-script-code-">Script.buildMultisigIn(pubkeys, threshold, signatures, [opts]) ⇒ <code><a href="#Script">Script</a></code></h3>
+<p>A new Multisig input script for the given public keys, requiring m of those public keys to spend</p>
+<p><strong>Kind</strong>: static method of <code><a href="#Script">Script</a></code>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pubkeys</td>
+<td><code>Array.&lt;PublicKey&gt;</code></td>
+<td>list of all public keys controlling the output</td>
+</tr>
+<tr>
+<td>threshold</td>
+<td><code>number</code></td>
+<td>amount of required signatures to spend the output</td>
+</tr>
+<tr>
+<td>signatures</td>
+<td><code>Array</code></td>
+<td>and array of signature buffers to append to the script</td>
+</tr>
+<tr>
+<td>[opts]</td>
+<td><code>Object</code></td>
+<td></td>
+</tr>
+<tr>
+<td>[opts.noSorting]</td>
+<td><code>boolean</code></td>
+<td>don&#39;t sort the given public keys before creating the script (false by default)</td>
+</tr>
+<tr>
+<td>[opts.cachedMultisig]</td>
+<td><code><a href="#Script">Script</a></code></td>
+<td>don&#39;t recalculate the redeemScript</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Script.buildP2SHMultisigIn"></a></p>
+<h3 id="script-buildp2shmultisigin-pubkeys-threshold-signatures-opts-code-script-script-code-">Script.buildP2SHMultisigIn(pubkeys, threshold, signatures, [opts]) ⇒ <code><a href="#Script">Script</a></code></h3>
+<p>A new P2SH Multisig input script for the given public keys, requiring m of those public keys to spend</p>
+<p><strong>Kind</strong>: static method of <code><a href="#Script">Script</a></code>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pubkeys</td>
+<td><code>Array.&lt;PublicKey&gt;</code></td>
+<td>list of all public keys controlling the output</td>
+</tr>
+<tr>
+<td>threshold</td>
+<td><code>number</code></td>
+<td>amount of required signatures to spend the output</td>
+</tr>
+<tr>
+<td>signatures</td>
+<td><code>Array</code></td>
+<td>and array of signature buffers to append to the script</td>
+</tr>
+<tr>
+<td>[opts]</td>
+<td><code>Object</code></td>
+<td></td>
+</tr>
+<tr>
+<td>[opts.noSorting]</td>
+<td><code>boolean</code></td>
+<td>don&#39;t sort the given public keys before creating the script (false by default)</td>
+</tr>
+<tr>
+<td>[opts.cachedMultisig]</td>
+<td><code><a href="#Script">Script</a></code></td>
+<td>don&#39;t recalculate the redeemScript</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Script.buildPublicKeyHashOut"></a></p>
+<h3 id="script-buildpublickeyhashout-to-code-script-script-code-">Script.buildPublicKeyHashOut(to) ⇒ <code><a href="#Script">Script</a></code></h3>
+<p><strong>Kind</strong>: static method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code><a href="#Script">Script</a></code> - a new pay to public key hash output for the given
+address or public key  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>to</td>
+<td><code>Address</code> &#124; <code>PublicKey</code></td>
+<td>destination address or public key</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Script.buildPublicKeyOut"></a></p>
+<h3 id="script-buildpublickeyout-code-script-script-code-">Script.buildPublicKeyOut() ⇒ <code><a href="#Script">Script</a></code></h3>
+<p><strong>Kind</strong>: static method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code><a href="#Script">Script</a></code> - a new pay to public key output for the given
+ public key<br><a name="Script.buildDataOut"></a></p>
+<h3 id="script-builddataout-data-encoding-code-script-script-code-">Script.buildDataOut(data, encoding) ⇒ <code><a href="#Script">Script</a></code></h3>
+<p><strong>Kind</strong>: static method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code><a href="#Script">Script</a></code> - a new OP_RETURN script with data  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td><code>string</code> &#124; <code>Buffer</code></td>
+<td>the data to embed in the output</td>
+</tr>
+<tr>
+<td>encoding</td>
+<td><code>string</code></td>
+<td>the type of encoding of the string</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Script.buildScriptHashOut"></a></p>
+<h3 id="script-buildscripthashout-script-code-script-script-code-">Script.buildScriptHashOut(script) ⇒ <code><a href="#Script">Script</a></code></h3>
+<p><strong>Kind</strong>: static method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code><a href="#Script">Script</a></code> - new pay to script hash script for given script  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>script</td>
+<td><code><a href="#Script">Script</a></code> &#124; <code>Address</code></td>
+<td>the redeemScript for the new p2sh output.    It can also be a p2sh address</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Script.buildPublicKeyIn"></a></p>
+<h3 id="script-buildpublickeyin-signature-sigtype-">Script.buildPublicKeyIn(signature, [sigtype])</h3>
+<p>Builds a scriptSig (a script for an input) that signs a public key output script.</p>
+<p><strong>Kind</strong>: static method of <code><a href="#Script">Script</a></code>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>signature</td>
+<td><code>Signature</code> &#124; <code>Buffer</code></td>
+<td>a Signature object, or the signature in DER canonical encoding</td>
+</tr>
+<tr>
+<td>[sigtype]</td>
+<td><code>number</code></td>
+<td>the type of the signature (defaults to SIGHASH_ALL)</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Script.buildPublicKeyHashIn"></a></p>
+<h3 id="script-buildpublickeyhashin-publickey-signature-sigtype-">Script.buildPublicKeyHashIn(publicKey, signature, [sigtype])</h3>
+<p>Builds a scriptSig (a script for an input) that signs a public key hash
+output script.</p>
+<p><strong>Kind</strong>: static method of <code><a href="#Script">Script</a></code>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>publicKey</td>
+<td><code>Buffer</code> &#124; <code>string</code> &#124; <code>PublicKey</code></td>
+<td></td>
+</tr>
+<tr>
+<td>signature</td>
+<td><code>Signature</code> &#124; <code>Buffer</code></td>
+<td>a Signature object, or the signature in DER canonical encoding</td>
+</tr>
+<tr>
+<td>[sigtype]</td>
+<td><code>number</code></td>
+<td>the type of the signature (defaults to SIGHASH_ALL)</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Script.empty"></a></p>
+<h3 id="script-empty-code-script-script-code-">Script.empty() ⇒ <code><a href="#Script">Script</a></code></h3>
+<p><strong>Kind</strong>: static method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code><a href="#Script">Script</a></code> - an empty script<br><a name="Script.fromAddress"></a></p>
+<h3 id="script-fromaddress-code-script-script-code-">Script.fromAddress() ⇒ <code><a href="#Script">Script</a></code></h3>
+<p><strong>Kind</strong>: static method of <code><a href="#Script">Script</a></code><br><strong>Returns</strong>: <code><a href="#Script">Script</a></code> - an output script built from the address  </p>
+</div></div></div></div></div><a class="exit-off-canvas"></a><script src="/scripts/main.min.bf683792.js" data-no-instant="data-no-instant"></script></body></html>
