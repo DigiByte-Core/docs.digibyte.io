@@ -1,0 +1,61 @@
+<div ng-controller="NavbarController as vm">
+	<h3 class="menu-header m-t-md">DigiByte.JS API</h3>
+	<ul class="nav nav-pills nav-stacked">
+		<li class="nav-item">
+			<a href="/overview" class="nav-link" ng-class="{active:vm.isActive('/overview')}">Overview</a>
+		</li>
+		
+		<li class="nav-item">
+			<a href="/address" class="nav-link" ng-class="{active:vm.isActive('/address')}">Address</a>
+		</li>
+		
+		<li class="nav-item">
+			<a href="/block" class="nav-link" ng-class="{active:vm.isActive('/block')}">Block</a>
+		</li>
+		
+		<li class="nav-item">
+			<a href="/crypto" class="nav-link" ng-class="{active:vm.isActive('/crypto')}">Crypto</a>
+		</li>
+		
+		<li class="nav-item">
+			<a href="/encoding" class="nav-link" ng-class="{active:vm.isActive('/encoding')}">Encoding</a>
+		</li>
+
+		<li class="nav-item">
+			<a href="/hd-keys" class="nav-link" ng-class="{active:vm.isActive('/hd-keys')}">HD Keys</a>
+		</li>
+
+		<li class="nav-item">
+			<a href="/networks" class="nav-link" ng-class="{active:vm.isActive('/networks')}">Networks</a>
+		</li>
+
+		<li class="nav-item">
+			<a href="/private-key" class="nav-link" ng-class="{active:vm.isActive('/private-key')}">Private Key</a>
+		</li>
+
+		<li class="nav-item">
+			<a href="/public-key" class="nav-link" ng-class="{active:vm.isActive('/public-key')}">Public Key</a>
+		</li>
+
+		<li class="nav-item">
+			<a href="/script" class="nav-link" ng-class="{active:vm.isActive('/script')}">Script</a>
+		</li>
+
+		<li class="nav-item">
+			<a href="/transaction" class="nav-link" ng-class="{active:vm.isActive('/transaction')}">Transaction</a>
+		</li>
+
+		<li class="nav-item">
+			<a href="/units" class="nav-link" ng-class="{active:vm.isActive('/units')}">DigiByte Units</a>
+		</li>
+
+		<li class="nav-item">
+			<a href="/unspent-outputs" class="nav-link" ng-class="{active:vm.isActive('/unspent-outputs')}">Unspent Outputs</a>
+		</li>
+
+		<li class="nav-item">
+			<a href="/uri" class="nav-link" ng-class="{active:vm.isActive('/uri')}">DigiByte URIs</a>
+		</li>
+
+	</ul>
+</div>

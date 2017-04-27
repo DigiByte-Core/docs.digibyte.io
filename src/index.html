@@ -1,0 +1,116 @@
+<!doctype html>
+<html ng-app="htdocs">
+  <head>
+		<base href="/">
+    <meta charset="utf-8">
+    <title>htdocs</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,700italic,600italic|Titillium+Web:400,300,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- run `gulp inject` to automatically populate bower styles dependencies -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css({.tmp/serve,src}) styles/app.css -->
+    <!-- inject:css -->
+    <!-- css files will be automatically insert here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+  </head>
+  <body>
+		<nav class="navbar navbar-fixed-top dark-nav hidden-sm-down">
+			<a href="/" title="Home" class="logo logo-light margin-top"></a>
+			<ul class="nav navbar-nav pull-right">
+				<li class="nav-item">
+					<a href="https://digibyte.co" class="nav-link">Home</a>
+				</li>
+				<li class="nav-item">
+					<a href="https://docs.digibyte.co" class="nav-link active">Docs</a>
+				</li>
+				<li class="nav-item">
+					<a href="https://playground.digibyte.co" class="nav-link">Playground        </a>
+				</li>
+			</ul>
+		</nav>
+		
+		<div class="mobile-menu hidden-md-up navbar-fixed-top">
+			<div id="exCollapsingNavbar" class="collapse">
+				<div class="bg-inverse p-md">
+					<h3 class="m-b-0"> 
+						<ul class="p-l-0 no-bullets m-b-0">
+							
+							<li class="nav-item">
+								<a href="/" class="nav-link">Home</a>
+							</li>
+
+							<li class="nav-item">
+								<a href="/start" class="nav-link">Getting Started</a>
+							</li>
+
+							<li class="nav-item">
+								<a href="/guides" class="nav-link">Guides</a>
+							</li>
+
+							<li class="nav-item">
+								<a href="/api" class="nav-link active">Docs</a>
+							</li>
+
+							<li class="nav-item">
+								<a href="/playground" class="nav-link">Playground        </a>
+							</li>
+							
+						</ul>
+					</h3>
+				</div>
+			</div>
+
+			<nav class="navbar dark-nav">
+				<button type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" class="navbar-toggler p-l-0">
+					<div class="logo logo-square-orange menu-text color-white">Menu</div>
+				</button>
+			</nav>
+		</div>
+
+		<div class="fixed-sidebar bg-gray border-right-grey p-l-md" ng-include="'app/components/navbar/navbar.html'"></div>
+
+		<div class="scroll-content">
+			<div class="api-content">
+				<div class="docs bg-white">
+					<div class="container">
+						<div class="section p-t-lg">
+
+    					<div ng-view></div>
+						
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+    <!-- build:js(src) scripts/vendor.js -->
+    <!-- bower:js -->
+    <!-- run `gulp inject` to automatically populate bower script dependencies -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
+    <!-- inject:js -->
+    <!-- js files will be automatically insert here -->
+    <!-- endinject -->
+
+    <!-- inject:partials -->
+    <!-- angular templates will be automatically converted in js and inserted here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+		<script src="../bower_components/marked/lib/marked.js"></script>
+		<script src="../bower_components/angular-marked/dist/angular-marked.js"></script>
+		<script src="../bower_components/angular-route/angular-route.js"></script>
+
+  </body>
+</html>
