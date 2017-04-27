@@ -2,6 +2,6 @@
   'use strict';
 
   angular
-    .module('htdocs', ['ngRoute', 'hc.marked']);
+    .module('digiDocs', ['ngRoute', 'hc.marked']);
 
 })();

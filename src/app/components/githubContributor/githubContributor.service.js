@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('htdocs')
+    .module('digiDocs')
     .factory('githubContributor', githubContributor);
 
   /** @ngInject */

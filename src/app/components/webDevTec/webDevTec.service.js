@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-      .module('htdocs')
+      .module('digiDocs')
       .service('webDevTec', webDevTec);
 
   /** @ngInject */

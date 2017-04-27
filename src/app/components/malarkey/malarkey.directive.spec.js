@@ -12,7 +12,7 @@
     var vm;
     var el;
 
-    beforeEach(module('htdocs'));
+    beforeEach(module('digiDocs'));
     beforeEach(inject(function($compile, $rootScope, githubContributor, $q, _$log_) {
       $log = _$log_;
 

@@ -3,8 +3,6 @@
   'use strict';
 
   angular
-    .module('htdocs')
-    .constant('malarkey', malarkey)
-    .constant('moment', moment);
+    .module('digiDocs')
 
 })();
