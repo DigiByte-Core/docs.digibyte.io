@@ -10,39 +10,26 @@ To get started, just `npm install digibyte` or `bower install digibyte`.
 
 ## Addresses and Key Management
 
-* [Addresses](address.md)
-* [Using Different Networks](networks.md)
-* [Private Keys](privatekey.md) and [Public Keys](publickey.md)
-* [Hierarchically-derived Private and Public Keys](hierarchical.md)
+* [Addresses](https://github.com/digibyte/digibyte-lib/blob/master/docs/address.md)
+* [Using Different Networks](https://github.com/digibyte/digibyte-lib/blob/master/docs/networks.md)
+* [Private Keys](https://github.com/digibyte/digibyte-lib/blob/master/docs/privatekey.md) and [Public Keys](https://github.com/digibyte/digibyte-lib/blob/master/docs/publickey.md)
+* [Hierarchically-derived Private and Public Keys](https://github.com/digibyte/digibyte-lib/blob/master/docs/hierarchical.md)
 
 ## Payment Handling
-* [Using Different Units](unit.md)
-* [Acknowledging and Requesting Payments: DigiByte URIs](uri.md)
-* [The Transaction Class](transaction.md)
+* [Using Different Units](https://github.com/digibyte/digibyte-lib/blob/master/docs/unit.md)
+* [Acknowledging and Requesting Payments: DigiByte URIs](https://github.com/digibyte/digibyte-lib/blob/master/docs/uri.md)
+* [The Transaction Class](https://github.com/digibyte/digibyte-lib/blob/master/docs/transaction.md)
 
 ## DigiByte Internals
-* [Scripts](script.md)
-* [Block](block.md)
+* [Scripts](https://github.com/digibyte/digibyte-lib/blob/master/docs/script.md)
+* [Block](https://github.com/digibyte/digibyte-lib/blob/master/docs/block.md)
 
 ## Extra
-* [Crypto](crypto.md)
-* [Encoding](encoding.md)
+* [Crypto](https://github.com/digibyte/digibyte-lib/blob/master/docs/crypto.md)
+* [Encoding](https://github.com/digibyte/digibyte-lib/blob/master/docs/encoding.md)
 
 ## Module Development
-* [Browser Builds](browser.md)
-
-## Modules
-
-Some functionality is implemented as a module that can be installed separately:
-
-* [Payment Protocol Support](https://github.com/bitpay/bitcore-payment-protocol)
-* [Peer to Peer Networking](https://github.com/bitpay/bitcore-p2p)
-* [DigiByte Core JSON-RPC](https://github.com/bitpay/bitcoind-rpc)
-* [Payment Channels](https://github.com/bitpay/bitcore-channel)
-* [Mnemonics](https://github.com/bitpay/bitcore-mnemonic)
-* [Elliptical Curve Integrated Encryption Scheme](https://github.com/bitpay/bitcore-ecies)
-* [Blockchain Explorers](https://github.com/bitpay/bitcore-explorers)
-* [Signed Messages](https://github.com/bitpay/bitcore-message)
+* [Browser Builds](https://github.com/digibyte/digibyte-lib/blob/master/docs/browser.md)
 
 # Examples
 
